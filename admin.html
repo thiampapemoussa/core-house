@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core House Dakar — Administration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --espresso: #301905;
+  --earth: #6F3E14;
+  --ivory: #F8F4ED;
+  --olive: #7F6F4C;
+  --sand: #D8AF82;
+  --ink: #211A16;
+  --off-white: #FCFAF6;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── Login Screen ── */
+
+.login-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--ivory);
+}
+
+.login-card {
+  background: var(--off-white);
+  border: 1px solid rgba(127,111,76,0.1);
+  border-radius: 2px;
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.login-card h1 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 2.2rem;
+  color: var(--espresso);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.login-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 2.25rem;
+}
+
+.login-card input[type="password"] {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(127,111,76,0.25);
+  border-radius: 2px;
+  padding: 0.7rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--off-white);
+  text-align: center;
+  letter-spacing: 0.35em;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 1.5rem;
+}
+
+.login-card input[type="password"]:focus {
+  border-color: var(--sand);
+}
+
+.login-card input[type="password"]::placeholder {
+  letter-spacing: 0.05em;
+  color: rgba(127,111,76,0.4);
+  font-size: 0.85rem;
+}
+
+.login-error {
+  font-size: 0.8rem;
+  color: #b5443a;
+  margin-bottom: 1rem;
+  min-height: 1.2em;
+}
+
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  background: var(--espresso);
+  color: var(--ivory);
+}
+
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-outline {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  border-radius: 2px;
+  border: 1px solid var(--espresso);
+  color: var(--espresso);
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-outline:hover { opacity: 0.75; }
+
+/* ── Dashboard ── */
+
+.dashboard {
+  display: none;
+  min-height: 100vh;
+  background: var(--ivory);
+}
+
+.dashboard.active {
+  display: block;
+}
+
+/* Header */
+
+.dash-header {
+  background: var(--off-white);
+  border-bottom: 1px solid rgba(127,111,76,0.1);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.dash-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dash-header-left h1 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 1.35rem;
+  color: var(--espresso);
+  letter-spacing: 0.02em;
+}
+
+.dash-header-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--olive);
+  padding-top: 2px;
+}
+
+.dash-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-refresh {
+  background: none;
+  border: 1px solid rgba(127,111,76,0.2);
+  border-radius: 2px;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+  color: var(--olive);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+}
+
+.btn-refresh:hover {
+  border-color: var(--sand);
+}
+
+.btn-refresh svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-refresh.spinning svg {
+  animation: spin 0.6s linear;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.btn-logout {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.45rem 0;
+  transition: color 0.2s;
+}
+
+.btn-logout:hover { color: var(--espresso); }
+
+/* Main content */
+
+.dash-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Stats row */
+
+.stats-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.stats-row::-webkit-scrollbar { display: none; }
+
+.stat-card {
+  background: var(--off-white);
+  border: 1px solid rgba(127,111,76,0.1);
+  border-radius: 2px;
+  padding: 1.25rem;
+  flex: 1;
+  min-width: 140px;
+}
+
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 0.35rem;
+}
+
+.stat-value {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--espresso);
+  line-height: 1.1;
+}
+
+/* Filters */
+
+.filters-section {
+  margin-bottom: 1.5rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.filter-btn {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  padding: 0.55rem 1.25rem;
+  border: 1px solid rgba(127,111,76,0.25);
+  border-radius: 2px;
+  color: var(--olive);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  border-color: var(--sand);
+}
+
+.filter-btn.active {
+  background: var(--espresso);
+  color: var(--ivory);
+  border-color: var(--espresso);
+}
+
+/* Search */
+
+.search-section {
+  margin-bottom: 1.75rem;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 480px;
+  border: 1px solid rgba(127,111,76,0.25);
+  border-radius: 2px;
+  padding: 0.7rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--off-white);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--sand);
+}
+
+.search-input::placeholder {
+  color: rgba(127,111,76,0.4);
+}
+
+/* Table */
+
+.table-container {
+  background: var(--off-white);
+  border: 1px solid rgba(127,111,76,0.1);
+  border-radius: 2px;
+  overflow-x: auto;
+  transition: opacity 0.2s;
+}
+
+.table-container.loading {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.inv-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.inv-table thead th {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--olive);
+  text-align: left;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid rgba(127,111,76,0.1);
+  white-space: nowrap;
+}
+
+.inv-table tbody tr {
+  transition: background 0.15s;
+}
+
+.inv-table tbody tr:nth-child(odd) {
+  background: var(--off-white);
+}
+
+.inv-table tbody tr:nth-child(even) {
+  background: var(--ivory);
+}
+
+.inv-table tbody tr:hover {
+  background: rgba(216,175,130,0.08);
+}
+
+.inv-table tbody td {
+  font-size: 0.875rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(127,111,76,0.06);
+  color: var(--ink);
+  vertical-align: middle;
+}
+
+.td-name {
+  font-weight: 500;
+}
+
+/* Status badges */
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.badge-booked {
+  background: rgba(90,122,90,0.1);
+  color: #5a7a5a;
+}
+
+.badge-used {
+  background: rgba(90,122,90,0.15);
+  color: #5a7a5a;
+}
+
+.badge-expired {
+  background: rgba(181,68,58,0.1);
+  color: #b5443a;
+}
+
+.badge-cancelled {
+  background: rgba(127,111,76,0.1);
+  color: var(--olive);
+}
+
+.badge-no_show {
+  background: rgba(181,68,58,0.1);
+  color: #b5443a;
+}
+
+/* Mobile cards (hidden on desktop) */
+
+.mobile-cards {
+  display: none;
+}
+
+.inv-card {
+  background: var(--off-white);
+  border: 1px solid rgba(127,111,76,0.1);
+  border-radius: 2px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.inv-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.4rem;
+}
+
+.inv-card-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.inv-card-meta {
+  font-size: 0.8rem;
+  color: var(--olive);
+  margin-bottom: 0.6rem;
+}
+
+.inv-card-contact {
+  font-size: 0.78rem;
+  color: rgba(33,26,22,0.55);
+  line-height: 1.5;
+}
+
+/* Empty state */
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--olive);
+  font-size: 0.95rem;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .dash-header {
+    padding: 0 1rem;
+    height: 56px;
+  }
+
+  .dash-header-left h1 {
+    font-size: 1.15rem;
+  }
+
+  .dash-header-label {
+    display: none;
+  }
+
+  .dash-main {
+    padding: 1.25rem 1rem;
+  }
+
+  .stats-row {
+    gap: 0.65rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-card {
+    min-width: 120px;
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.65rem;
+  }
+
+  .search-input {
+    max-width: 100%;
+  }
+
+  .table-container {
+    display: none;
+  }
+
+  .mobile-cards {
+    display: block;
+  }
+
+  .login-card {
+    margin: 0 1rem;
+    padding: 2.5rem 1.75rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .filter-btn {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.95rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <h1>Core House</h1>
+    <p class="login-subtitle">Administration</p>
+    <input type="password" id="pinInput" placeholder="Code PIN" maxlength="8" autocomplete="off" inputmode="numeric">
+    <p class="login-error" id="loginError"></p>
+    <button class="btn-primary" id="loginBtn" onclick="handleLogin()">Acc&eacute;der</button>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard" class="dashboard">
+
+  <!-- Header -->
+  <header class="dash-header">
+    <div class="dash-header-left">
+      <h1>Core House Dakar</h1>
+      <span class="dash-header-label">Administration</span>
+    </div>
+    <div class="dash-header-right">
+      <button class="btn-refresh" id="refreshBtn" onclick="refreshData()" title="Actualiser">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"/>
+          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+        </svg>
+      </button>
+      <button class="btn-logout" onclick="handleLogout()">D&eacute;connexion</button>
+    </div>
+  </header>
+
+  <main class="dash-main">
+
+    <!-- Stats -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card">
+        <div class="stat-label">Invitations</div>
+        <div class="stat-value" id="statTotal">&mdash;</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">&Agrave; venir</div>
+        <div class="stat-value" id="statUpcoming">&mdash;</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pr&eacute;sents</div>
+        <div class="stat-value" id="statUsed">&mdash;</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">No-shows</div>
+        <div class="stat-value" id="statNoShow">&mdash;</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Taux de pr&eacute;sence</div>
+        <div class="stat-value" id="statPresence">&mdash;</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-section">
+      <div class="filter-row" id="statusFilters">
+        <button class="filter-btn active" data-filter="" onclick="setStatusFilter(this, '')">Tous</button>
+        <button class="filter-btn" data-filter="today" onclick="setStatusFilter(this, 'today')">Aujourd'hui</button>
+        <button class="filter-btn" data-filter="upcoming" onclick="setStatusFilter(this, 'upcoming')">&Agrave; venir</button>
+        <button class="filter-btn" data-filter="used" onclick="setStatusFilter(this, 'used')">Utilis&eacute;es</button>
+        <button class="filter-btn" data-filter="no_show" onclick="setStatusFilter(this, 'no_show')">No-show</button>
+        <button class="filter-btn" data-filter="expired" onclick="setStatusFilter(this, 'expired')">Expir&eacute;es</button>
+        <button class="filter-btn" data-filter="cancelled" onclick="setStatusFilter(this, 'cancelled')">Annul&eacute;es</button>
+      </div>
+      <div class="filter-row" id="disciplineFilters">
+        <button class="filter-btn active" data-discipline="" onclick="setDisciplineFilter(this, '')">Toutes</button>
+        <button class="filter-btn" data-discipline="pilates" onclick="setDisciplineFilter(this, 'pilates')">Pilates</button>
+        <button class="filter-btn" data-discipline="yoga" onclick="setDisciplineFilter(this, 'yoga')">Yoga</button>
+        <button class="filter-btn" data-discipline="box" onclick="setDisciplineFilter(this, 'box')">Box Cardio</button>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-section">
+      <input type="text" class="search-input" id="searchInput" placeholder="Rechercher par nom, email ou t&eacute;l&eacute;phone...">
+    </div>
+
+    <!-- Table (desktop) -->
+    <div class="table-container" id="tableContainer">
+      <table class="inv-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>T&eacute;l&eacute;phone</th>
+            <th>Discipline</th>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Statut</th>
+            <th>Check-in</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cards (mobile) -->
+    <div class="mobile-cards" id="mobileCards">
+    </div>
+
+  </main>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var API_BASE = '';
+  var DISCIPLINES = { pilates: 'Mat Pilates', yoga: 'Yoga', box: 'Box Cardio' };
+  var STATUS_LABELS = {
+    booked: 'Réservée',
+    used: 'Présent',
+    expired: 'Expirée',
+    cancelled: 'Annulée',
+    no_show: 'No-show'
+  };
+
+  var currentFilter = '';
+  var currentDiscipline = '';
+  var currentSearch = '';
+  var searchTimeout = null;
+  var refreshInterval = null;
+
+  // ── Auth ──
+
+  function getToken() {
+    return localStorage.getItem('coreHouseStaffToken');
+  }
+
+  function setToken(token) {
+    localStorage.setItem('coreHouseStaffToken', token);
+  }
+
+  function clearToken() {
+    localStorage.removeItem('coreHouseStaffToken');
+  }
+
+  function authHeaders() {
+    return { 'Authorization': 'Bearer ' + getToken(), 'Content-Type': 'application/json' };
+  }
+
+  // ── API ──
+
+  function apiPost(path, body) {
+    return fetch(API_BASE + path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function(r) { return r.json(); });
+  }
+
+  function apiGet(path) {
+    return fetch(API_BASE + path, {
+      headers: authHeaders()
+    }).then(function(r) {
+      if (r.status === 401 || r.status === 403) {
+        handleLogout();
+        throw new Error('Unauthorized');
+      }
+      return r.json();
+    });
+  }
+
+  // ── Login ──
+
+  window.handleLogin = function() {
+    var pin = document.getElementById('pinInput').value.trim();
+    var errorEl = document.getElementById('loginError');
+    if (!pin) {
+      errorEl.textContent = 'Veuillez entrer le code PIN.';
+      return;
+    }
+    errorEl.textContent = '';
+    document.getElementById('loginBtn').disabled = true;
+
+    apiPost('/api/staff/login', { pin: pin })
+      .then(function(data) {
+        document.getElementById('loginBtn').disabled = false;
+        if (data.success && data.token) {
+          setToken(data.token);
+          showDashboard();
+        } else {
+          errorEl.textContent = 'Code PIN incorrect.';
+          document.getElementById('pinInput').value = '';
+          document.getElementById('pinInput').focus();
+        }
+      })
+      .catch(function() {
+        document.getElementById('loginBtn').disabled = false;
+        errorEl.textContent = 'Erreur de connexion au serveur.';
+      });
+  };
+
+  window.handleLogout = function() {
+    clearToken();
+    if (refreshInterval) { clearInterval(refreshInterval); refreshInterval = null; }
+    document.getElementById('dashboard').classList.remove('active');
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('pinInput').value = '';
+    document.getElementById('loginError').textContent = '';
+  };
+
+  // ── Dashboard ──
+
+  function showDashboard() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').classList.add('active');
+    loadData();
+    refreshInterval = setInterval(loadData, 30000);
+  }
+
+  function loadData() {
+    fetchStats();
+    fetchInvitations();
+  }
+
+  window.refreshData = function() {
+    var btn = document.getElementById('refreshBtn');
+    btn.classList.add('spinning');
+    setTimeout(function() { btn.classList.remove('spinning'); }, 600);
+    loadData();
+  };
+
+  // ── Stats ──
+
+  function fetchStats() {
+    apiGet('/api/free-trial/stats')
+      .then(function(data) {
+        document.getElementById('statTotal').textContent = data.total != null ? data.total : '—';
+        document.getElementById('statUpcoming').textContent = data.upcoming != null ? data.upcoming : '—';
+        document.getElementById('statUsed').textContent = data.used != null ? data.used : '—';
+        document.getElementById('statNoShow').textContent = data.noShow != null ? data.noShow : '—';
+        document.getElementById('statPresence').textContent = data.presenceRate != null ? data.presenceRate + '%' : '—';
+      })
+      .catch(function() {});
+  }
+
+  // ── Invitations ──
+
+  function fetchInvitations() {
+    var params = [];
+    if (currentFilter) params.push('filter=' + encodeURIComponent(currentFilter));
+    if (currentDiscipline) params.push('discipline=' + encodeURIComponent(currentDiscipline));
+    if (currentSearch) params.push('search=' + encodeURIComponent(currentSearch));
+    var qs = params.length ? '?' + params.join('&') : '';
+
+    var container = document.getElementById('tableContainer');
+    var mobileContainer = document.getElementById('mobileCards');
+    container.classList.add('loading');
+    mobileContainer.style.opacity = '0.45';
+
+    apiGet('/api/free-trial/admin' + qs)
+      .then(function(data) {
+        container.classList.remove('loading');
+        mobileContainer.style.opacity = '1';
+        renderInvitations(data.invitations || []);
+      })
+      .catch(function() {
+        container.classList.remove('loading');
+        mobileContainer.style.opacity = '1';
+      });
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '—';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    return d.toLocaleDateString('fr-FR', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+
+  function formatTime(hour, minute) {
+    if (hour == null) return '—';
+    var h = String(hour).padStart(2, '0');
+    var m = String(minute != null ? minute : 0).padStart(2, '0');
+    return h + ':' + m;
+  }
+
+  function formatCheckin(usedAt) {
+    if (!usedAt) return '—';
+    var d = new Date(usedAt);
+    if (isNaN(d.getTime())) return usedAt;
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) + ' ' +
+           d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function statusBadge(status) {
+    var label = STATUS_LABELS[status] || status;
+    var cls = 'badge badge-' + (status || 'booked');
+    return '<span class="' + cls + '">' + escapeHtml(label) + '</span>';
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function renderInvitations(invitations) {
+    var tbody = document.getElementById('tableBody');
+    var mobileContainer = document.getElementById('mobileCards');
+
+    if (!invitations.length) {
+      tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state">Aucune invitation trouvée.</div></td></tr>';
+      mobileContainer.innerHTML = '<div class="empty-state">Aucune invitation trouvée.</div>';
+      return;
+    }
+
+    // Desktop table
+    var rows = '';
+    for (var i = 0; i < invitations.length; i++) {
+      var inv = invitations[i];
+      var name = escapeHtml((inv.first_name || '') + ' ' + (inv.last_name || '')).trim();
+      var disc = DISCIPLINES[inv.discipline] || inv.discipline || '—';
+      rows += '<tr>' +
+        '<td class="td-name">' + (name || '—') + '</td>' +
+        '<td>' + escapeHtml(inv.email || '—') + '</td>' +
+        '<td>' + escapeHtml(inv.phone || '—') + '</td>' +
+        '<td>' + escapeHtml(disc) + '</td>' +
+        '<td>' + escapeHtml(formatDate(inv.date)) + '</td>' +
+        '<td>' + formatTime(inv.hour, inv.minute) + '</td>' +
+        '<td>' + statusBadge(inv.status) + '</td>' +
+        '<td>' + escapeHtml(formatCheckin(inv.used_at)) + '</td>' +
+        '</tr>';
+    }
+    tbody.innerHTML = rows;
+
+    // Mobile cards
+    var cards = '';
+    for (var j = 0; j < invitations.length; j++) {
+      var inv2 = invitations[j];
+      var name2 = escapeHtml((inv2.first_name || '') + ' ' + (inv2.last_name || '')).trim();
+      var disc2 = DISCIPLINES[inv2.discipline] || inv2.discipline || '—';
+      cards += '<div class="inv-card">' +
+        '<div class="inv-card-top">' +
+          '<span class="inv-card-name">' + (name2 || '—') + '</span>' +
+          statusBadge(inv2.status) +
+        '</div>' +
+        '<div class="inv-card-meta">' +
+          escapeHtml(disc2) + ' &middot; ' +
+          escapeHtml(formatDate(inv2.date)) + ' &middot; ' +
+          formatTime(inv2.hour, inv2.minute) +
+        '</div>' +
+        '<div class="inv-card-contact">' +
+          escapeHtml(inv2.email || '') +
+          (inv2.phone ? '<br>' + escapeHtml(inv2.phone) : '') +
+        '</div>' +
+        '</div>';
+    }
+    mobileContainer.innerHTML = cards;
+  }
+
+  // ── Filters ──
+
+  window.setStatusFilter = function(btn, filter) {
+    var btns = document.querySelectorAll('#statusFilters .filter-btn');
+    for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+    btn.classList.add('active');
+    currentFilter = filter;
+    fetchInvitations();
+  };
+
+  window.setDisciplineFilter = function(btn, discipline) {
+    var btns = document.querySelectorAll('#disciplineFilters .filter-btn');
+    for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+    btn.classList.add('active');
+    currentDiscipline = discipline;
+    fetchInvitations();
+  };
+
+  // ── Search ──
+
+  document.getElementById('searchInput').addEventListener('input', function() {
+    var val = this.value.trim();
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function() {
+      currentSearch = val;
+      fetchInvitations();
+    }, 300);
+  });
+
+  // ── PIN enter key ──
+
+  document.getElementById('pinInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      window.handleLogin();
+    }
+  });
+
+  // ── Init ──
+
+  function init() {
+    var token = getToken();
+    if (token) {
+      // Validate token by fetching stats
+      apiGet('/api/free-trial/stats')
+        .then(function() {
+          showDashboard();
+        })
+        .catch(function() {
+          clearToken();
+          document.getElementById('loginScreen').style.display = 'flex';
+        });
+    } else {
+      document.getElementById('loginScreen').style.display = 'flex';
+    }
+  }
+
+  init();
+
+})();
+</script>
+</body>
+</html>

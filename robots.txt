@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /staff.html
+
+Sitemap: https://corehousedakar.com/sitemap.xml

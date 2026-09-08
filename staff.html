@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Core House Dakar — Check-in</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --espresso: #301905;
+      --earth: #6F3E14;
+      --ivory: #F8F4ED;
+      --olive: #7F6F4C;
+      --sand: #D8AF82;
+      --ink: #211A16;
+      --off-white: #FCFAF6;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --valid: #5a7a5a;
+      --invalid: #b5443a;
+      --warning: #b08a3e;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--off-white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── Utility ── */
+    .hidden { display: none !important; }
+
+    .label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .btn {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.75rem;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active { opacity: 0.85; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary {
+      background: var(--espresso);
+      color: var(--ivory);
+    }
+
+    .btn-valid {
+      background: var(--valid);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--espresso);
+      border: 1px solid rgba(127, 111, 76, 0.25);
+    }
+
+    input[type="password"],
+    input[type="text"] {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      border: 1px solid rgba(127, 111, 76, 0.25);
+      border-radius: 2px;
+      padding: 0.7rem 0.85rem;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s ease;
+      -webkit-appearance: none;
+    }
+
+    input:focus {
+      border-color: var(--olive);
+    }
+
+    /* ── Screens ── */
+    .screen {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── LOGIN ── */
+    #loginScreen {
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .login-title {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--espresso);
+      margin-bottom: 0.35rem;
+    }
+
+    .login-subtitle {
+      margin-bottom: 2.5rem;
+    }
+
+    .login-form {
+      width: 100%;
+      max-width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .login-form input {
+      text-align: center;
+      font-size: 1.5rem;
+      letter-spacing: 0.35em;
+      padding: 0.85rem 1rem;
+    }
+
+    .login-error {
+      font-size: 0.8rem;
+      color: var(--invalid);
+      text-align: center;
+      min-height: 1.2rem;
+    }
+
+    /* ── SCANNER ── */
+    #scannerScreen {
+      background: var(--ink);
+    }
+
+    .scanner-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.1rem;
+      background: var(--espresso);
+    }
+
+    .scanner-header-title {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: var(--ivory);
+    }
+
+    .scanner-header .btn-logout {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sand);
+      background: none;
+      border: 1px solid rgba(216, 175, 130, 0.3);
+      border-radius: 2px;
+      padding: 0.4rem 0.75rem;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .viewfinder-wrap {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #cameraVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .viewfinder-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .viewfinder-frame {
+      width: 240px;
+      height: 240px;
+      position: relative;
+    }
+
+    .viewfinder-frame::before,
+    .viewfinder-frame::after,
+    .viewfinder-frame span::before,
+    .viewfinder-frame span::after {
+      content: '';
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-color: var(--sand);
+      border-style: solid;
+    }
+
+    .viewfinder-frame::before {
+      top: 0; left: 0;
+      border-width: 2px 0 0 2px;
+    }
+    .viewfinder-frame::after {
+      top: 0; right: 0;
+      border-width: 2px 2px 0 0;
+    }
+    .viewfinder-frame span::before {
+      bottom: 0; left: 0;
+      border-width: 0 0 2px 2px;
+    }
+    .viewfinder-frame span::after {
+      bottom: 0; right: 0;
+      border-width: 0 2px 2px 0;
+    }
+
+    @keyframes scanPulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .scanning .viewfinder-frame::before,
+    .scanning .viewfinder-frame::after,
+    .scanning .viewfinder-frame span::before,
+    .scanning .viewfinder-frame span::after {
+      animation: scanPulse 2s ease-in-out infinite;
+    }
+
+    .viewfinder-label {
+      position: absolute;
+      bottom: -2rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(216, 175, 130, 0.7);
+    }
+
+    .camera-error {
+      color: var(--sand);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .manual-entry {
+      padding: 1.1rem 1.25rem;
+      background: rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .manual-entry .label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: rgba(216, 175, 130, 0.6);
+      font-size: 0.65rem;
+    }
+
+    .manual-entry-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .manual-entry-row input {
+      flex: 1;
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--ivory);
+      font-size: 0.85rem;
+      padding: 0.6rem 0.75rem;
+    }
+
+    .manual-entry-row input::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .manual-entry-row .btn {
+      padding: 0.6rem 1rem;
+      font-size: 0.7rem;
+      background: var(--olive);
+      color: var(--ivory);
+      white-space: nowrap;
+    }
+
+    /* ── RESULT ── */
+    #resultScreen {
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      background: var(--off-white);
+    }
+
+    .result-icon {
+      margin-bottom: 1.25rem;
+    }
+
+    .result-icon svg {
+      width: 72px;
+      height: 72px;
+    }
+
+    .result-status {
+      margin-bottom: 1.5rem;
+    }
+
+    .result-name {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.8rem;
+      color: var(--espresso);
+      margin-bottom: 0.3rem;
+    }
+
+    .result-detail {
+      font-size: 0.85rem;
+      color: var(--olive);
+      margin-bottom: 0.15rem;
+      line-height: 1.5;
+    }
+
+    .result-details {
+      margin-bottom: 2rem;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .result-actions .btn {
+      width: 100%;
+    }
+
+    /* ── SUCCESS CONFIRMATION ── */
+    .success-confirmed {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .success-confirmed .result-icon svg {
+      width: 88px;
+      height: 88px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.35s ease-out;
+    }
+
+    .countdown-text {
+      font-size: 0.75rem;
+      color: var(--olive);
+      margin-top: 0.5rem;
+    }
+
+    /* ── Safe area for notched phones ── */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      .scanner-header {
+        padding-top: calc(0.85rem + env(safe-area-inset-top));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="screen">
+    <h1 class="login-title">Core House</h1>
+    <p class="label login-subtitle">Accès équipe</p>
+    <form class="login-form" id="loginForm" autocomplete="off">
+      <input
+        type="password"
+        inputmode="numeric"
+        id="pinInput"
+        placeholder="- - - -"
+        maxlength="6"
+        autocomplete="off"
+        aria-label="Code PIN"
+      >
+      <button type="submit" class="btn btn-primary">Accéder</button>
+      <p class="login-error" id="loginError" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <!-- SCANNER SCREEN -->
+  <div id="scannerScreen" class="screen hidden">
+    <div class="scanner-header">
+      <span class="scanner-header-title">Core House</span>
+      <button class="btn-logout" id="logoutBtn">Déconnexion</button>
+    </div>
+    <div class="viewfinder-wrap scanning" id="viewfinderWrap">
+      <video id="cameraVideo" autoplay playsinline muted></video>
+      <div class="viewfinder-overlay">
+        <div class="viewfinder-frame">
+          <span></span>
+          <p class="viewfinder-label">Scanner le QR code</p>
+        </div>
+      </div>
+      <div class="camera-error hidden" id="cameraError"></div>
+    </div>
+    <div class="manual-entry">
+      <span class="label">Saisir le code manuellement</span>
+      <div class="manual-entry-row">
+        <input type="text" id="manualToken" placeholder="Code du QR">
+        <button class="btn" id="manualVerifyBtn">Vérifier</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="resultScreen" class="screen hidden"></div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const API_BASE = '';
+      const TOKEN_KEY = 'coreHouseStaffToken';
+
+      // ── State ──
+      let staffToken = localStorage.getItem(TOKEN_KEY) || null;
+      let cameraStream = null;
+      let barcodeDetector = null;
+      let scanInterval = null;
+      let isProcessing = false;
+
+      // ── Elements ──
+      const loginScreen = document.getElementById('loginScreen');
+      const scannerScreen = document.getElementById('scannerScreen');
+      const resultScreen = document.getElementById('resultScreen');
+      const loginForm = document.getElementById('loginForm');
+      const pinInput = document.getElementById('pinInput');
+      const loginError = document.getElementById('loginError');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const cameraVideo = document.getElementById('cameraVideo');
+      const viewfinderWrap = document.getElementById('viewfinderWrap');
+      const cameraError = document.getElementById('cameraError');
+      const manualToken = document.getElementById('manualToken');
+      const manualVerifyBtn = document.getElementById('manualVerifyBtn');
+
+      // ── Helpers ──
+      function showScreen(screen) {
+        [loginScreen, scannerScreen, resultScreen].forEach(s => s.classList.add('hidden'));
+        screen.classList.remove('hidden');
+      }
+
+      function formatDateFR(dateStr) {
+        if (!dateStr) return '';
+        try {
+          const d = new Date(dateStr);
+          return d.toLocaleDateString('fr-FR', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          });
+        } catch {
+          return dateStr;
+        }
+      }
+
+      function formatTime(hour, minute) {
+        const h = String(hour).padStart(2, '0');
+        const m = String(minute).padStart(2, '0');
+        return h + ':' + m;
+      }
+
+      function formatDateTimeFR(isoStr) {
+        if (!isoStr) return '';
+        try {
+          const d = new Date(isoStr);
+          return d.toLocaleDateString('fr-FR', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          }) + ' à ' + d.toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+        } catch {
+          return isoStr;
+        }
+      }
+
+      function extractToken(raw) {
+        const str = raw.trim();
+        const idx = str.indexOf('/invite/');
+        if (idx !== -1) {
+          return str.substring(idx + 8).split('?')[0].split('#')[0];
+        }
+        // If it looks like a URL but without /invite/, try last path segment
+        try {
+          const url = new URL(str);
+          const parts = url.pathname.split('/').filter(Boolean);
+          return parts[parts.length - 1] || str;
+        } catch {
+          return str;
+        }
+      }
+
+      async function apiRequest(method, path, body) {
+        const opts = {
+          method,
+          headers: { 'Content-Type': 'application/json' }
+        };
+        if (staffToken) {
+          opts.headers['Authorization'] = 'Bearer ' + staffToken;
+        }
+        if (body) {
+          opts.body = JSON.stringify(body);
+        }
+        const res = await fetch(API_BASE + path, opts);
+        return res.json();
+      }
+
+      // ── SVG Icons ──
+      const icons = {
+        check: '<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M22 36l10 10 18-20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>',
+        cross: '<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M26 26l20 20M46 26l-20 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>',
+        warning: '<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M36 22v20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/><circle cx="36" cy="50" r="2" fill="currentColor"/></svg>'
+      };
+
+      // ── LOGIN ──
+      loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        loginError.textContent = '';
+        const pin = pinInput.value.trim();
+        if (!pin || pin.length < 4) {
+          loginError.textContent = 'Saisissez votre code PIN';
+          return;
+        }
+        try {
+          const data = await apiRequest('POST', '/api/staff/login', { pin });
+          if (data.success && data.token) {
+            staffToken = data.token;
+            localStorage.setItem(TOKEN_KEY, staffToken);
+            pinInput.value = '';
+            openScanner();
+          } else {
+            loginError.textContent = data.error || 'Code PIN incorrect';
+          }
+        } catch (err) {
+          loginError.textContent = 'Erreur de connexion au serveur';
+        }
+      });
+
+      // ── LOGOUT ──
+      logoutBtn.addEventListener('click', function() {
+        staffToken = null;
+        localStorage.removeItem(TOKEN_KEY);
+        stopCamera();
+        showScreen(loginScreen);
+        pinInput.value = '';
+        pinInput.focus();
+      });
+
+      // ── SCANNER ──
+      async function openScanner() {
+        showScreen(scannerScreen);
+        isProcessing = false;
+        await startCamera();
+      }
+
+      async function startCamera() {
+        cameraError.classList.add('hidden');
+
+        // Init BarcodeDetector
+        if ('BarcodeDetector' in window) {
+          try {
+            barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+          } catch {
+            barcodeDetector = null;
+          }
+        }
+
+        try {
+          cameraStream = await navigator.mediaDevices.getUserMedia({
+            video: {
+              facingMode: { ideal: 'environment' },
+              width: { ideal: 1280 },
+              height: { ideal: 720 }
+            },
+            audio: false
+          });
+          cameraVideo.srcObject = cameraStream;
+          cameraVideo.classList.remove('hidden');
+
+          if (barcodeDetector) {
+            startScanning();
+          }
+        } catch (err) {
+          cameraVideo.classList.add('hidden');
+          cameraError.classList.remove('hidden');
+          if (err.name === 'NotAllowedError') {
+            cameraError.textContent = 'Accès à la caméra refusé. Autorisez l\'accès dans les réglages de votre navigateur, ou utilisez la saisie manuelle ci-dessous.';
+          } else {
+            cameraError.textContent = 'Impossible d\'accéder à la caméra. Utilisez la saisie manuelle ci-dessous.';
+          }
+          viewfinderWrap.classList.remove('scanning');
+        }
+      }
+
+      function startScanning() {
+        if (scanInterval) clearInterval(scanInterval);
+        scanInterval = setInterval(async () => {
+          if (isProcessing || !barcodeDetector || !cameraVideo.videoWidth) return;
+          try {
+            const codes = await barcodeDetector.detect(cameraVideo);
+            if (codes.length > 0) {
+              const raw = codes[0].rawValue;
+              if (raw) {
+                isProcessing = true;
+                const token = extractToken(raw);
+                await verifyToken(token);
+              }
+            }
+          } catch {
+            // Ignore detection errors
+          }
+        }, 350);
+      }
+
+      function stopCamera() {
+        if (scanInterval) {
+          clearInterval(scanInterval);
+          scanInterval = null;
+        }
+        if (cameraStream) {
+          cameraStream.getTracks().forEach(t => t.stop());
+          cameraStream = null;
+        }
+        cameraVideo.srcObject = null;
+      }
+
+      // ── MANUAL ENTRY ──
+      manualVerifyBtn.addEventListener('click', function() {
+        const raw = manualToken.value.trim();
+        if (!raw) return;
+        isProcessing = true;
+        const token = extractToken(raw);
+        verifyToken(token);
+      });
+
+      manualToken.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          manualVerifyBtn.click();
+        }
+      });
+
+      // ── VERIFY ──
+      async function verifyToken(token) {
+        try {
+          const data = await apiRequest('GET', '/api/free-trial/verify/' + encodeURIComponent(token));
+
+          if (data.valid && data.status === 'booked') {
+            showValidResult(data, token);
+          } else if (data.status === 'used') {
+            showUsedResult(data);
+          } else if (data.status === 'expired') {
+            showExpiredResult(data);
+          } else if (data.status === 'cancelled') {
+            showCancelledResult();
+          } else {
+            showInvalidResult();
+          }
+        } catch (err) {
+          showErrorResult('Erreur de connexion au serveur');
+        }
+      }
+
+      // ── RESULT SCREENS ──
+      function showValidResult(data, token) {
+        stopCamera();
+        resultScreen.innerHTML = '<div class="animate-in">' +
+          '<div class="result-icon" style="color:var(--valid)">' + icons.check + '</div>' +
+          '<div class="result-status"><span class="label" style="color:var(--valid)">Invitation valide</span></div>' +
+          '<div class="result-details">' +
+            '<p class="result-name">' + esc(data.firstName) + ' ' + esc(data.lastName) + '</p>' +
+            '<p class="result-detail">' + esc(data.disciplineLabel || data.discipline) + '</p>' +
+            '<p class="result-detail">' + formatTime(data.hour, data.minute) + '</p>' +
+            '<p class="result-detail">' + formatDateFR(data.date) + '</p>' +
+            (data.coach ? '<p class="result-detail" style="margin-top:0.35rem;font-size:0.8rem;color:var(--olive)">Coach : ' + esc(data.coach) + '</p>' : '') +
+          '</div>' +
+          '<div class="result-actions">' +
+            '<button class="btn btn-valid" id="checkinBtn">Valider l\'entrée</button>' +
+            '<button class="btn btn-outline" id="backToScannerBtn">Retour</button>' +
+          '</div>' +
+        '</div>';
+        showScreen(resultScreen);
+
+        const checkinBtn = document.getElementById('checkinBtn');
+        const backBtn = document.getElementById('backToScannerBtn');
+
+        checkinBtn.addEventListener('click', async function() {
+          checkinBtn.disabled = true;
+          try {
+            const res = await apiRequest('POST', '/api/free-trial/checkin/' + encodeURIComponent(token));
+            if (res.success) {
+              showCheckinSuccess(res);
+            } else {
+              checkinBtn.disabled = false;
+              if (res.reason === 'already_used') {
+                showUsedResult({ firstName: data.firstName, lastName: data.lastName, usedAt: res.usedAt });
+              } else {
+                showErrorResult('La validation a échoué. Veuillez réessayer.');
+              }
+            }
+          } catch {
+            checkinBtn.disabled = false;
+            showErrorResult('Erreur de connexion au serveur');
+          }
+        });
+
+        backBtn.addEventListener('click', function() {
+          manualToken.value = '';
+          openScanner();
+        });
+      }
+
+      function showCheckinSuccess(data) {
+        resultScreen.innerHTML = '<div class="success-confirmed animate-in">' +
+          '<div class="result-icon" style="color:var(--valid)">' + icons.check + '</div>' +
+          '<div class="result-status"><span class="label" style="color:var(--valid);font-size:0.85rem">Accès validé</span></div>' +
+          '<p class="result-name">' + esc(data.firstName) + ' ' + esc(data.lastName) + '</p>' +
+          '<p class="result-detail">' + esc(data.disciplineLabel || data.discipline) + ' — ' + formatTime(data.hour, data.minute) + '</p>' +
+          '<p class="countdown-text" id="countdownText">Retour au scanner dans 3s</p>' +
+        '</div>';
+        showScreen(resultScreen);
+
+        let count = 3;
+        const countdownEl = document.getElementById('countdownText');
+        const timer = setInterval(function() {
+          count--;
+          if (count <= 0) {
+            clearInterval(timer);
+            manualToken.value = '';
+            openScanner();
+          } else {
+            countdownEl.textContent = 'Retour au scanner dans ' + count + 's';
+          }
+        }, 1000);
+      }
+
+      function showUsedResult(data) {
+        stopCamera();
+        resultScreen.innerHTML = '<div class="animate-in">' +
+          '<div class="result-icon" style="color:var(--invalid)">' + icons.cross + '</div>' +
+          '<div class="result-status"><span class="label" style="color:var(--invalid)">Invitation déjà utilisée</span></div>' +
+          '<div class="result-details">' +
+            (data.firstName ? '<p class="result-name">' + esc(data.firstName) + ' ' + esc(data.lastName) + '</p>' : '') +
+            (data.usedAt ? '<p class="result-detail">Utilisée le ' + formatDateTimeFR(data.usedAt) + '</p>' : '') +
+          '</div>' +
+          '<div class="result-actions">' +
+            '<button class="btn btn-outline" id="backToScannerBtn">Retour</button>' +
+          '</div>' +
+        '</div>';
+        showScreen(resultScreen);
+        document.getElementById('backToScannerBtn').addEventListener('click', function() {
+          manualToken.value = '';
+          openScanner();
+        });
+      }
+
+      function showExpiredResult(data) {
+        stopCamera();
+        resultScreen.innerHTML = '<div class="animate-in">' +
+          '<div class="result-icon" style="color:var(--warning)">' + icons.warning + '</div>' +
+          '<div class="result-status"><span class="label" style="color:var(--warning)">Invitation expirée</span></div>' +
+          '<div class="result-details">' +
+            (data.firstName ? '<p class="result-name">' + esc(data.firstName) + ' ' + esc(data.lastName) + '</p>' : '') +
+            (data.date ? '<p class="result-detail">Réservation du ' + formatDateFR(data.date) + '</p>' : '') +
+          '</div>' +
+          '<div class="result-actions">' +
+            '<button class="btn btn-outline" id="backToScannerBtn">Retour</button>' +
+          '</div>' +
+        '</div>';
+        showScreen(resultScreen);
+        document.getElementById('backToScannerBtn').addEventListener('click', function() {
+          manualToken.value = '';
+          openScanner();
+        });
+      }
+
+      function showCancelledResult() {
+        stopCamera();
+        resultScreen.innerHTML = '<div class="animate-in">' +
+          '<div class="result-icon" style="color:var(--invalid)">' + icons.cross + '</div>' +
+          '<div class="result-status"><span class="label" style="color:var(--invalid)">Invitation annulée</span></div>' +
+          '<div class="result-actions" style="margin-top:1.5rem">' +
+            '<button class="btn btn-outline" id="backToScannerBtn">Retour</button>' +
+          '</div>' +
+        '</div>';
+        showScreen(resultScreen);
+        document.getElementById('backToScannerBtn').addEventListener('click', function() {
+          manualToken.value = '';
+          openScanner();
+        });
+      }
+
+      function showInvalidResult() {
+        stopCamera();
+        resultScreen.innerHTML = '<div class="animate-in">' +
+          '<div class="result-icon" style="color:var(--invalid)">' + icons.cross + '</div>' +
+          '<div class="result-status"><span class="label" style="color:var(--invalid)">QR code invalide</span></div>' +
+          '<div class="result-actions" style="margin-top:1.5rem">' +
+            '<button class="btn btn-outline" id="backToScannerBtn">Retour</button>' +
+          '</div>' +
+        '</div>';
+        showScreen(resultScreen);
+        document.getElementById('backToScannerBtn').addEventListener('click', function() {
+          manualToken.value = '';
+          openScanner();
+        });
+      }
+
+      function showErrorResult(msg) {
+        stopCamera();
+        resultScreen.innerHTML = '<div class="animate-in">' +
+          '<div class="result-icon" style="color:var(--invalid)">' + icons.cross + '</div>' +
+          '<div class="result-status"><span class="label" style="color:var(--invalid)">Erreur</span></div>' +
+          '<p class="result-detail">' + esc(msg) + '</p>' +
+          '<div class="result-actions" style="margin-top:1.5rem">' +
+            '<button class="btn btn-outline" id="backToScannerBtn">Retour</button>' +
+          '</div>' +
+        '</div>';
+        showScreen(resultScreen);
+        document.getElementById('backToScannerBtn').addEventListener('click', function() {
+          manualToken.value = '';
+          openScanner();
+        });
+      }
+
+      function esc(s) {
+        if (!s) return '';
+        const el = document.createElement('span');
+        el.textContent = s;
+        return el.innerHTML;
+      }
+
+      // ── INIT ──
+      async function init() {
+        if (staffToken) {
+          // Validate existing token with a test request
+          try {
+            // Use a dummy verify call to check if token is still valid
+            // A 401 or network error means we should re-login
+            const res = await fetch(API_BASE + '/api/free-trial/verify/___ping___', {
+              headers: { 'Authorization': 'Bearer ' + staffToken }
+            });
+            if (res.status === 401 || res.status === 403) {
+              staffToken = null;
+              localStorage.removeItem(TOKEN_KEY);
+              showScreen(loginScreen);
+              pinInput.focus();
+              return;
+            }
+            // Token seems valid, go to scanner
+            openScanner();
+          } catch {
+            // Server might be down, let them try the scanner anyway
+            openScanner();
+          }
+        } else {
+          showScreen(loginScreen);
+          pinInput.focus();
+        }
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>

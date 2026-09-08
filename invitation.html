@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core House Dakar — Votre première séance offerte</title>
+<meta name="description" content="Découvrez Core House Dakar avec une première séance offerte. Pilates, yoga ou box cardio — choisissez votre expérience.">
+<meta property="og:title" content="Core House Dakar — Votre première séance offerte">
+<meta property="og:description" content="Découvrez Core House Dakar avec une première séance offerte. Pilates, yoga ou box cardio.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --espresso: #301905;
+  --earth: #6F3E14;
+  --ivory: #F8F4ED;
+  --olive: #7F6F4C;
+  --sand: #D8AF82;
+  --ink: #211A16;
+  --off-white: #FCFAF6;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --header-height: 72px;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+/* ── Header ── */
+
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background: rgba(248, 244, 237, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 rgba(48, 25, 5, 0.08);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.header__logo img {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) sepia(1) saturate(3) hue-rotate(-10deg);
+}
+
+.header__back {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--espresso);
+  transition: opacity 0.2s;
+}
+.header__back:hover { opacity: 0.6; }
+
+/* ── Typography ── */
+
+.label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+/* ── Buttons ── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 1.75rem;
+  border-radius: 2px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, opacity 0.3s;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.btn--dark {
+  background: var(--espresso);
+  color: var(--ivory);
+}
+.btn--dark:hover { background: var(--earth); }
+.btn--dark:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn--dark-outline {
+  border: 1px solid var(--espresso);
+  color: var(--espresso);
+}
+.btn--dark-outline:hover { background: var(--espresso); color: var(--ivory); }
+
+/* ── Hero ── */
+
+.inv-hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--espresso);
+  color: var(--ivory);
+  padding: calc(var(--header-height) + 3rem) 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.inv-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(111, 62, 20, 0.3) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 80%, rgba(216, 175, 130, 0.1) 0%, transparent 50%);
+}
+
+.inv-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+}
+
+.inv-hero__brand {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 2rem;
+}
+
+.inv-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 300;
+  line-height: 1.12;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.inv-hero__subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.75;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.inv-hero__cta.btn {
+  width: auto;
+  display: inline-flex;
+  background: var(--ivory);
+  color: var(--espresso);
+  padding: 1rem 2.5rem;
+  font-size: 0.8rem;
+}
+.inv-hero__cta.btn:hover { background: var(--sand); }
+
+.inv-hero__gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.inv-hero__gate-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(248, 244, 237, 0.6);
+}
+
+.inv-hero__gate-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.inv-hero__gate-input {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-align: center;
+  text-transform: uppercase;
+  background: rgba(248, 244, 237, 0.1);
+  border: 1px solid rgba(248, 244, 237, 0.25);
+  color: var(--ivory);
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  width: 160px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.inv-hero__gate-input::placeholder {
+  color: rgba(248, 244, 237, 0.3);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 0.85rem;
+}
+
+.inv-hero__gate-input:focus {
+  border-color: var(--sand);
+}
+
+.inv-hero__gate-input.is-error {
+  border-color: #c0392b;
+  animation: gate-shake 0.4s ease;
+}
+
+.inv-hero__gate-error {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: #e74c3c;
+  min-height: 1.2em;
+  transition: opacity 0.3s;
+}
+
+@keyframes gate-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.inv-hero__note {
+  font-size: 0.75rem;
+  opacity: 0.4;
+  margin-top: 2rem;
+}
+
+/* ── Flow Container ── */
+
+.inv-flow {
+  display: none;
+  min-height: 100vh;
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: 4rem;
+  background: var(--off-white);
+}
+
+.inv-flow.is-active { display: block; }
+
+.inv-flow__inner {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2rem);
+}
+
+/* ── Progress ── */
+
+.inv-progress {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.inv-progress__step {
+  flex: 1;
+  height: 2px;
+  background: rgba(127, 111, 76, 0.15);
+  border-radius: 1px;
+  transition: background 0.4s var(--ease-out-expo);
+}
+
+.inv-progress__step.is-done {
+  background: var(--espresso);
+}
+
+.inv-progress__step.is-current {
+  background: var(--earth);
+}
+
+/* ── Step sections ── */
+
+.inv-step {
+  display: none;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.inv-step.is-active {
+  display: block;
+  animation: stepIn 0.5s var(--ease-out-expo) forwards;
+}
+
+@keyframes stepIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.inv-step__number {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--olive);
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.inv-step__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 300;
+  color: var(--espresso);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.inv-step__subtitle {
+  font-size: 0.9rem;
+  color: var(--olive);
+  margin-bottom: 2rem;
+}
+
+/* ── Form ── */
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(127, 111, 76, 0.25);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: white;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%237F6F4C' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  padding-right: 2.5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--espresso);
+}
+
+.form-group input.is-invalid {
+  border-color: #b5443a;
+}
+
+.form-error {
+  font-size: 0.75rem;
+  color: #b5443a;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+.form-error.is-visible { display: block; }
+
+.phone-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.phone-group select {
+  flex: 0 0 110px;
+  font-size: 0.85rem;
+}
+
+.phone-group input {
+  flex: 1;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--espresso);
+  flex-shrink: 0;
+}
+
+.checkbox-group span {
+  font-size: 0.82rem;
+  color: var(--olive);
+  line-height: 1.5;
+}
+
+/* ── Discipline Cards ── */
+
+.discipline-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.discipline-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(127, 111, 76, 0.12);
+  border-radius: 2px;
+  background: var(--off-white);
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+
+.discipline-card:hover {
+  border-color: var(--earth);
+  transform: translateY(-2px);
+}
+
+.discipline-card.is-selected {
+  border-color: var(--espresso);
+  background: rgba(48, 25, 5, 0.03);
+}
+
+.discipline-card__icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1rem;
+  color: var(--earth);
+}
+
+.discipline-card__icon svg { width: 100%; height: 100%; }
+
+.discipline-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 0.5rem;
+}
+
+.discipline-card__desc {
+  font-size: 0.85rem;
+  color: var(--olive);
+  line-height: 1.5;
+}
+
+/* ── Session Selection ── */
+
+.date-carousel {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.25rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.date-carousel::-webkit-scrollbar { display: none; }
+
+.date-chip {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid rgba(127, 111, 76, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  min-width: 80px;
+  font-family: var(--font-sans);
+  color: var(--espresso);
+}
+
+.date-chip:hover { border-color: var(--espresso); }
+
+.date-chip.is-active {
+  background: var(--espresso);
+  border-color: var(--espresso);
+  color: var(--ivory);
+}
+
+.date-chip__day {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.date-chip__num {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.date-chip__month {
+  font-size: 0.6rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.session-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(127, 111, 76, 0.12);
+  border-radius: 2px;
+  background: var(--off-white);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.session-option:hover { border-color: var(--earth); }
+
+.session-option.is-selected {
+  border-color: var(--espresso);
+  background: rgba(48, 25, 5, 0.03);
+}
+
+.session-option.is-full {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.session-option__time {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--espresso);
+}
+
+.session-option__info {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.session-option__discipline {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--espresso);
+}
+
+.session-option__coach {
+  font-size: 0.78rem;
+  color: var(--olive);
+}
+
+.session-option__status {
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.status--available { color: var(--olive); }
+.status--full { color: #b5443a; font-weight: 500; }
+
+.sessions-empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--olive);
+  font-size: 0.9rem;
+}
+
+/* ── Summary ── */
+
+.inv-summary {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.inv-summary__label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 0.75rem;
+}
+
+.inv-summary__brand {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 300;
+  color: var(--espresso);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
+.inv-summary__card {
+  background: var(--ivory);
+  padding: 1.5rem;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
+.inv-summary__name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 1rem;
+}
+
+.inv-summary__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+}
+
+.inv-summary__row-label { color: var(--olive); }
+.inv-summary__row-value { color: var(--espresso); font-weight: 500; }
+
+/* ── Confirmation ── */
+
+.inv-confirmation {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.inv-confirmation__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: rgba(90, 122, 90, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inv-confirmation__icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: #5a7a5a;
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.inv-confirmation__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 300;
+  color: var(--espresso);
+  margin-bottom: 0.75rem;
+}
+
+.inv-confirmation__text {
+  font-size: 0.9rem;
+  color: var(--olive);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.inv-confirmation__details {
+  background: var(--ivory);
+  padding: 1.5rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.inv-confirmation__discipline {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 0.5rem;
+}
+
+.inv-confirmation__datetime {
+  font-size: 0.9rem;
+  color: var(--olive);
+}
+
+.inv-confirmation__qr {
+  margin: 1.5rem 0;
+}
+
+.inv-confirmation__qr img {
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+}
+
+.inv-confirmation__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* ── Step actions ── */
+
+.inv-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.inv-actions .btn { flex: 1; }
+
+/* ── Alert ── */
+
+.inv-alert {
+  padding: 1rem 1.25rem;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  display: none;
+}
+
+.inv-alert.is-visible { display: block; }
+
+.inv-alert--error {
+  background: rgba(181, 68, 58, 0.08);
+  color: #b5443a;
+  border: 1px solid rgba(181, 68, 58, 0.15);
+}
+
+.inv-alert--info {
+  background: rgba(127, 111, 76, 0.08);
+  color: var(--olive);
+  border: 1px solid rgba(127, 111, 76, 0.15);
+}
+
+/* ── Footer ── */
+
+.footer {
+  background: var(--espresso);
+  color: var(--ivory);
+  padding: clamp(2rem, 4vw, 3rem) 0;
+  text-align: center;
+}
+
+.footer__brand {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.footer__info {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  margin-bottom: 0.25rem;
+}
+
+.footer__copyright {
+  font-size: 0.7rem;
+  opacity: 0.3;
+  margin-top: 1rem;
+}
+
+/* ── Focus ── */
+
+:focus-visible {
+  outline: 2px solid var(--earth);
+  outline-offset: 2px;
+}
+
+/* ── Loading spinner ── */
+
+.inv-loading {
+  display: none;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.inv-loading.is-visible { display: block; }
+
+.inv-loading__spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(127, 111, 76, 0.15);
+  border-top-color: var(--espresso);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.inv-loading__text {
+  font-size: 0.85rem;
+  color: var(--olive);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="header__logo"><img src="assets/images/logo-core-house.png" alt="Core House"></a>
+    <a href="index.html" class="header__back">Retour au site</a>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="inv-hero" id="inv-hero">
+  <div class="inv-hero__content">
+    <p class="inv-hero__brand">Core House Dakar</p>
+    <h1 class="inv-hero__title">Votre première séance<br>est offerte.</h1>
+    <p class="inv-hero__subtitle">Découvrez Core House avec l'expérience de votre choix.</p>
+    <div class="inv-hero__gate" id="gate">
+      <label class="inv-hero__gate-label">Code d'accès</label>
+      <div class="inv-hero__gate-row">
+        <input type="text" class="inv-hero__gate-input" id="gate-code" placeholder="Votre code" maxlength="10" autocomplete="off" spellcheck="false">
+        <button class="inv-hero__cta btn" id="start-flow">Accéder</button>
+      </div>
+      <p class="inv-hero__gate-error" id="gate-error"></p>
+    </div>
+    <p class="inv-hero__note">Le code d'accès se trouve sur votre support d'invitation.</p>
+  </div>
+</section>
+
+<!-- ═══ FLOW ═══ -->
+<section class="inv-flow" id="inv-flow">
+  <div class="inv-flow__inner">
+
+    <!-- Progress -->
+    <div class="inv-progress" id="inv-progress">
+      <div class="inv-progress__step is-current" data-step="0"></div>
+      <div class="inv-progress__step" data-step="1"></div>
+      <div class="inv-progress__step" data-step="2"></div>
+      <div class="inv-progress__step" data-step="3"></div>
+    </div>
+
+    <!-- Alert -->
+    <div class="inv-alert" id="inv-alert"></div>
+
+    <!-- STEP 1: Informations -->
+    <div class="inv-step is-active" id="step-info">
+      <p class="inv-step__number">01</p>
+      <h2 class="inv-step__title">Vos informations</h2>
+      <p class="inv-step__subtitle">Pour réserver votre séance découverte.</p>
+
+      <div class="form-group">
+        <label for="inv-firstname">Prénom</label>
+        <input type="text" id="inv-firstname" placeholder="Votre prénom" autocomplete="given-name" required>
+        <p class="form-error" id="err-firstname">Veuillez entrer votre prénom.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="inv-lastname">Nom</label>
+        <input type="text" id="inv-lastname" placeholder="Votre nom" autocomplete="family-name" required>
+        <p class="form-error" id="err-lastname">Veuillez entrer votre nom.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="inv-email">Email</label>
+        <input type="email" id="inv-email" placeholder="vous@exemple.com" autocomplete="email" required inputmode="email">
+        <p class="form-error" id="err-email">Veuillez entrer une adresse email valide.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="inv-phone">Téléphone</label>
+        <div class="phone-group">
+          <select id="inv-phone-prefix">
+            <option value="+221" selected>+221</option>
+            <option value="+33">+33</option>
+            <option value="+1">+1</option>
+            <option value="+44">+44</option>
+            <option value="+34">+34</option>
+            <option value="+39">+39</option>
+            <option value="+49">+49</option>
+            <option value="+32">+32</option>
+            <option value="+41">+41</option>
+            <option value="+212">+212</option>
+            <option value="+225">+225</option>
+            <option value="+223">+223</option>
+            <option value="+224">+224</option>
+            <option value="+226">+226</option>
+            <option value="+228">+228</option>
+            <option value="+229">+229</option>
+            <option value="+237">+237</option>
+            <option value="+241">+241</option>
+            <option value="+243">+243</option>
+            <option value="+250">+250</option>
+            <option value="+251">+251</option>
+            <option value="+254">+254</option>
+            <option value="+27">+27</option>
+            <option value="+234">+234</option>
+            <option value="+90">+90</option>
+            <option value="+971">+971</option>
+            <option value="+86">+86</option>
+            <option value="+91">+91</option>
+            <option value="+81">+81</option>
+            <option value="+55">+55</option>
+          </select>
+          <input type="tel" id="inv-phone" placeholder="77 123 45 67" autocomplete="tel-national" inputmode="tel">
+        </div>
+        <p class="form-error" id="err-phone">Veuillez entrer un numéro valide.</p>
+      </div>
+
+      <label class="checkbox-group">
+        <input type="checkbox" id="inv-consent" required>
+        <span>J'accepte de recevoir les informations relatives à ma réservation.</span>
+      </label>
+      <p class="form-error" id="err-consent">Veuillez accepter pour continuer.</p>
+
+      <label class="checkbox-group">
+        <input type="checkbox" id="inv-marketing">
+        <span>Je souhaite recevoir les actualités et invitations de Core House Dakar.</span>
+      </label>
+
+      <div class="inv-actions">
+        <button class="btn btn--dark" id="btn-step1">Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Discipline -->
+    <div class="inv-step" id="step-discipline">
+      <p class="inv-step__number">02</p>
+      <h2 class="inv-step__title">Choisissez votre expérience</h2>
+      <p class="inv-step__subtitle">Une discipline, une séance offerte.</p>
+
+      <div class="discipline-cards" id="discipline-cards">
+        <div class="discipline-card" data-discipline="pilates">
+          <div class="discipline-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="24" cy="38" rx="18" ry="3"/><circle cx="24" cy="14" r="5"/><line x1="24" y1="19" x2="24" y2="31"/><line x1="16" y1="25" x2="32" y2="25"/></svg>
+          </div>
+          <h3 class="discipline-card__title">Mat Pilates</h3>
+          <p class="discipline-card__desc">Force, contrôle et précision.</p>
+        </div>
+        <div class="discipline-card" data-discipline="yoga">
+          <div class="discipline-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="10" r="5"/><path d="M24 15v10M14 42l10-17 10 17"/></svg>
+          </div>
+          <h3 class="discipline-card__title">Yoga</h3>
+          <p class="discipline-card__desc">Mouvement, respiration et équilibre.</p>
+        </div>
+        <div class="discipline-card" data-discipline="box">
+          <div class="discipline-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="10" r="5"/><path d="M24 15v8M18 23h12v12H18z"/><path d="M22 35v6M26 35v6"/><path d="M30 19l6-5M18 19l-6-5"/></svg>
+          </div>
+          <h3 class="discipline-card__title">Box Cardio</h3>
+          <p class="discipline-card__desc">Intensité, technique et énergie.</p>
+        </div>
+      </div>
+
+      <div class="inv-actions">
+        <button class="btn btn--dark-outline" id="btn-step2-back">Retour</button>
+        <button class="btn btn--dark" id="btn-step2" disabled>Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Session -->
+    <div class="inv-step" id="step-session">
+      <p class="inv-step__number">03</p>
+      <h2 class="inv-step__title">Choisissez votre séance</h2>
+      <p class="inv-step__subtitle" id="step3-subtitle">Sélectionnez une date et un horaire.</p>
+
+      <div class="inv-loading" id="sessions-loading">
+        <div class="inv-loading__spinner"></div>
+        <p class="inv-loading__text">Chargement des séances…</p>
+      </div>
+
+      <div id="sessions-container" style="display:none">
+        <div class="date-carousel" id="inv-date-carousel"></div>
+        <div class="session-list" id="inv-session-list"></div>
+      </div>
+
+      <div class="inv-actions">
+        <button class="btn btn--dark-outline" id="btn-step3-back">Retour</button>
+        <button class="btn btn--dark" id="btn-step3" disabled>Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Summary -->
+    <div class="inv-step" id="step-summary">
+      <div class="inv-summary">
+        <p class="inv-summary__label">Votre invitation</p>
+        <h2 class="inv-summary__brand">Core House Dakar</h2>
+        <div class="inv-summary__card">
+          <p class="inv-summary__name" id="summary-name"></p>
+          <div class="inv-summary__row">
+            <span class="inv-summary__row-label">Discipline</span>
+            <span class="inv-summary__row-value" id="summary-discipline"></span>
+          </div>
+          <div class="inv-summary__row">
+            <span class="inv-summary__row-label">Date</span>
+            <span class="inv-summary__row-value" id="summary-date"></span>
+          </div>
+          <div class="inv-summary__row">
+            <span class="inv-summary__row-label">Heure</span>
+            <span class="inv-summary__row-value" id="summary-time"></span>
+          </div>
+          <div class="inv-summary__row" id="summary-coach-row" style="display:none">
+            <span class="inv-summary__row-label">Coach</span>
+            <span class="inv-summary__row-value" id="summary-coach"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-actions">
+        <button class="btn btn--dark-outline" id="btn-step4-back">Modifier</button>
+        <button class="btn btn--dark" id="btn-confirm">Confirmer ma séance</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Confirmation -->
+    <div class="inv-step" id="step-confirm">
+      <div class="inv-confirmation">
+        <div class="inv-confirmation__icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 class="inv-confirmation__title">Bienvenue à Core House.</h2>
+        <p class="inv-confirmation__text">
+          Votre première séance est réservée.<br>
+          Votre invitation personnelle vient de vous être envoyée par email.<br><br>
+          Présentez votre QR code lors de votre arrivée.
+        </p>
+
+        <div class="inv-confirmation__details">
+          <p class="inv-confirmation__discipline" id="confirm-discipline"></p>
+          <p class="inv-confirmation__datetime" id="confirm-datetime"></p>
+        </div>
+
+        <div class="inv-confirmation__qr" id="confirm-qr"></div>
+
+        <div class="inv-confirmation__actions">
+          <button class="btn btn--dark" id="btn-calendar">Ajouter à mon calendrier</button>
+          <a href="index.html" class="btn btn--dark-outline">Découvrir Core House</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer__brand">Core House Dakar</p>
+    <p class="footer__info">Bourguiba, Dakar, Sénégal</p>
+    <p class="footer__info">Mat Pilates · Yoga · Box Cardio · House Bar</p>
+    <p class="footer__copyright" id="footer-year"></p>
+  </div>
+</footer>
+
+<script>
+/* ═══ Configuration ═══ */
+
+const API_URL = "/api";
+
+const DISCIPLINES = {
+  pilates: { label: "Mat Pilates", maxParticipants: 12 },
+  yoga: { label: "Yoga", maxParticipants: 12 },
+  box: { label: "Box Cardio", maxParticipants: 6 }
+};
+
+/* ═══ State ═══ */
+
+const state = {
+  currentStep: -1,
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  consent: false,
+  marketing: false,
+  discipline: null,
+  selectedSession: null,
+  sessions: [],
+  selectedDateIndex: 0,
+  token: null,
+  qrDataUrl: null,
+  submitting: false,
+};
+
+/* ═══ DOM refs ═══ */
+
+const $hero = document.getElementById("inv-hero");
+const $flow = document.getElementById("inv-flow");
+const $progress = document.getElementById("inv-progress");
+const $alert = document.getElementById("inv-alert");
+
+const steps = ["step-info", "step-discipline", "step-session", "step-summary", "step-confirm"];
+
+/* ═══ Utilities ═══ */
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr + "T00:00:00");
+  return d.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+}
+
+function formatTime(h, m) {
+  return String(h).padStart(2, "0") + ":" + String(m || 0).padStart(2, "0");
+}
+
+function showAlert(msg, type) {
+  $alert.textContent = msg;
+  $alert.className = `inv-alert inv-alert--${type} is-visible`;
+}
+
+function hideAlert() {
+  $alert.className = "inv-alert";
+}
+
+/* ═══ Step Navigation ═══ */
+
+function goToStep(n) {
+  hideAlert();
+  state.currentStep = n;
+
+  steps.forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.classList.toggle("is-active", i === n);
+  });
+
+  const progressSteps = $progress.querySelectorAll(".inv-progress__step");
+  progressSteps.forEach((el, i) => {
+    el.classList.remove("is-done", "is-current");
+    if (i < n) el.classList.add("is-done");
+    if (i === n) el.classList.add("is-current");
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ═══ Start Flow ═══ */
+
+document.getElementById("start-flow").addEventListener("click", () => {
+  const codeInput = document.getElementById("gate-code");
+  const codeError = document.getElementById("gate-error");
+  const code = codeInput.value.trim();
+
+  if (code !== "Core21") {
+    codeInput.classList.add("is-error");
+    codeError.textContent = code ? "Code incorrect" : "Veuillez entrer votre code d'accès";
+    setTimeout(() => codeInput.classList.remove("is-error"), 400);
+    codeInput.focus();
+    return;
+  }
+
+  codeError.textContent = "";
+  $hero.style.display = "none";
+  $flow.classList.add("is-active");
+  goToStep(0);
+});
+
+document.getElementById("gate-code").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") document.getElementById("start-flow").click();
+});
+
+document.getElementById("gate-code").addEventListener("input", () => {
+  document.getElementById("gate-code").classList.remove("is-error");
+  document.getElementById("gate-error").textContent = "";
+});
+
+/* ═══ Step 1: Informations ═══ */
+
+document.getElementById("btn-step1").addEventListener("click", () => {
+  const firstName = document.getElementById("inv-firstname").value.trim();
+  const lastName = document.getElementById("inv-lastname").value.trim();
+  const email = document.getElementById("inv-email").value.trim();
+  const prefix = document.getElementById("inv-phone-prefix").value;
+  const phone = document.getElementById("inv-phone").value.trim();
+  const consent = document.getElementById("inv-consent").checked;
+
+  let valid = true;
+
+  function showErr(inputId, errId) {
+    document.getElementById(inputId).classList.add("is-invalid");
+    document.getElementById(errId).classList.add("is-visible");
+    valid = false;
+  }
+  function clearErr(inputId, errId) {
+    document.getElementById(inputId).classList.remove("is-invalid");
+    document.getElementById(errId).classList.remove("is-visible");
+  }
+
+  if (!firstName) showErr("inv-firstname", "err-firstname"); else clearErr("inv-firstname", "err-firstname");
+  if (!lastName) showErr("inv-lastname", "err-lastname"); else clearErr("inv-lastname", "err-lastname");
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) showErr("inv-email", "err-email"); else clearErr("inv-email", "err-email");
+
+  if (!phone || phone.replace(/\D/g, "").length < 6) showErr("inv-phone", "err-phone"); else clearErr("inv-phone", "err-phone");
+
+  if (!consent) {
+    document.getElementById("err-consent").classList.add("is-visible");
+    valid = false;
+  } else {
+    document.getElementById("err-consent").classList.remove("is-visible");
+  }
+
+  if (!valid) return;
+
+  state.firstName = firstName;
+  state.lastName = lastName;
+  state.email = email;
+  state.phone = prefix + phone.replace(/\D/g, "");
+  state.consent = consent;
+  state.marketing = document.getElementById("inv-marketing").checked;
+
+  goToStep(1);
+});
+
+/* ═══ Step 2: Discipline ═══ */
+
+document.querySelectorAll(".discipline-card").forEach(card => {
+  card.addEventListener("click", () => {
+    document.querySelectorAll(".discipline-card").forEach(c => c.classList.remove("is-selected"));
+    card.classList.add("is-selected");
+    state.discipline = card.dataset.discipline;
+    document.getElementById("btn-step2").disabled = false;
+  });
+});
+
+document.getElementById("btn-step2-back").addEventListener("click", () => goToStep(0));
+
+document.getElementById("btn-step2").addEventListener("click", () => {
+  if (!state.discipline) return;
+  loadSessions();
+  goToStep(2);
+});
+
+/* ═══ Step 3: Session ═══ */
+
+async function loadSessions() {
+  const loading = document.getElementById("sessions-loading");
+  const container = document.getElementById("sessions-container");
+  loading.classList.add("is-visible");
+  container.style.display = "none";
+  state.selectedSession = null;
+  document.getElementById("btn-step3").disabled = true;
+
+  const disc = DISCIPLINES[state.discipline];
+  document.getElementById("step3-subtitle").textContent =
+    `Séances de ${disc.label} disponibles.`;
+
+  try {
+    const resp = await fetch(`${API_URL}/schedule?discipline=${state.discipline}&days=7`);
+    const data = await resp.json();
+    state.sessions = data.sessions.filter(s => s.available);
+  } catch {
+    state.sessions = [];
+    showAlert("Impossible de charger les séances. Vérifiez votre connexion.", "error");
+  }
+
+  loading.classList.remove("is-visible");
+  container.style.display = "block";
+
+  state.selectedDateIndex = 0;
+  renderDateChips();
+  renderSessionOptions();
+}
+
+function getUniqueDates() {
+  const seen = new Set();
+  return state.sessions.filter(s => {
+    if (seen.has(s.date)) return false;
+    seen.add(s.date);
+    return true;
+  }).map(s => s.date);
+}
+
+function renderDateChips() {
+  const dates = getUniqueDates();
+  const container = document.getElementById("inv-date-carousel");
+
+  if (dates.length === 0) {
+    container.innerHTML = "";
+    return;
+  }
+
+  container.innerHTML = dates.map((dateStr, i) => {
+    const d = new Date(dateStr + "T00:00:00");
+    const dayName = d.toLocaleDateString("fr-FR", { weekday: "short" });
+    const dayNum = d.getDate();
+    const monthName = d.toLocaleDateString("fr-FR", { month: "short" });
+    return `<button class="date-chip${i === state.selectedDateIndex ? ' is-active' : ''}" data-date-index="${i}" data-date="${dateStr}">
+      <span class="date-chip__day">${dayName}</span>
+      <span class="date-chip__num">${dayNum}</span>
+      <span class="date-chip__month">${monthName}</span>
+    </button>`;
+  }).join("");
+
+  container.querySelectorAll(".date-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      state.selectedDateIndex = parseInt(chip.dataset.dateIndex);
+      state.selectedSession = null;
+      document.getElementById("btn-step3").disabled = true;
+      renderDateChips();
+      renderSessionOptions();
+    });
+  });
+}
+
+function renderSessionOptions() {
+  const dates = getUniqueDates();
+  const container = document.getElementById("inv-session-list");
+
+  if (dates.length === 0) {
+    container.innerHTML = '<div class="sessions-empty">Aucune séance disponible pour cette discipline dans les prochains jours.</div>';
+    return;
+  }
+
+  const selectedDate = dates[state.selectedDateIndex];
+  const daySessions = state.sessions.filter(s => s.date === selectedDate);
+
+  if (daySessions.length === 0) {
+    container.innerHTML = '<div class="sessions-empty">Aucune séance disponible ce jour.</div>';
+    return;
+  }
+
+  container.innerHTML = daySessions.map(s => {
+    const timeStr = formatTime(s.hour, s.minute);
+    const coachStr = s.coach ? `avec ${s.coach}` : "";
+    const remaining = s.maxParticipants - s.currentParticipants;
+    const isFull = !s.available;
+    const isSelected = state.selectedSession && state.selectedSession.classId === s.classId;
+
+    return `<div class="session-option${isSelected ? ' is-selected' : ''}${isFull ? ' is-full' : ''}" data-class-id="${s.classId}" data-date="${s.date}" data-hour="${s.hour}" data-minute="${s.minute}" data-coach="${s.coach || ''}">
+      <span class="session-option__time">${timeStr}</span>
+      <div class="session-option__info">
+        <div class="session-option__discipline">${s.disciplineLabel}</div>
+        <div class="session-option__coach">${coachStr}</div>
+      </div>
+      <span class="session-option__status ${isFull ? 'status--full' : 'status--available'}">
+        ${isFull ? "Complet" : remaining + " place" + (remaining > 1 ? "s" : "")}
+      </span>
+    </div>`;
+  }).join("");
+
+  container.querySelectorAll(".session-option:not(.is-full)").forEach(opt => {
+    opt.addEventListener("click", () => {
+      container.querySelectorAll(".session-option").forEach(o => o.classList.remove("is-selected"));
+      opt.classList.add("is-selected");
+
+      state.selectedSession = {
+        classId: opt.dataset.classId,
+        date: opt.dataset.date,
+        hour: parseInt(opt.dataset.hour),
+        minute: parseInt(opt.dataset.minute),
+        coach: opt.dataset.coach || null,
+      };
+
+      document.getElementById("btn-step3").disabled = false;
+    });
+  });
+}
+
+document.getElementById("btn-step3-back").addEventListener("click", () => goToStep(1));
+
+document.getElementById("btn-step3").addEventListener("click", () => {
+  if (!state.selectedSession) return;
+
+  const disc = DISCIPLINES[state.discipline];
+  const s = state.selectedSession;
+
+  document.getElementById("summary-name").textContent = `${state.firstName} ${state.lastName}`;
+  document.getElementById("summary-discipline").textContent = disc.label;
+  document.getElementById("summary-date").textContent = formatDate(s.date);
+  document.getElementById("summary-time").textContent = formatTime(s.hour, s.minute);
+
+  if (s.coach) {
+    document.getElementById("summary-coach").textContent = s.coach;
+    document.getElementById("summary-coach-row").style.display = "";
+  } else {
+    document.getElementById("summary-coach-row").style.display = "none";
+  }
+
+  goToStep(3);
+});
+
+/* ═══ Step 4: Confirm ═══ */
+
+document.getElementById("btn-step4-back").addEventListener("click", () => goToStep(2));
+
+document.getElementById("btn-confirm").addEventListener("click", async () => {
+  if (state.submitting) return;
+  state.submitting = true;
+
+  const btn = document.getElementById("btn-confirm");
+  btn.disabled = true;
+  btn.textContent = "Réservation en cours…";
+  hideAlert();
+
+  const s = state.selectedSession;
+  const idempotencyKey = `${s.classId}-${state.email}-${Date.now()}`;
+
+  try {
+    const resp = await fetch(`${API_URL}/free-trial`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: state.firstName,
+        lastName: state.lastName,
+        email: state.email,
+        phone: state.phone,
+        marketingConsent: state.marketing,
+        discipline: state.discipline,
+        classId: s.classId,
+        date: s.date,
+        hour: s.hour,
+        minute: s.minute,
+        coach: s.coach,
+        idempotencyKey,
+      }),
+    });
+
+    const data = await resp.json();
+
+    if (!data.success) {
+      btn.disabled = false;
+      btn.textContent = "Confirmer ma séance";
+      state.submitting = false;
+      showAlert(data.error || "Erreur lors de la réservation.", "error");
+      return;
+    }
+
+    state.token = data.token;
+    state.qrDataUrl = data.qrCodeDataUrl;
+
+    const disc = DISCIPLINES[state.discipline];
+    document.getElementById("confirm-discipline").textContent = disc.label;
+    document.getElementById("confirm-datetime").textContent =
+      formatDate(s.date) + " · " + formatTime(s.hour, s.minute);
+
+    if (state.qrDataUrl) {
+      document.getElementById("confirm-qr").innerHTML =
+        `<img src="${state.qrDataUrl}" alt="QR Code — Votre invitation Core House">`;
+    }
+
+    goToStep(4);
+    state.submitting = false;
+  } catch {
+    btn.disabled = false;
+    btn.textContent = "Confirmer ma séance";
+    state.submitting = false;
+    showAlert("Impossible de contacter le serveur. Vérifiez votre connexion.", "error");
+  }
+});
+
+/* ═══ Calendar ═══ */
+
+document.getElementById("btn-calendar").addEventListener("click", () => {
+  const s = state.selectedSession;
+  const disc = DISCIPLINES[state.discipline];
+  const pad = (n) => String(n).padStart(2, "0");
+  const start = new Date(s.date + "T" + formatTime(s.hour, s.minute) + ":00");
+  const end = new Date(start.getTime() + 55 * 60000);
+
+  const fmtICS = (d) => d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + "T" + pad(d.getHours()) + pad(d.getMinutes()) + "00";
+
+  const ics = [
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Core House Dakar//Invitation//FR",
+    "BEGIN:VEVENT",
+    "DTSTART:" + fmtICS(start),
+    "DTEND:" + fmtICS(end),
+    "SUMMARY:" + disc.label + " — Core House Dakar",
+    "LOCATION:Bourguiba, Dakar, Sénégal",
+    "DESCRIPTION:Votre première séance offerte chez Core House Dakar.",
+    "END:VEVENT", "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "core-house-invitation.ics";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+/* ═══ Footer year ═══ */
+
+document.getElementById("footer-year").textContent = `© ${new Date().getFullYear()} Core House Dakar`;
+
+</script>
+</body>
+</html>

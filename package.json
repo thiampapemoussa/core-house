@@ -1,0 +1,14 @@
+{
+  "name": "core-house-dakar",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 serve.py"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "express": "^4.21.1",
+    "nodemailer": "^6.9.16",
+    "serverless-http": "^3.2.0"
+  }
+}

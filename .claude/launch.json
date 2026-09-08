@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "core-house",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/private/tmp/claude-501/-Users-moussa-Desktop-site-web-core-house/33c7eec1-35a2-46c6-94b7-dc09a6ef60ef/scratchpad/serve.py"],
+      "port": 8090
+    }
+  ]
+}

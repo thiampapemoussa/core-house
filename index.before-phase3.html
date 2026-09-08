@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core House Dakar | Mat Pilates, Yoga & House Bar</title>
+<meta name="description" content="Découvrez Core House Dakar à Bourguiba : séances de Mat Pilates, yoga et House Bar dans un espace afro-contemporain, chaleureux et élégant.">
+<meta property="og:title" content="Core House Dakar | Mat Pilates, Yoga & House Bar">
+<meta property="og:description" content="Découvrez Core House Dakar à Bourguiba : séances de Mat Pilates, yoga et House Bar dans un espace afro-contemporain, chaleureux et élégant.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Core House Dakar | Mat Pilates, Yoga & House Bar">
+<meta name="twitter:description" content="Découvrez Core House Dakar à Bourguiba : séances de Mat Pilates, yoga et House Bar dans un espace afro-contemporain, chaleureux et élégant.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  "name": "Core House Dakar",
+  "description": "Mat Pilates, yoga et House Bar dans un espace afro-contemporain à Dakar.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Dakar",
+    "addressRegion": "Dakar",
+    "addressCountry": "SN",
+    "streetAddress": "Bourguiba"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "08:00",
+    "closes": "22:00"
+  }
+}
+</script>
+
+<style>
+:root {
+  --espresso: #301905;
+  --earth: #6F3E14;
+  --ivory: #F8F4ED;
+  --olive: #7F6F4C;
+  --sand: #D8AF82;
+  --ink: #211A16;
+  --off-white: #FCFAF6;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+
+  --header-height: 72px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ── Typography ── */
+
+.label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+.section-title--lg {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.section-title--md {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.section-text {
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 640px;
+  color: var(--olive);
+}
+
+/* ── Layout ── */
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.section-pad {
+  padding-top: clamp(4rem, 8vw, 8rem);
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+/* ── Header ── */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+
+.header--transparent {
+  background: transparent;
+}
+
+.header--solid {
+  background: rgba(248, 244, 237, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 rgba(48, 25, 5, 0.08);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.header__logo {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  z-index: 102;
+}
+
+.header--transparent .header__logo { color: var(--ivory); }
+.header--solid .header__logo { color: var(--espresso); }
+
+.header__nav {
+  display: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .header__nav {
+    display: flex;
+  }
+}
+
+.header__nav a {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s;
+}
+
+.header__nav a:hover,
+.header__nav a:focus-visible { opacity: 0.6; }
+
+.header--transparent .header__nav a { color: var(--ivory); }
+.header--solid .header__nav a { color: var(--espresso); }
+
+.header__cta {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.4rem;
+  border-radius: 2px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.header--transparent .header__cta {
+  border: 1px solid rgba(248, 244, 237, 0.5);
+  color: var(--ivory);
+}
+.header--transparent .header__cta:hover {
+  background: var(--ivory);
+  color: var(--espresso);
+}
+
+.header--solid .header__cta {
+  background: var(--espresso);
+  color: var(--ivory);
+}
+.header--solid .header__cta:hover {
+  background: var(--earth);
+}
+
+/* ── Burger ── */
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  z-index: 102;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .burger { display: none; }
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  transition: transform 0.3s, opacity 0.3s, background 0.3s;
+}
+
+.header--transparent .burger span { background: var(--ivory); }
+.header--solid .burger span { background: var(--espresso); }
+
+.burger.is-open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.burger.is-open span:nth-child(2) { opacity: 0; }
+.burger.is-open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+.burger.is-open span { background: var(--ivory) !important; }
+
+/* ── Mobile menu ── */
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 101;
+  background: var(--espresso);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--ivory);
+  transition: opacity 0.2s;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:focus-visible { opacity: 0.6; }
+
+.mobile-menu__cta {
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  padding: 0.75rem 2rem;
+  border: 1px solid rgba(248, 244, 237, 0.4);
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+.mobile-menu__cta:hover {
+  background: rgba(248, 244, 237, 0.1);
+}
+
+/* ── Hero ── */
+
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(33,26,22,0.15) 0%, rgba(33,26,22,0.5) 100%),
+    url('assets/hero-pilates.jpg') center/cover no-repeat;
+  background-color: var(--earth);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  color: var(--ivory);
+  max-width: 720px;
+}
+
+.hero__brand {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.hero__subtitle {
+  font-size: 1.05rem;
+  font-weight: 300;
+  opacity: 0.85;
+  margin-bottom: 0.5rem;
+}
+
+.hero__location {
+  font-size: 0.85rem;
+  font-weight: 300;
+  opacity: 0.6;
+  margin-bottom: 2rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 1.75rem;
+  border-radius: 2px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn--primary {
+  background: var(--ivory);
+  color: var(--espresso);
+}
+
+.btn--primary:hover {
+  background: var(--sand);
+}
+
+.btn--outline {
+  border: 1px solid rgba(248, 244, 237, 0.45);
+  color: var(--ivory);
+}
+
+.btn--outline:hover {
+  background: rgba(248, 244, 237, 0.1);
+  border-color: rgba(248, 244, 237, 0.7);
+}
+
+.btn--dark {
+  background: var(--espresso);
+  color: var(--ivory);
+}
+
+.btn--dark:hover {
+  background: var(--earth);
+}
+
+.btn--dark-outline {
+  border: 1px solid var(--espresso);
+  color: var(--espresso);
+}
+
+.btn--dark-outline:hover {
+  background: var(--espresso);
+  color: var(--ivory);
+}
+
+.hero__pillars {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+/* ── Concept ── */
+
+.concept {
+  background: var(--ivory);
+}
+
+.concept__inner {
+  max-width: 740px;
+}
+
+.concept .label { color: var(--olive); }
+.concept .section-title { color: var(--espresso); margin-bottom: 1.5rem; }
+.concept .section-text { margin-bottom: 1rem; }
+
+/* ── Full-width photo break ── */
+
+.photo-break {
+  width: 100%;
+  height: clamp(280px, 45vw, 520px);
+  overflow: hidden;
+}
+
+.photo-break__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Discipline sections ── */
+
+.discipline {
+  background: var(--off-white);
+}
+
+.discipline--alt {
+  background: var(--ivory);
+}
+
+.discipline__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .discipline__grid { grid-template-columns: 1fr 1fr; }
+  .discipline__grid--reverse .discipline__visual { order: -1; }
+}
+
+.discipline__visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.discipline__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.discipline__content .label { color: var(--olive); }
+.discipline__content .section-title { color: var(--espresso); margin-bottom: 1.25rem; }
+.discipline__content .section-text { margin-bottom: 1.5rem; }
+
+.benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.benefit-tag {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--olive);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(127, 111, 76, 0.25);
+  border-radius: 2px;
+}
+
+.discipline__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--olive);
+}
+
+.discipline__meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ── Planning ── */
+
+.planning {
+  background: var(--ivory);
+}
+
+.planning .section-title { color: var(--espresso); margin-bottom: 0.75rem; }
+.planning .section-text { margin-bottom: 2rem; }
+
+.planning__filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  padding: 0.55rem 1.25rem;
+  border: 1px solid rgba(127, 111, 76, 0.25);
+  border-radius: 2px;
+  color: var(--olive);
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+  border-color: var(--espresso);
+  color: var(--espresso);
+}
+
+.filter-btn.is-active {
+  background: var(--espresso);
+  color: var(--ivory);
+  border-color: var(--espresso);
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(127, 111, 76, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: 120px 90px 1fr 120px 100px 120px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--off-white);
+  transition: background 0.2s;
+}
+
+.schedule-item:hover {
+  background: rgba(248, 244, 237, 0.8);
+}
+
+@media (max-width: 767px) {
+  .schedule-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(127, 111, 76, 0.1);
+  }
+}
+
+.schedule-item__date {
+  font-size: 0.8rem;
+  color: var(--olive);
+}
+
+.schedule-item__time {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--espresso);
+}
+
+.schedule-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.schedule-item__discipline {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--espresso);
+}
+
+.schedule-item__coach {
+  font-size: 0.8rem;
+  color: var(--olive);
+}
+
+.schedule-item__level {
+  font-size: 0.75rem;
+  color: var(--olive);
+}
+
+.schedule-item__status {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.status--available { color: var(--olive); }
+.status--pending { color: var(--earth); }
+.status--confirmed { color: #5a7a5a; }
+
+.schedule-item__price {
+  font-size: 0.85rem;
+  color: var(--espresso);
+  font-weight: 500;
+}
+
+.schedule-item__book .btn {
+  font-size: 0.72rem;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .schedule-item__mobile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+/* ── Packs ── */
+
+.packs {
+  background: var(--off-white);
+}
+
+.packs .section-title { color: var(--espresso); margin-bottom: 0.75rem; }
+.packs .section-text { margin-bottom: 3rem; }
+
+.packs__category {
+  margin-bottom: 3rem;
+}
+
+.packs__category-title {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(127, 111, 76, 0.15);
+}
+
+.packs__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .packs__grid { grid-template-columns: 1fr 1fr; }
+}
+
+.pack-card {
+  background: var(--ivory);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border-radius: 2px;
+  border: 1px solid rgba(127, 111, 76, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.pack-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 1rem;
+}
+
+.pack-card__price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--espresso);
+  margin-bottom: 0.25rem;
+}
+
+.pack-card__per-session {
+  font-size: 0.85rem;
+  color: var(--olive);
+  margin-bottom: 0.75rem;
+}
+
+.pack-card__details {
+  font-size: 0.8rem;
+  color: var(--olive);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.pack-card__saving {
+  font-size: 0.8rem;
+  color: var(--earth);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.pack-card .btn {
+  align-self: flex-start;
+}
+
+/* ── House Bar ── */
+
+.house-bar {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.house-bar__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(48, 25, 5, 0.75) 0%, rgba(111, 62, 20, 0.55) 100%),
+    url('assets/house-bar.jpg') center/cover no-repeat;
+  background-color: var(--earth);
+}
+
+.house-bar__content {
+  position: relative;
+  z-index: 2;
+  color: var(--ivory);
+  max-width: 600px;
+}
+
+.house-bar__content .label { opacity: 0.7; }
+
+.house-bar__content .section-title {
+  color: var(--ivory);
+  margin-bottom: 1.25rem;
+}
+
+.house-bar__content .section-text {
+  color: rgba(248, 244, 237, 0.8);
+  margin-bottom: 0.75rem;
+}
+
+/* ── Coaches ── */
+
+.coaches {
+  background: var(--ivory);
+}
+
+.coaches .section-title { color: var(--espresso); margin-bottom: 0.75rem; }
+.coaches .section-text { margin-bottom: 3rem; }
+
+.coaches__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .coaches__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.coach-card {
+  text-align: center;
+}
+
+.coach-card__photo {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  background: var(--sand);
+}
+
+.coach-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coach-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 0.3rem;
+}
+
+.coach-card__disciplines {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 0.75rem;
+}
+
+.coach-card__bio {
+  font-size: 0.85rem;
+  color: var(--olive);
+  line-height: 1.6;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* ── Values ── */
+
+.values {
+  background: var(--espresso);
+  color: var(--ivory);
+}
+
+.values .label { opacity: 0.5; }
+
+.values .section-title {
+  color: var(--ivory);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.values__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .values__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.value-item__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.25rem;
+  border: 1px solid rgba(248, 244, 237, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.value-item__icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--ivory);
+  fill: none;
+  stroke-width: 1.2;
+}
+
+.value-item__title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.value-item__text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.7;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* ── Community ── */
+
+.community {
+  background: var(--off-white);
+}
+
+.community .section-title { color: var(--espresso); margin-bottom: 0.75rem; }
+.community .section-text { margin-bottom: 2rem; }
+
+.community__tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--olive);
+  margin-bottom: 2.5rem;
+}
+
+.community__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .community__gallery {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 250px 250px;
+  }
+  .community__gallery-item:first-child {
+    grid-row: span 2;
+  }
+}
+
+.community__gallery-item {
+  overflow: hidden;
+  border-radius: 2px;
+  aspect-ratio: 1;
+}
+
+@media (min-width: 768px) {
+  .community__gallery-item { aspect-ratio: auto; }
+}
+
+.community__gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+.community__gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+/* ── Address ── */
+
+.address {
+  background: var(--ivory);
+  text-align: center;
+}
+
+.address .section-title { color: var(--espresso); margin-bottom: 1rem; }
+
+.address__info {
+  font-size: 1rem;
+  color: var(--olive);
+  margin-bottom: 0.5rem;
+}
+
+.address__hours {
+  font-size: 0.9rem;
+  color: var(--olive);
+  margin-bottom: 2rem;
+}
+
+/* ── Footer ── */
+
+.footer {
+  background: var(--espresso);
+  color: var(--ivory);
+  padding: clamp(3rem, 6vw, 5rem) 0 2rem;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .footer__inner { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.footer__brand-name {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.footer__brand-info {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  opacity: 0.6;
+}
+
+.footer__nav-title {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 0.75rem;
+}
+
+.footer__nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer__nav-links a {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.footer__nav-links a:hover { opacity: 1; }
+
+.footer__bottom {
+  border-top: 1px solid rgba(248, 244, 237, 0.1);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer__copyright {
+  font-size: 0.75rem;
+  opacity: 0.4;
+}
+
+.footer__signature {
+  font-size: 0.75rem;
+  opacity: 0.3;
+  letter-spacing: 0.05em;
+}
+
+.footer__legal {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer__legal a {
+  font-size: 0.75rem;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.footer__legal a:hover { opacity: 0.8; }
+
+/* ── Booking Modal ── */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(33, 26, 22, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  padding: 1rem;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  background: var(--off-white);
+  border-radius: 4px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  position: relative;
+}
+
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--olive);
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__close:hover { color: var(--espresso); }
+
+.modal__title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 1.5rem;
+}
+
+.modal__step {
+  display: none;
+}
+
+.modal__step.is-active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 0.5rem;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(127, 111, 76, 0.25);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: white;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%237F6F4C' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  padding-right: 2.5rem;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: var(--espresso);
+}
+
+.form-group input.is-invalid {
+  border-color: #b5443a;
+}
+
+.form-error {
+  font-size: 0.75rem;
+  color: #b5443a;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+.form-error.is-visible {
+  display: block;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(127, 111, 76, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.radio-option:hover {
+  border-color: var(--olive);
+}
+
+.radio-option.is-selected {
+  border-color: var(--espresso);
+  background: rgba(48, 25, 5, 0.03);
+}
+
+.radio-option input {
+  accent-color: var(--espresso);
+}
+
+.radio-option__label {
+  font-size: 0.9rem;
+  color: var(--espresso);
+  flex: 1;
+}
+
+.radio-option__price {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--olive);
+}
+
+.modal__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.modal__actions .btn { flex: 1; justify-content: center; }
+
+.modal__note {
+  font-size: 0.75rem;
+  color: var(--olive);
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+/* ── Summary ── */
+
+.summary-card {
+  background: var(--ivory);
+  padding: 1.25rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+}
+
+.summary-row__label { color: var(--olive); }
+.summary-row__value { color: var(--espresso); font-weight: 500; }
+
+.summary-row--total {
+  border-top: 1px solid rgba(127, 111, 76, 0.15);
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  font-size: 1rem;
+}
+
+.confirmation-message {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.confirmation-message__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: rgba(90, 122, 90, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.confirmation-message__title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--espresso);
+  margin-bottom: 0.5rem;
+}
+
+.confirmation-message__text {
+  font-size: 0.85rem;
+  color: var(--olive);
+  line-height: 1.6;
+}
+
+/* ── Animations ── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Photo-break section ── */
+
+.photo-section {
+  width: 100%;
+  height: clamp(280px, 40vw, 480px);
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Utility ── */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ── Focus styles ── */
+
+:focus-visible {
+  outline: 2px solid var(--earth);
+  outline-offset: 2px;
+}
+
+/* ── Scroll indicator on schedule for mobile ── */
+
+@media (max-width: 767px) {
+  .schedule-item {
+    background: var(--off-white);
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .schedule-list {
+    background: transparent;
+    gap: 0;
+  }
+}
+
+/* ══════════════════════════════════════════
+   VISUAL UPGRADE — Editorial Design System
+   ══════════════════════════════════════════ */
+
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-reveal: 1s;
+}
+
+.section-title--lg {
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  letter-spacing: -0.02em;
+}
+
+.section-title--md {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  letter-spacing: -0.015em;
+}
+
+.hero {
+  min-height: 95vh;
+  padding-bottom: clamp(4rem, 10vw, 8rem);
+}
+
+@supports (min-height: 95svh) {
+  .hero { min-height: 95svh; }
+}
+
+.hero__bg {
+  background: var(--earth);
+  inset: -15% 0;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(33,26,22,0.05) 0%,
+    rgba(33,26,22,0.2) 35%,
+    rgba(33,26,22,0.55) 65%,
+    rgba(33,26,22,0.8) 100%);
+  z-index: 1;
+}
+
+.hero__content {
+  z-index: 2;
+  max-width: 780px;
+}
+
+.hero__title {
+  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
+  line-height: 1.06;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em;
+}
+
+.hero__subtitle {
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.hero__location {
+  font-size: 0.9rem;
+}
+
+.concept__inner {
+  max-width: none;
+}
+
+.concept__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .concept__grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.concept__image {
+  overflow: hidden;
+  border-radius: 2px;
+  aspect-ratio: 3/4;
+  background: linear-gradient(145deg, var(--sand), var(--earth));
+}
+
+.concept__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.concept__image:hover img {
+  transform: scale(1.03);
+}
+
+.photo-section {
+  height: clamp(350px, 55vw, 650px);
+}
+
+.photo-section img {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .discipline__grid {
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+  .discipline__grid--reverse {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.discipline__visual img {
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.discipline__visual:hover img {
+  transform: scale(1.03);
+}
+
+.pack-card {
+  border: none;
+  border-bottom: 1px solid rgba(127, 111, 76, 0.12);
+  border-radius: 0;
+  background: transparent;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+}
+
+.packs__grid .pack-card:last-child {
+  border-bottom: none;
+}
+
+.pack-card__name {
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+}
+
+.pack-card__price {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 500;
+  font-family: var(--font-serif);
+}
+
+.packs__grid {
+  gap: 0;
+}
+
+.house-bar {
+  min-height: 85vh;
+}
+
+.house-bar__bg {
+  background:
+    linear-gradient(135deg, rgba(48,25,5,0.82) 0%, rgba(111,62,20,0.5) 100%),
+    url('assets/images/house-bar-main.jpg') center/cover no-repeat;
+  background-color: var(--earth);
+}
+
+.house-bar__detail {
+  position: absolute;
+  right: clamp(1.5rem, 5vw, 4rem);
+  bottom: clamp(2rem, 5vw, 4rem);
+  width: clamp(180px, 28vw, 360px);
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 2px;
+  z-index: 3;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+}
+
+.house-bar__detail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .house-bar__detail { display: none; }
+  .house-bar { min-height: 70vh; }
+}
+
+.coach-card {
+  text-align: left;
+}
+
+.coach-card__photo {
+  margin-bottom: 1.25rem;
+  background: linear-gradient(145deg, var(--olive) 0%, var(--espresso) 100%);
+}
+
+.coach-card__photo img {
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.coach-card__photo:hover img {
+  transform: scale(1.03);
+}
+
+.coach-card__bio {
+  max-width: none;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .coaches__grid { gap: 2.5rem; }
+}
+
+.value-item__icon {
+  width: 88px;
+  height: 88px;
+  border-width: 1.5px;
+  margin-bottom: 1.5rem;
+}
+
+.community__gallery {
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .community__gallery {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 260px;
+  }
+  .community__gallery-item { aspect-ratio: auto; }
+  .community__gallery-item:first-child { grid-row: span 2; }
+  .community__gallery-item:nth-child(4) { grid-column: span 2; }
+}
+
+.community__gallery-item {
+  background: linear-gradient(145deg, var(--sand), var(--earth));
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity var(--duration-reveal) var(--ease-out-expo),
+              transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-image {
+  opacity: 0;
+  clip-path: inset(6% 6% 6% 6%);
+  transition: opacity 1.2s var(--ease-out-expo),
+              clip-path 1.2s var(--ease-out-expo);
+}
+
+.reveal-image.is-visible {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+[data-reveal-delay="1"] { transition-delay: 0.1s; }
+[data-reveal-delay="2"] { transition-delay: 0.2s; }
+[data-reveal-delay="3"] { transition-delay: 0.3s; }
+[data-reveal-delay="4"] { transition-delay: 0.4s; }
+
+.discipline__visual,
+.photo-section,
+.concept__image {
+  background: linear-gradient(145deg, var(--sand) 0%, var(--earth) 100%);
+}
+
+[data-parallax] {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-image {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  [data-parallax] {
+    transform: none !important;
+  }
+
+  .discipline__visual img,
+  .concept__image img,
+  .coach-card__photo img,
+  .community__gallery-item img {
+    transition: none !important;
+  }
+
+  .photo-section img {
+    position: static;
+    height: 100%;
+    top: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header header--transparent" id="header" role="banner">
+  <div class="header__inner">
+    <a href="#" class="header__logo" aria-label="Core House Dakar — Accueil">Core House</a>
+    <nav class="header__nav" aria-label="Navigation principale">
+      <a href="#concept">Core House</a>
+      <a href="#pilates">Mat Pilates</a>
+      <a href="#yoga">Yoga</a>
+      <a href="#planning">Planning</a>
+      <a href="#packs">Les packs</a>
+      <a href="#house-bar">House Bar</a>
+      <a href="#coaches">Les coachs</a>
+      <a href="#address">Adresse</a>
+      <a href="#planning" class="header__cta" data-booking-open>Réserver</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══ MOBILE MENU ═══ -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navigation">
+  <a href="#concept" class="mobile-menu__link">Core House</a>
+  <a href="#pilates" class="mobile-menu__link">Mat Pilates</a>
+  <a href="#yoga" class="mobile-menu__link">Yoga</a>
+  <a href="#planning" class="mobile-menu__link">Planning</a>
+  <a href="#packs" class="mobile-menu__link">Les packs</a>
+  <a href="#house-bar" class="mobile-menu__link">House Bar</a>
+  <a href="#coaches" class="mobile-menu__link">Les coachs</a>
+  <a href="#address" class="mobile-menu__link">Adresse</a>
+  <a href="#planning" class="mobile-menu__cta" data-booking-open>Réserver une séance</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero__bg" role="img" aria-label="Séance de Mat Pilates dans un studio chaleureux et contemporain à Dakar">
+    <img src="assets/images/hero-core-house.jpg" alt="" loading="eager" data-parallax="0.12">
+  </div>
+  <div class="container hero__content">
+    <p class="hero__brand">Core House Dakar</p>
+    <h1 class="hero__title">Bougez mieux.<br>Renforcez-vous.<br>Retrouvez votre équilibre.</h1>
+    <p class="hero__subtitle">Mat Pilates, yoga et art de vivre à Dakar.</p>
+    <p class="hero__location">Bourguiba, Dakar, Sénégal — débutants bienvenus.</p>
+    <div class="hero__actions">
+      <a href="#concept" class="btn btn--primary">Découvrir Core House</a>
+      <a href="#planning" class="btn btn--outline" data-booking-open>Réserver une séance</a>
+    </div>
+    <p class="hero__pillars">Mat Pilates · Yoga · House Bar</p>
+  </div>
+</section>
+
+<!-- ═══ CONCEPT ═══ -->
+<section class="concept section-pad" id="concept">
+  <div class="container">
+    <div class="concept__grid">
+      <div class="concept__inner reveal">
+        <p class="label">Core House</p>
+        <h2 class="section-title section-title--lg">Plus qu'un studio, un lieu de mouvement et de vie.</h2>
+        <p class="section-text">Core House Dakar est un lieu consacré au Mat Pilates, au yoga et à l'art de vivre. Un espace chaleureux et contemporain où l'on vient renforcer son corps, retrouver son équilibre et partager un moment.</p>
+        <p class="section-text">Chaque détail a été pensé pour créer une expérience fluide : une séance encadrée, un environnement inspirant et un House Bar où prolonger le moment avant ou après le cours.</p>
+      </div>
+      <div class="concept__image reveal-image">
+        <img src="assets/images/core-house-architecture.jpg" alt="Intérieur afro-contemporain de Core House Dakar" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHOTO BREAK ═══ -->
+<div class="photo-section">
+  <img src="assets/images/studio-materials.jpg" alt="Architecture intérieure de Core House Dakar, bois et matières naturelles dans un espace contemporain" loading="lazy" data-parallax="0.08">
+</div>
+
+<!-- ═══ MAT PILATES ═══ -->
+<section class="discipline section-pad" id="pilates">
+  <div class="container">
+    <div class="discipline__grid">
+      <div class="discipline__content reveal">
+        <p class="label">Mat Pilates</p>
+        <h2 class="section-title section-title--md">Un mouvement plus fort, plus précis.</h2>
+        <p class="section-text">Le Mat Pilates est une méthode complète qui associe contrôle, respiration et précision. Les séances permettent de renforcer les muscles profonds, d'améliorer la posture et de développer une meilleure conscience du mouvement.</p>
+        <div class="benefits">
+          <span class="benefit-tag">Renforcement profond</span>
+          <span class="benefit-tag">Posture et alignement</span>
+          <span class="benefit-tag">Mobilité</span>
+          <span class="benefit-tag">Contrôle du corps</span>
+          <span class="benefit-tag">Progression personnelle</span>
+        </div>
+        <div class="discipline__meta">
+          <span>Tous niveaux</span>
+          <span>55 minutes</span>
+          <span>Encadrement en groupe</span>
+        </div>
+      </div>
+      <div class="discipline__visual reveal">
+        <img src="assets/images/mat-pilates-editorial.jpg" alt="Séance de Mat Pilates sur tapis dans le studio Core House Dakar" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PLANNING ═══ -->
+<section class="planning section-pad" id="planning">
+  <div class="container">
+    <div class="reveal">
+      <p class="label">Prochaines séances</p>
+      <h2 class="section-title section-title--md">Réservez votre cours</h2>
+      <p class="section-text">Retrouvez les prochaines séances de Mat Pilates et de yoga. Les cours sont confirmés à partir de deux participants.</p>
+    </div>
+    <div class="planning__filters reveal" role="group" aria-label="Filtrer par discipline">
+      <button class="filter-btn is-active" data-filter="all">Tous les cours</button>
+      <button class="filter-btn" data-filter="pilates">Mat Pilates</button>
+      <button class="filter-btn" data-filter="yoga">Yoga</button>
+    </div>
+    <div class="schedule-list" id="schedule-list" role="list">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══ YOGA ═══ -->
+<section class="discipline discipline--alt section-pad" id="yoga">
+  <div class="container">
+    <div class="discipline__grid discipline__grid--reverse">
+      <div class="discipline__content reveal">
+        <p class="label">Yoga</p>
+        <h2 class="section-title section-title--md">Respirer, bouger, retrouver son rythme.</h2>
+        <p class="section-text">Les cours de yoga de Core House associent respiration, mobilité, souplesse et concentration. Chaque séance permet à chacun d'avancer à son rythme dans un environnement calme et accessible.</p>
+        <div class="benefits">
+          <span class="benefit-tag">Respiration</span>
+          <span class="benefit-tag">Souplesse</span>
+          <span class="benefit-tag">Mobilité</span>
+          <span class="benefit-tag">Concentration</span>
+          <span class="benefit-tag">Équilibre</span>
+        </div>
+        <div class="discipline__meta">
+          <span>Tous niveaux</span>
+          <span>55 minutes</span>
+          <span>Débutants bienvenus</span>
+        </div>
+      </div>
+      <div class="discipline__visual reveal">
+        <img src="assets/images/yoga-editorial.jpg" alt="Cours de yoga dans le studio Core House Dakar" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHOTO BREAK 2 ═══ -->
+<div class="photo-section">
+  <img src="assets/images/pilates-detail.jpg" alt="Détails architecturaux du studio Core House Dakar, matières naturelles et lumière" loading="lazy" data-parallax="0.08">
+</div>
+
+<!-- ═══ PACKS ═══ -->
+<section class="packs section-pad" id="packs">
+  <div class="container">
+    <div class="reveal">
+      <p class="label">Les packs</p>
+      <h2 class="section-title section-title--md">Pratiquez régulièrement.</h2>
+      <p class="section-text">Pratiquez régulièrement et profitez d'un tarif plus avantageux.</p>
+    </div>
+    <div id="packs-container">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOUSE BAR ═══ -->
+<section class="house-bar" id="house-bar">
+  <div class="house-bar__bg" role="img" aria-label="Le House Bar de Core House Dakar, comptoir en bois, jus frais et lumière chaude"></div>
+  <div class="container house-bar__content reveal">
+    <p class="label">House Bar</p>
+    <h2 class="section-title section-title--lg">Restez un peu plus longtemps.</h2>
+    <p class="section-text">Avant ou après votre séance, retrouvez-vous au House Bar autour de jus frais, smoothies et boissons préparées sur place.</p>
+    <p class="section-text">Un espace simple et convivial, pensé comme le prolongement naturel de Core House.</p>
+  </div>
+  <div class="house-bar__detail reveal-image">
+    <img src="assets/images/house-bar-detail.jpg" alt="Jus frais au House Bar de Core House Dakar" loading="lazy">
+  </div>
+</section>
+
+<!-- ═══ COACHES ═══ -->
+<section class="coaches section-pad" id="coaches">
+  <div class="container">
+    <div class="reveal">
+      <p class="label">Les coachs</p>
+      <h2 class="section-title section-title--md">Votre progression, leur engagement.</h2>
+    </div>
+    <div class="coaches__grid" id="coaches-grid">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VALUES ═══ -->
+<section class="values section-pad" id="values">
+  <div class="container">
+    <p class="label" style="text-align:center">Nos valeurs</p>
+    <h2 class="section-title section-title--md">Ce qui nous guide.</h2>
+    <div class="values__grid">
+      <div class="value-item reveal">
+        <div class="value-item__icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></svg>
+        </div>
+        <h3 class="value-item__title">Calme</h3>
+        <p class="value-item__text">Un environnement chaleureux qui permet de ralentir, de se recentrer et de pratiquer sans pression.</p>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-item__icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+        </div>
+        <h3 class="value-item__title">Équilibre</h3>
+        <p class="value-item__text">Des séances pensées pour associer force, mobilité, respiration et maîtrise du mouvement.</p>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-item__icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 class="value-item__title">Présence</h3>
+        <p class="value-item__text">Une attention portée à chaque geste, à chaque respiration et à la progression de chacun.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMMUNITY ═══ -->
+<section class="community section-pad" id="community">
+  <div class="container">
+    <div class="reveal">
+      <p class="label">Communauté</p>
+      <h2 class="section-title section-title--md">Un lieu que l'on rejoint.</h2>
+      <p class="section-text">Core House réunit des personnes qui souhaitent bouger, progresser et partager une même énergie. Un lieu où l'on vient pour son cours et où l'on peut rester pour le moment.</p>
+      <p class="community__tagline">Venez pour le mouvement. Restez pour le moment.</p>
+    </div>
+    <div class="community__gallery reveal">
+      <div class="community__gallery-item">
+        <img src="assets/images/community-01.jpg" alt="Séance de Mat Pilates en groupe à Core House Dakar" loading="lazy">
+      </div>
+      <div class="community__gallery-item">
+        <img src="assets/images/community-02.jpg" alt="Échange entre membres au House Bar" loading="lazy">
+      </div>
+      <div class="community__gallery-item">
+        <img src="assets/images/community-03.jpg" alt="Détail architectural du studio Core House" loading="lazy">
+      </div>
+      <div class="community__gallery-item">
+        <img src="assets/images/community-04.jpg" alt="Moment de convivialité à Core House Dakar" loading="lazy">
+      </div>
+      <div class="community__gallery-item">
+        <img src="assets/images/community-05.jpg" alt="Scène de vie au studio Core House" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ADDRESS ═══ -->
+<section class="address section-pad" id="address">
+  <div class="container reveal">
+    <p class="label">Nous trouver</p>
+    <h2 class="section-title section-title--md">Core House Dakar</h2>
+    <p class="address__info">Bourguiba, Dakar, Sénégal</p>
+    <p class="address__hours">Ouvert tous les jours · 08:00 – 22:00</p>
+    <a href="#planning" class="btn btn--dark" data-booking-open>Réserver une séance</a>
+    <div id="address-links" style="margin-top:1.5rem"></div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <p class="footer__brand-name">Core House Dakar</p>
+        <p class="footer__brand-info">
+          Bourguiba, Dakar, Sénégal<br>
+          Ouvert tous les jours, 08:00–22:00
+        </p>
+      </div>
+      <div>
+        <p class="footer__nav-title">Navigation</p>
+        <div class="footer__nav-links">
+          <a href="#concept">Core House</a>
+          <a href="#pilates">Mat Pilates</a>
+          <a href="#yoga">Yoga</a>
+          <a href="#planning">Planning</a>
+          <a href="#packs">Les packs</a>
+          <a href="#house-bar">House Bar</a>
+          <a href="#coaches">Les coachs</a>
+          <a href="#address">Adresse</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer__nav-title">Informations</p>
+        <div class="footer__nav-links" id="footer-contact">
+          <!-- Contact links generated by JS if available -->
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright" id="footer-copyright"></p>
+      <p class="footer__signature">Mat Pilates · Yoga · House Bar — Dakar</p>
+      <div class="footer__legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ BOOKING MODAL ═══ -->
+<div class="modal-overlay" id="booking-modal" role="dialog" aria-modal="true" aria-label="Réserver une séance">
+  <div class="modal">
+    <button class="modal__close" id="modal-close" aria-label="Fermer">&times;</button>
+    <h2 class="modal__title" id="modal-title">Réserver une séance</h2>
+
+    <!-- Step 1: Choose details -->
+    <div class="modal__step is-active" id="step-1">
+      <div class="form-group">
+        <label for="book-discipline">Discipline</label>
+        <select id="book-discipline">
+          <option value="">Choisir une discipline</option>
+          <option value="pilates">Mat Pilates</option>
+          <option value="yoga">Yoga</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="book-date">Date</label>
+        <input type="date" id="book-date">
+      </div>
+      <div class="form-group">
+        <label for="book-time">Heure</label>
+        <select id="book-time">
+          <option value="">Choisir un créneau</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="book-coach">Coach</label>
+        <select id="book-coach">
+          <option value="">Choisir un coach</option>
+        </select>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--dark" id="step-1-next">Continuer</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Purchase type -->
+    <div class="modal__step" id="step-2">
+      <div class="form-group">
+        <label>Type d'achat</label>
+        <div class="radio-group" id="purchase-options">
+          <!-- Generated by JS -->
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="book-name">Nom du participant</label>
+        <input type="text" id="book-name" placeholder="Votre nom complet" autocomplete="name">
+        <p class="form-error" id="name-error">Veuillez entrer votre nom.</p>
+      </div>
+      <div class="form-group">
+        <label for="book-places">Nombre de places</label>
+        <select id="book-places">
+          <option value="1">1 place</option>
+          <option value="2">2 places</option>
+          <option value="3">3 places</option>
+          <option value="4">4 places</option>
+        </select>
+      </div>
+      <p class="modal__note">Les cours sont confirmés à partir de deux participants. Vous recevrez une confirmation définitive lorsque ce minimum sera atteint.</p>
+      <div class="modal__actions">
+        <button class="btn btn--dark-outline" id="step-2-back">Retour</button>
+        <button class="btn btn--dark" id="step-2-next">Voir le récapitulatif</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Summary -->
+    <div class="modal__step" id="step-3">
+      <div class="summary-card" id="booking-summary">
+        <!-- Generated by JS -->
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--dark-outline" id="step-3-back">Modifier</button>
+        <button class="btn btn--dark" id="step-3-confirm">Confirmer la réservation</button>
+      </div>
+      <p class="modal__note">Cette réservation est enregistrée en mode démonstration. Aucun paiement n'est requis pour le moment.</p>
+    </div>
+
+    <!-- Step 4: Confirmation -->
+    <div class="modal__step" id="step-4">
+      <div class="confirmation-message">
+        <div class="confirmation-message__icon">&#10003;</div>
+        <h3 class="confirmation-message__title">Réservation enregistrée</h3>
+        <p class="confirmation-message__text" id="confirmation-text"></p>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--dark" id="step-4-close">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═════════════════════════════════════════════
+   CORE HOUSE DAKAR — CONFIGURATION CENTRALE
+   ═════════════════════════════════════════════ */
+
+const CONFIG = {
+  brand: "Core House Dakar",
+  tagline: "Mat Pilates · Yoga · House Bar",
+  address: "Bourguiba, Dakar, Sénégal",
+  hours: { open: "08:00", close: "22:00", label: "Ouvert tous les jours, 08:00–22:00" },
+  sessionDuration: 55,
+  slotStartHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+  daysToShow: 7,
+};
+
+const CONTACT_EMAIL = "";
+const WHATSAPP_NUMBER = "";
+const INSTAGRAM_URL = "";
+const MAPS_URL = "";
+const BOOKING_URL = "";
+const BOOKING_API_URL = "";
+
+const MIN_PARTICIPANTS_PER_CLASS = 2;
+
+const PRICING = {
+  singleClasses: {
+    pilates: 15000,
+    yoga: 12000
+  },
+  packs: [
+    { id: "pilates-5", discipline: "pilates", name: "Pack 5 séances Pilates", sessions: 5, price: 67500, validityDays: 30 },
+    { id: "pilates-10", discipline: "pilates", name: "Pack 10 séances Pilates", sessions: 10, price: 127500, validityDays: 60 },
+    { id: "yoga-5", discipline: "yoga", name: "Pack 5 séances Yoga", sessions: 5, price: 54000, validityDays: 30 },
+    { id: "yoga-10", discipline: "yoga", name: "Pack 10 séances Yoga", sessions: 10, price: 102000, validityDays: 60 }
+  ]
+};
+
+const COACHES = [
+  {
+    name: "Yassine",
+    disciplines: ["pilates"],
+    photo: "assets/coach-yassine.jpg",
+    bio: "Des séances structurées et accessibles, avec une attention particulière portée au contrôle du mouvement et à la progression."
+  },
+  {
+    name: "Sophie",
+    disciplines: ["pilates", "yoga"],
+    photo: "assets/coach-sophie.jpg",
+    bio: "Une approche attentive mêlant mouvement, respiration et qualité d'exécution."
+  },
+  {
+    name: "Kezia",
+    disciplines: ["yoga"],
+    photo: "assets/coach-kezia.jpg",
+    bio: "Une pratique progressive centrée sur la respiration, la mobilité et l'équilibre."
+  }
+];
+
+const DISCIPLINE_LABELS = {
+  pilates: "Mat Pilates",
+  yoga: "Yoga"
+};
+
+/* ═══ Utilities ═══ */
+
+function formatPrice(amount) {
+  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " FCFA";
+}
+
+function formatDate(date) {
+  return date.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+}
+
+function formatShortDate(date) {
+  return date.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" });
+}
+
+function formatTime(hour) {
+  return String(hour).padStart(2, "0") + ":00";
+}
+
+function getBookings() {
+  try { return JSON.parse(localStorage.getItem("coreHouseBookings") || "[]"); } catch { return []; }
+}
+
+function saveBooking(booking) {
+  const bookings = getBookings();
+  bookings.push(booking);
+  localStorage.setItem("coreHouseBookings", JSON.stringify(bookings));
+}
+
+function getParticipantCount(classId) {
+  return getBookings()
+    .filter(b => b.classId === classId)
+    .reduce((sum, b) => sum + (b.places || 1), 0);
+}
+
+function getClassId(date, hour, discipline) {
+  const d = date instanceof Date ? date.toISOString().split("T")[0] : date;
+  return `${d}-${hour}-${discipline}`;
+}
+
+function getStatusInfo(count) {
+  if (count === 0) return { text: "Places disponibles", css: "status--available" };
+  if (count < MIN_PARTICIPANTS_PER_CLASS) {
+    const remaining = MIN_PARTICIPANTS_PER_CLASS - count;
+    return { text: `En attente — encore ${remaining} participant${remaining > 1 ? "s" : ""} nécessaire${remaining > 1 ? "s" : ""}`, css: "status--pending" };
+  }
+  return { text: "Cours confirmé", css: "status--confirmed" };
+}
+
+function participantLabel(count) {
+  return count === 0 ? "0 participant" : count === 1 ? "1 participant" : `${count} participants`;
+}
+
+/* ═══ Schedule generation ═══ */
+
+function generateSchedule() {
+  const schedule = [];
+  const today = new Date();
+
+  for (let d = 0; d < CONFIG.daysToShow; d++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() + d);
+
+    CONFIG.slotStartHours.forEach((hour, i) => {
+      const discipline = (i % 3 === 0) ? "yoga" : (i % 3 === 1) ? "pilates" : (i % 2 === 0) ? "yoga" : "pilates";
+
+      const availableCoaches = COACHES.filter(c => c.disciplines.includes(discipline));
+      const coach = availableCoaches[i % availableCoaches.length];
+
+      const classId = getClassId(date, hour, discipline);
+      const participants = getParticipantCount(classId);
+      const status = getStatusInfo(participants);
+
+      schedule.push({
+        date: new Date(date),
+        hour,
+        discipline,
+        coach: coach.name,
+        level: "Tous niveaux",
+        classId,
+        participants,
+        status,
+        price: PRICING.singleClasses[discipline]
+      });
+    });
+  }
+
+  return schedule;
+}
+
+let currentSchedule = generateSchedule();
+let activeFilter = "all";
+
+function renderSchedule(filter) {
+  activeFilter = filter || activeFilter;
+  const list = document.getElementById("schedule-list");
+  const filtered = currentSchedule.filter(s => activeFilter === "all" || s.discipline === activeFilter);
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<p style="padding:2rem;text-align:center;color:var(--olive);font-size:0.9rem;">Aucune séance pour cette sélection.</p>';
+    return;
+  }
+
+  const isMobile = window.innerWidth < 768;
+
+  list.innerHTML = filtered.map(s => {
+    const dateStr = formatShortDate(s.date);
+    const timeStr = formatTime(s.hour);
+    const disciplineLabel = DISCIPLINE_LABELS[s.discipline];
+    const priceStr = formatPrice(s.price);
+    const participantStr = participantLabel(s.participants);
+
+    if (isMobile) {
+      return `
+        <div class="schedule-item" role="listitem" data-class-id="${s.classId}">
+          <div class="schedule-item__mobile-row">
+            <span class="schedule-item__date">${dateStr}</span>
+            <span class="schedule-item__time">${timeStr}</span>
+          </div>
+          <div class="schedule-item__discipline">${disciplineLabel}</div>
+          <div class="schedule-item__coach">avec ${s.coach} · ${s.level}</div>
+          <div class="schedule-item__mobile-row">
+            <span class="schedule-item__status ${s.status.css}">${participantStr} · ${s.status.text}</span>
+          </div>
+          <div class="schedule-item__mobile-row">
+            <span class="schedule-item__price">${priceStr}</span>
+            <button class="btn btn--dark schedule-item__book-btn" data-class-id="${s.classId}" data-discipline="${s.discipline}" data-date="${s.date.toISOString().split('T')[0]}" data-hour="${s.hour}" data-coach="${s.coach}">Réserver</button>
+          </div>
+        </div>`;
+    }
+
+    return `
+      <div class="schedule-item" role="listitem" data-class-id="${s.classId}">
+        <span class="schedule-item__date">${dateStr}</span>
+        <span class="schedule-item__time">${timeStr}</span>
+        <div class="schedule-item__info">
+          <span class="schedule-item__discipline">${disciplineLabel}</span>
+          <span class="schedule-item__coach">avec ${s.coach} · ${s.level}</span>
+        </div>
+        <span class="schedule-item__status ${s.status.css}">${participantStr}<br>${s.status.text}</span>
+        <span class="schedule-item__price">${priceStr}</span>
+        <span class="schedule-item__book"><button class="btn btn--dark schedule-item__book-btn" data-class-id="${s.classId}" data-discipline="${s.discipline}" data-date="${s.date.toISOString().split('T')[0]}" data-hour="${s.hour}" data-coach="${s.coach}">Réserver</button></span>
+      </div>`;
+  }).join("");
+}
+
+/* ═══ Packs ═══ */
+
+function renderPacks() {
+  const container = document.getElementById("packs-container");
+  const groups = { pilates: [], yoga: [] };
+
+  PRICING.packs.forEach(pack => {
+    const perSession = Math.round(pack.price / pack.sessions);
+    const singlePrice = PRICING.singleClasses[pack.discipline];
+    const saving = (singlePrice * pack.sessions) - pack.price;
+
+    groups[pack.discipline].push(`
+      <div class="pack-card reveal">
+        <h3 class="pack-card__name">${pack.name}</h3>
+        <p class="pack-card__price">${formatPrice(pack.price)}</p>
+        <p class="pack-card__per-session">${formatPrice(perSession)} par séance</p>
+        <p class="pack-card__details">
+          ${pack.sessions} séances · Validité : ${pack.validityDays} jours
+        </p>
+        <p class="pack-card__saving">Économie : ${formatPrice(saving)}</p>
+        <button class="btn btn--dark-outline" data-pack-id="${pack.id}">Choisir ce pack →</button>
+      </div>`);
+  });
+
+  container.innerHTML = `
+    <div class="packs__category">
+      <p class="packs__category-title">Mat Pilates</p>
+      <div class="packs__grid">${groups.pilates.join("")}</div>
+    </div>
+    <div class="packs__category">
+      <p class="packs__category-title">Yoga</p>
+      <div class="packs__grid">${groups.yoga.join("")}</div>
+    </div>`;
+}
+
+/* ═══ Coaches ═══ */
+
+function renderCoaches() {
+  const grid = document.getElementById("coaches-grid");
+  grid.innerHTML = COACHES.map(c => `
+    <div class="coach-card reveal">
+      <div class="coach-card__photo">
+        <img src="${c.photo}" alt="${c.name}, coach de ${c.disciplines.map(d => DISCIPLINE_LABELS[d]).join(" et ")} à Core House Dakar" loading="lazy">
+      </div>
+      <h3 class="coach-card__name">${c.name}</h3>
+      <p class="coach-card__disciplines">${c.disciplines.map(d => DISCIPLINE_LABELS[d]).join(" · ")}</p>
+      <p class="coach-card__bio">${c.bio}</p>
+    </div>`).join("");
+}
+
+/* ═══ Contact links ═══ */
+
+function renderContacts() {
+  const footerContact = document.getElementById("footer-contact");
+  const addressLinks = document.getElementById("address-links");
+  const links = [];
+
+  if (CONTACT_EMAIL) links.push(`<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`);
+  if (WHATSAPP_NUMBER) links.push(`<a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener">WhatsApp</a>`);
+  if (INSTAGRAM_URL) links.push(`<a href="${INSTAGRAM_URL}" target="_blank" rel="noopener">Instagram</a>`);
+  if (MAPS_URL) links.push(`<a href="${MAPS_URL}" target="_blank" rel="noopener">Voir sur la carte</a>`);
+
+  footerContact.innerHTML = links.join("") || "";
+  addressLinks.innerHTML = links.length ? links.map(l => `<span style="margin:0 0.5rem">${l}</span>`).join("") : "";
+}
+
+/* ═══ Copyright ═══ */
+
+document.getElementById("footer-copyright").textContent = `© ${new Date().getFullYear()} Core House Dakar. Tous droits réservés.`;
+
+/* ═══ Header scroll ═══ */
+
+const header = document.getElementById("header");
+
+function updateHeader() {
+  if (window.scrollY > 80) {
+    header.classList.remove("header--transparent");
+    header.classList.add("header--solid");
+  } else {
+    header.classList.remove("header--solid");
+    header.classList.add("header--transparent");
+  }
+}
+
+window.addEventListener("scroll", updateHeader, { passive: true });
+updateHeader();
+
+/* ═══ Mobile menu ═══ */
+
+const burger = document.getElementById("burger");
+const mobileMenu = document.getElementById("mobile-menu");
+
+burger.addEventListener("click", () => {
+  const isOpen = burger.classList.toggle("is-open");
+  mobileMenu.classList.toggle("is-open", isOpen);
+  burger.setAttribute("aria-expanded", isOpen);
+  document.body.style.overflow = isOpen ? "hidden" : "";
+});
+
+mobileMenu.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    burger.classList.remove("is-open");
+    mobileMenu.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  });
+});
+
+/* ═══ Scroll reveal ═══ */
+
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+}
+
+/* ═══ Filters ═══ */
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+    renderSchedule(btn.dataset.filter);
+  });
+});
+
+/* ═══ Booking modal ═══ */
+
+const modal = document.getElementById("booking-modal");
+const modalTitle = document.getElementById("modal-title");
+const steps = [
+  document.getElementById("step-1"),
+  document.getElementById("step-2"),
+  document.getElementById("step-3"),
+  document.getElementById("step-4")
+];
+
+let bookingState = {};
+
+function showStep(n) {
+  steps.forEach((s, i) => s.classList.toggle("is-active", i === n));
+}
+
+function openModal(prefill) {
+  bookingState = prefill || {};
+  modal.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+  showStep(0);
+  modalTitle.textContent = "Réserver une séance";
+
+  if (bookingState.discipline) {
+    document.getElementById("book-discipline").value = bookingState.discipline;
+    updateTimeSlots();
+  }
+  if (bookingState.date) {
+    document.getElementById("book-date").value = bookingState.date;
+    updateTimeSlots();
+  }
+  if (bookingState.hour !== undefined) {
+    document.getElementById("book-time").value = bookingState.hour;
+    updateCoachOptions();
+  }
+  if (bookingState.coach) {
+    document.getElementById("book-coach").value = bookingState.coach;
+  }
+}
+
+function closeModal() {
+  modal.classList.remove("is-open");
+  document.body.style.overflow = "";
+  bookingState = {};
+  document.getElementById("book-discipline").value = "";
+  document.getElementById("book-date").value = "";
+  document.getElementById("book-time").innerHTML = '<option value="">Choisir un créneau</option>';
+  document.getElementById("book-coach").innerHTML = '<option value="">Choisir un coach</option>';
+  document.getElementById("book-name").value = "";
+  document.getElementById("book-name").classList.remove("is-invalid");
+  document.getElementById("name-error").classList.remove("is-visible");
+  document.getElementById("book-places").value = "1";
+  showStep(0);
+}
+
+document.getElementById("modal-close").addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+});
+
+document.addEventListener("click", (e) => {
+  const bookBtn = e.target.closest("[data-booking-open]");
+  if (bookBtn) {
+    e.preventDefault();
+    openModal();
+  }
+
+  const scheduleBtn = e.target.closest(".schedule-item__book-btn");
+  if (scheduleBtn) {
+    openModal({
+      discipline: scheduleBtn.dataset.discipline,
+      date: scheduleBtn.dataset.date,
+      hour: parseInt(scheduleBtn.dataset.hour),
+      coach: scheduleBtn.dataset.coach
+    });
+  }
+
+  const packBtn = e.target.closest("[data-pack-id]");
+  if (packBtn) {
+    const pack = PRICING.packs.find(p => p.id === packBtn.dataset.packId);
+    if (pack) {
+      openModal({ discipline: pack.discipline, packId: pack.id });
+    }
+  }
+});
+
+function updateTimeSlots() {
+  const discipline = document.getElementById("book-discipline").value;
+  const dateVal = document.getElementById("book-date").value;
+  const timeSelect = document.getElementById("book-time");
+
+  timeSelect.innerHTML = '<option value="">Choisir un créneau</option>';
+
+  if (!discipline) return;
+
+  CONFIG.slotStartHours.forEach(hour => {
+    const opt = document.createElement("option");
+    opt.value = hour;
+    opt.textContent = formatTime(hour);
+    timeSelect.appendChild(opt);
+  });
+}
+
+function updateCoachOptions() {
+  const discipline = document.getElementById("book-discipline").value;
+  const coachSelect = document.getElementById("book-coach");
+
+  coachSelect.innerHTML = '<option value="">Choisir un coach</option>';
+
+  if (!discipline) return;
+
+  COACHES.filter(c => c.disciplines.includes(discipline)).forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c.name;
+    opt.textContent = c.name;
+    coachSelect.appendChild(opt);
+  });
+}
+
+document.getElementById("book-discipline").addEventListener("change", () => {
+  updateTimeSlots();
+  updateCoachOptions();
+});
+
+document.getElementById("book-time").addEventListener("change", updateCoachOptions);
+
+document.getElementById("book-date").addEventListener("change", updateTimeSlots);
+
+// Step 1 -> Step 2
+document.getElementById("step-1-next").addEventListener("click", () => {
+  const discipline = document.getElementById("book-discipline").value;
+  const date = document.getElementById("book-date").value;
+  const time = document.getElementById("book-time").value;
+  const coach = document.getElementById("book-coach").value;
+
+  if (!discipline || !date || !time || !coach) {
+    alert("Veuillez remplir tous les champs.");
+    return;
+  }
+
+  bookingState = { discipline, date, hour: parseInt(time), coach };
+
+  const purchaseOptions = document.getElementById("purchase-options");
+  const singlePrice = PRICING.singleClasses[discipline];
+
+  let html = `
+    <label class="radio-option is-selected">
+      <input type="radio" name="purchase-type" value="single" checked>
+      <span class="radio-option__label">Séance à l'unité</span>
+      <span class="radio-option__price">${formatPrice(singlePrice)}</span>
+    </label>`;
+
+  PRICING.packs.filter(p => p.discipline === discipline).forEach(pack => {
+    const perSession = Math.round(pack.price / pack.sessions);
+    html += `
+      <label class="radio-option">
+        <input type="radio" name="purchase-type" value="${pack.id}">
+        <span class="radio-option__label">${pack.name}<br><small style="color:var(--olive);font-size:0.75rem">${formatPrice(perSession)}/séance · Validité ${pack.validityDays} j</small></span>
+        <span class="radio-option__price">${formatPrice(pack.price)}</span>
+      </label>`;
+  });
+
+  purchaseOptions.innerHTML = html;
+
+  purchaseOptions.querySelectorAll(".radio-option").forEach(opt => {
+    opt.addEventListener("click", () => {
+      purchaseOptions.querySelectorAll(".radio-option").forEach(o => o.classList.remove("is-selected"));
+      opt.classList.add("is-selected");
+      opt.querySelector("input").checked = true;
+    });
+  });
+
+  showStep(1);
+});
+
+// Step 2 -> Step 3
+document.getElementById("step-2-next").addEventListener("click", () => {
+  const name = document.getElementById("book-name").value.trim();
+  const nameInput = document.getElementById("book-name");
+  const nameError = document.getElementById("name-error");
+
+  if (!name) {
+    nameInput.classList.add("is-invalid");
+    nameError.classList.add("is-visible");
+    nameInput.focus();
+    return;
+  }
+
+  nameInput.classList.remove("is-invalid");
+  nameError.classList.remove("is-visible");
+
+  const purchaseType = document.querySelector('input[name="purchase-type"]:checked').value;
+  const places = parseInt(document.getElementById("book-places").value);
+
+  bookingState.name = name;
+  bookingState.purchaseType = purchaseType;
+  bookingState.places = places;
+
+  let price, purchaseLabel;
+  if (purchaseType === "single") {
+    price = PRICING.singleClasses[bookingState.discipline] * places;
+    purchaseLabel = "Séance à l'unité";
+  } else {
+    const pack = PRICING.packs.find(p => p.id === purchaseType);
+    price = pack.price;
+    purchaseLabel = pack.name;
+
+    const expirationDate = new Date(bookingState.date);
+    expirationDate.setDate(expirationDate.getDate() + pack.validityDays);
+    bookingState.expiration = expirationDate;
+  }
+
+  bookingState.totalPrice = price;
+
+  const summary = document.getElementById("booking-summary");
+  let summaryHtml = `
+    <div class="summary-row">
+      <span class="summary-row__label">Discipline</span>
+      <span class="summary-row__value">${DISCIPLINE_LABELS[bookingState.discipline]}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-row__label">Date</span>
+      <span class="summary-row__value">${formatDate(new Date(bookingState.date + "T00:00:00"))}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-row__label">Heure</span>
+      <span class="summary-row__value">${formatTime(bookingState.hour)}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-row__label">Coach</span>
+      <span class="summary-row__value">${bookingState.coach}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-row__label">Participant</span>
+      <span class="summary-row__value">${bookingState.name}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-row__label">Places</span>
+      <span class="summary-row__value">${bookingState.places}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-row__label">Formule</span>
+      <span class="summary-row__value">${purchaseLabel}</span>
+    </div>`;
+
+  if (bookingState.expiration) {
+    summaryHtml += `
+    <div class="summary-row">
+      <span class="summary-row__label">Validité du pack</span>
+      <span class="summary-row__value">Jusqu'au ${formatDate(bookingState.expiration)}</span>
+    </div>`;
+  }
+
+  summaryHtml += `
+    <div class="summary-row summary-row--total">
+      <span class="summary-row__label">Total</span>
+      <span class="summary-row__value">${formatPrice(bookingState.totalPrice)}</span>
+    </div>`;
+
+  summary.innerHTML = summaryHtml;
+  showStep(2);
+});
+
+// Step 2 back
+document.getElementById("step-2-back").addEventListener("click", () => showStep(0));
+
+// Step 3 back
+document.getElementById("step-3-back").addEventListener("click", () => showStep(1));
+
+// Confirm booking
+document.getElementById("step-3-confirm").addEventListener("click", () => {
+  const classId = getClassId(bookingState.date, bookingState.hour, bookingState.discipline);
+
+  const booking = {
+    id: Date.now().toString(36),
+    classId,
+    discipline: bookingState.discipline,
+    date: bookingState.date,
+    hour: bookingState.hour,
+    coach: bookingState.coach,
+    name: bookingState.name,
+    places: bookingState.places,
+    purchaseType: bookingState.purchaseType,
+    totalPrice: bookingState.totalPrice,
+    createdAt: new Date().toISOString()
+  };
+
+  if (BOOKING_API_URL) {
+    console.log("API booking:", booking);
+  }
+
+  saveBooking(booking);
+
+  currentSchedule = generateSchedule();
+  renderSchedule();
+
+  const newCount = getParticipantCount(classId);
+  const newStatus = getStatusInfo(newCount);
+  const confirmText = document.getElementById("confirmation-text");
+
+  let msg = `Votre réservation pour ${DISCIPLINE_LABELS[bookingState.discipline]} le ${formatDate(new Date(bookingState.date + "T00:00:00"))} à ${formatTime(bookingState.hour)} avec ${bookingState.coach} a été enregistrée.`;
+
+  if (newCount < MIN_PARTICIPANTS_PER_CLASS) {
+    msg += `\n\nLe cours est en attente de confirmation. Encore ${MIN_PARTICIPANTS_PER_CLASS - newCount} participant${(MIN_PARTICIPANTS_PER_CLASS - newCount) > 1 ? "s" : ""} nécessaire${(MIN_PARTICIPANTS_PER_CLASS - newCount) > 1 ? "s" : ""}.`;
+  } else {
+    msg += "\n\nLe cours est confirmé.";
+  }
+
+  confirmText.textContent = msg;
+  modalTitle.textContent = "Réservation confirmée";
+  showStep(3);
+});
+
+// Step 4 close
+document.getElementById("step-4-close").addEventListener("click", closeModal);
+
+/* ═══ Set min date ═══ */
+
+const dateInput = document.getElementById("book-date");
+const today = new Date();
+dateInput.min = today.toISOString().split("T")[0];
+const maxDate = new Date(today);
+maxDate.setDate(today.getDate() + CONFIG.daysToShow - 1);
+dateInput.max = maxDate.toISOString().split("T")[0];
+
+/* ═══ Smooth scroll ═══ */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      e.preventDefault();
+      const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 72;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  });
+});
+
+/* ═══ Resize handler for schedule ═══ */
+
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => renderSchedule(), 250);
+});
+
+/* ═══ Init ═══ */
+
+renderSchedule();
+renderPacks();
+renderCoaches();
+renderContacts();
+
+requestAnimationFrame(() => {
+  initReveal();
+  initRevealImages();
+  initParallax();
+});
+
+function initRevealImages() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal-image').forEach(function(el) {
+    observer.observe(el);
+  });
+}
+
+function initParallax() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var els = document.querySelectorAll('[data-parallax]');
+  if (!els.length) return;
+
+  var ticking = false;
+
+  function update() {
+    var vh = window.innerHeight;
+
+    els.forEach(function(el) {
+      var container = el.parentElement;
+      var rect = container.getBoundingClientRect();
+
+      if (rect.bottom < -200 || rect.top > vh + 200) return;
+
+      var speed = parseFloat(el.dataset.parallax) || 0.1;
+      var progress = (rect.top + rect.height / 2 - vh / 2) * speed;
+
+      el.style.transform = 'translate3d(0,' + progress + 'px,0)';
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  update();
+}
+
+</script>
+</body>
+</html>
