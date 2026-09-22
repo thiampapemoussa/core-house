@@ -6,12 +6,18 @@ import crypto from "node:crypto";
 const app = express();
 app.use(express.json());
 
-/* ═══ Supabase ═══ */
+/* ═══ Supabase (lazy init to avoid crash if env vars missing) ═══ */
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
-);
+let _supabase = null;
+function getSupabase() {
+  if (!_supabase) {
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_KEY) {
+      throw new Error("SUPABASE_URL and SUPABASE_SERVICE_KEY are required");
+    }
+    _supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+  }
+  return _supabase;
+}
 
 /* ═══ Disciplines (mirror of frontend) ═══ */
 
@@ -361,16 +367,16 @@ function normalizeEmail(email) { return email.trim().toLowerCase(); }
 function normalizePhone(phone) { return phone.replace(/[\s\-.\(\)]/g, "").replace(/^00/, "+"); }
 
 async function getParticipantCount(classId) {
-  const { data } = await supabase.from("bookings").select("places").eq("class_id", classId);
+  const { data } = await getSupabase().from("bookings").select("places").eq("class_id", classId);
   return (data || []).reduce((s, r) => s + r.places, 0);
 }
 
 async function ensureClass(classId, discipline, date, hour, minute, coach) {
   const disc = DISCIPLINES[discipline];
-  const { data: existing } = await supabase.from("classes").select("*").eq("class_id", classId).maybeSingle();
+  const { data: existing } = await getSupabase().from("classes").select("*").eq("class_id", classId).maybeSingle();
   if (existing) return existing;
   const row = { class_id: classId, discipline, date, hour, minute: minute || 0, coach: coach || null, max_participants: disc.maxParticipants };
-  await supabase.from("classes").upsert(row, { onConflict: "class_id" });
+  await getSupabase().from("classes").upsert(row, { onConflict: "class_id" });
   return { ...row, google_calendar_event_id: null };
 }
 
@@ -393,7 +399,7 @@ router.post("/bookings", async (req, res) => {
       return res.status(400).json({ success: false, error: "Nombre de places invalide." });
 
     if (idempotencyKey) {
-      const { data: dup } = await supabase.from("bookings").select("id, status").eq("idempotency_key", idempotencyKey).maybeSingle();
+      const { data: dup } = await getSupabase().from("bookings").select("id, status").eq("idempotency_key", idempotencyKey).maybeSingle();
       if (dup) return res.json({ success: true, bookingId: dup.id, status: dup.status, duplicate: true });
     }
 
@@ -415,18 +421,18 @@ router.post("/bookings", async (req, res) => {
       status: "confirmed", idempotency_key: idempotencyKey || null,
     };
 
-    const { data: inserted, error: insertErr } = await supabase.from("bookings").insert(booking).select("id").single();
+    const { data: inserted, error: insertErr } = await getSupabase().from("bookings").insert(booking).select("id").single();
     if (insertErr) {
       if (insertErr.code === "23505") return res.json({ success: true, bookingId: "duplicate", status: "confirmed", duplicate: true });
       throw insertErr;
     }
 
     const newTotal = await getParticipantCount(classId);
-    const { data: allBookings } = await supabase.from("bookings").select("customer_name, places, total_price").eq("class_id", classId);
+    const { data: allBookings } = await getSupabase().from("bookings").select("customer_name, places, total_price").eq("class_id", classId);
 
     const eventId = await upsertCalendarEvent({ ...classRow, date, hour, minute: minute || 0 }, allBookings || []);
     if (eventId && eventId !== classRow.google_calendar_event_id) {
-      await supabase.from("classes").update({ google_calendar_event_id: eventId }).eq("class_id", classId);
+      await getSupabase().from("classes").update({ google_calendar_event_id: eventId }).eq("class_id", classId);
     }
 
     sendConfirmationEmail({ ...booking, date }, newTotal).catch(() => {});
@@ -441,7 +447,7 @@ router.post("/bookings", async (req, res) => {
 /* GET /api/classes/:classId */
 router.get("/classes/:classId", async (req, res) => {
   const count = await getParticipantCount(req.params.classId);
-  const { data: cls } = await supabase.from("classes").select("max_participants").eq("class_id", req.params.classId).maybeSingle();
+  const { data: cls } = await getSupabase().from("classes").select("max_participants").eq("class_id", req.params.classId).maybeSingle();
   res.json({ participants: count, maxParticipants: cls?.max_participants || 12 });
 });
 
@@ -449,7 +455,7 @@ router.get("/classes/:classId", async (req, res) => {
 router.get("/classes", async (req, res) => {
   const { date } = req.query;
   if (!date) return res.status(400).json({ error: "date query param required" });
-  const { data: rows } = await supabase.from("classes").select("class_id, max_participants").eq("date", date);
+  const { data: rows } = await getSupabase().from("classes").select("class_id, max_participants").eq("date", date);
   const result = {};
   for (const r of rows || []) {
     const count = await getParticipantCount(r.class_id);
@@ -460,7 +466,20 @@ router.get("/classes", async (req, res) => {
 
 /* GET /api/health */
 router.get("/health", (req, res) => {
-  res.json({ status: "ok", calendar: !!(process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY), email: !!transporter });
+  res.json({
+    status: "ok",
+    env: {
+      SUPABASE_URL: !!process.env.SUPABASE_URL,
+      SUPABASE_SERVICE_KEY: !!process.env.SUPABASE_SERVICE_KEY,
+      STAFF_PIN: !!process.env.STAFF_PIN,
+      STAFF_SECRET: !!process.env.STAFF_SECRET,
+      GOOGLE_CALENDAR_ID: !!process.env.GOOGLE_CALENDAR_ID,
+      GOOGLE_CLIENT_EMAIL: !!process.env.GOOGLE_CLIENT_EMAIL,
+      EMAIL_USER: !!process.env.EMAIL_USER,
+    },
+    calendar: !!(process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY),
+    email: !!transporter,
+  });
 });
 
 /* GET /api/schedule */
@@ -521,15 +540,15 @@ router.post("/free-trial", async (req, res) => {
       return res.status(400).json({ success: false, error: "Numéro de téléphone invalide." });
 
     if (idempotencyKey) {
-      const { data: dup } = await supabase.from("free_invitations").select("token").eq("idempotency_key", idempotencyKey).maybeSingle();
+      const { data: dup } = await getSupabase().from("free_invitations").select("token").eq("idempotency_key", idempotencyKey).maybeSingle();
       if (dup) return res.json({ success: true, token: dup.token, duplicate: true });
     }
 
     const emailNorm = normalizeEmail(email);
     const phoneNorm = normalizePhone(phone);
 
-    const { data: byEmail } = await supabase.from("free_customers").select("id").eq("email_normalized", emailNorm).maybeSingle();
-    const { data: byPhone } = await supabase.from("free_customers").select("id").eq("phone_normalized", phoneNorm).maybeSingle();
+    const { data: byEmail } = await getSupabase().from("free_customers").select("id").eq("email_normalized", emailNorm).maybeSingle();
+    const { data: byPhone } = await getSupabase().from("free_customers").select("id").eq("phone_normalized", phoneNorm).maybeSingle();
     if (byEmail || byPhone)
       return res.status(409).json({ success: false, error: "Une invitation Core House a déjà été attribuée à ces coordonnées." });
 
@@ -543,20 +562,20 @@ router.post("/free-trial", async (req, res) => {
     const token = crypto.randomBytes(32).toString("hex");
     const expiresAt = new Date(date + "T23:59:59").toISOString();
 
-    await supabase.from("free_customers").insert({
+    await getSupabase().from("free_customers").insert({
       id: customerId, first_name: firstName.trim(), last_name: lastName.trim(),
       email: email.trim(), phone: phone.trim(),
       email_normalized: emailNorm, phone_normalized: phoneNorm,
       marketing_consent: !!marketingConsent,
     });
 
-    await supabase.from("free_invitations").insert({
+    await getSupabase().from("free_invitations").insert({
       customer_id: customerId, class_id: classId, discipline, date, hour,
       minute: minute || 0, coach: coach || null, token,
       expires_at: expiresAt, idempotency_key: idempotencyKey || null,
     });
 
-    await supabase.from("bookings").insert({
+    await getSupabase().from("bookings").insert({
       class_id: classId, discipline, date, hour, minute: minute || 0,
       coach: coach || null, customer_name: `${firstName.trim()} ${lastName.trim()}`,
       customer_email: email.trim(), places: 1, purchase_type: "free_trial",
@@ -576,11 +595,11 @@ router.post("/free-trial", async (req, res) => {
 
 /* GET /api/free-trial/verify/:token */
 router.get("/free-trial/verify/:token", staffAuth, async (req, res) => {
-  const { data: inv } = await supabase.from("free_invitations").select("*, free_customers(first_name, last_name)").eq("token", req.params.token).maybeSingle();
+  const { data: inv } = await getSupabase().from("free_invitations").select("*, free_customers(first_name, last_name)").eq("token", req.params.token).maybeSingle();
   if (!inv) return res.json({ valid: false, reason: "invalid" });
 
   if (inv.status === "booked" && inv.expires_at && new Date(inv.expires_at) < new Date()) {
-    await supabase.from("free_invitations").update({ status: "expired" }).eq("token", req.params.token);
+    await getSupabase().from("free_invitations").update({ status: "expired" }).eq("token", req.params.token);
     inv.status = "expired";
   }
 
@@ -595,18 +614,18 @@ router.get("/free-trial/verify/:token", staffAuth, async (req, res) => {
 
 /* POST /api/free-trial/checkin/:token */
 router.post("/free-trial/checkin/:token", staffAuth, async (req, res) => {
-  const { data: inv } = await supabase.from("free_invitations").select("*, free_customers(first_name, last_name)").eq("token", req.params.token).maybeSingle();
+  const { data: inv } = await getSupabase().from("free_invitations").select("*, free_customers(first_name, last_name)").eq("token", req.params.token).maybeSingle();
   if (!inv) return res.status(404).json({ success: false, reason: "invalid" });
 
   if (inv.status === "used") return res.status(409).json({ success: false, reason: "already_used", usedAt: inv.used_at, firstName: inv.free_customers?.first_name, lastName: inv.free_customers?.last_name });
   if (inv.status !== "booked") return res.status(409).json({ success: false, reason: inv.status });
 
   if (inv.expires_at && new Date(inv.expires_at) < new Date()) {
-    await supabase.from("free_invitations").update({ status: "expired" }).eq("token", req.params.token);
+    await getSupabase().from("free_invitations").update({ status: "expired" }).eq("token", req.params.token);
     return res.status(409).json({ success: false, reason: "expired" });
   }
 
-  const { error } = await supabase.from("free_invitations").update({ status: "used", used_at: new Date().toISOString(), checked_in_by: "staff" }).eq("token", req.params.token).eq("status", "booked");
+  const { error } = await getSupabase().from("free_invitations").update({ status: "used", used_at: new Date().toISOString(), checked_in_by: "staff" }).eq("token", req.params.token).eq("status", "booked");
   if (error) return res.status(409).json({ success: false, reason: "already_used" });
 
   res.json({
@@ -621,7 +640,7 @@ router.get("/free-trial/admin", staffAuth, async (req, res) => {
   const { filter, discipline, search } = req.query;
   const todayStr = new Date().toISOString().split("T")[0];
 
-  let query = supabase.from("free_invitations").select("*, free_customers(first_name, last_name, email, phone)").order("created_at", { ascending: false }).limit(200);
+  let query = getSupabase().from("free_invitations").select("*, free_customers(first_name, last_name, email, phone)").order("created_at", { ascending: false }).limit(200);
 
   if (filter === "today") query = query.eq("date", todayStr);
   else if (filter === "upcoming") query = query.eq("status", "booked").gte("date", todayStr);
@@ -642,11 +661,11 @@ router.get("/free-trial/admin", staffAuth, async (req, res) => {
 /* GET /api/free-trial/stats */
 router.get("/free-trial/stats", staffAuth, async (req, res) => {
   const todayStr = new Date().toISOString().split("T")[0];
-  const { count: total } = await supabase.from("free_invitations").select("*", { count: "exact", head: true });
-  const { count: upcoming } = await supabase.from("free_invitations").select("*", { count: "exact", head: true }).eq("status", "booked").gte("date", todayStr);
-  const { count: used } = await supabase.from("free_invitations").select("*", { count: "exact", head: true }).eq("status", "used");
-  const { count: noShow } = await supabase.from("free_invitations").select("*", { count: "exact", head: true }).eq("status", "expired");
-  const { count: cancelled } = await supabase.from("free_invitations").select("*", { count: "exact", head: true }).eq("status", "cancelled");
+  const { count: total } = await getSupabase().from("free_invitations").select("*", { count: "exact", head: true });
+  const { count: upcoming } = await getSupabase().from("free_invitations").select("*", { count: "exact", head: true }).eq("status", "booked").gte("date", todayStr);
+  const { count: used } = await getSupabase().from("free_invitations").select("*", { count: "exact", head: true }).eq("status", "used");
+  const { count: noShow } = await getSupabase().from("free_invitations").select("*", { count: "exact", head: true }).eq("status", "expired");
+  const { count: cancelled } = await getSupabase().from("free_invitations").select("*", { count: "exact", head: true }).eq("status", "cancelled");
   const pastTotal = (used || 0) + (noShow || 0);
   const presenceRate = pastTotal > 0 ? Math.round(((used || 0) / pastTotal) * 100) : 0;
   res.json({ total: total || 0, upcoming: upcoming || 0, used: used || 0, noShow: noShow || 0, cancelled: cancelled || 0, presenceRate });
