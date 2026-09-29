@@ -435,7 +435,7 @@ router.post("/bookings", async (req, res) => {
       await getSupabase().from("classes").update({ google_calendar_event_id: eventId }).eq("class_id", classId);
     }
 
-    sendConfirmationEmail({ ...booking, date }, newTotal).catch(() => {});
+    sendConfirmationEmail({ ...booking, date }, newTotal).catch(err => console.error("Email send failed:", err.message));
 
     res.json({ success: true, bookingId: inserted.id, status: "confirmed", participants: newTotal, maxParticipants: maxP });
   } catch (err) {
@@ -480,6 +480,17 @@ router.get("/health", (req, res) => {
     calendar: !!(process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY),
     email: !!transporter,
   });
+});
+
+/* GET /api/test-email — diagnostic (remove after debugging) */
+router.get("/test-email", async (req, res) => {
+  if (!transporter) return res.json({ success: false, error: "Transporter not configured", EMAIL_USER: !!process.env.EMAIL_USER, EMAIL_PASS: !!process.env.EMAIL_PASS });
+  try {
+    await transporter.verify();
+    res.json({ success: true, message: "SMTP connection OK", from: process.env.EMAIL_FROM || "not set" });
+  } catch (err) {
+    res.json({ success: false, error: err.message, code: err.code, from: process.env.EMAIL_FROM || "not set" });
+  }
 });
 
 /* GET /api/schedule */
@@ -583,7 +594,7 @@ router.post("/free-trial", async (req, res) => {
       idempotency_key: idempotencyKey ? `ft-${idempotencyKey}` : null,
     });
 
-    sendInvitationEmail({ firstName: firstName.trim(), lastName: lastName.trim(), email: email.trim(), discipline, date, hour, minute, coach }).catch(() => {});
+    sendInvitationEmail({ firstName: firstName.trim(), lastName: lastName.trim(), email: email.trim(), discipline, date, hour, minute, coach }).catch(err => console.error("Invitation email failed:", err.message));
 
     res.json({ success: true, token });
   } catch (err) {
