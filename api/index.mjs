@@ -435,7 +435,7 @@ router.post("/bookings", async (req, res) => {
       await getSupabase().from("classes").update({ google_calendar_event_id: eventId }).eq("class_id", classId);
     }
 
-    sendConfirmationEmail({ ...booking, date }, newTotal).catch(err => console.error("Email send failed:", err.message));
+    await sendConfirmationEmail({ ...booking, date }, newTotal);
 
     res.json({ success: true, bookingId: inserted.id, status: "confirmed", participants: newTotal, maxParticipants: maxP });
   } catch (err) {
@@ -583,7 +583,7 @@ router.post("/free-trial", async (req, res) => {
       idempotency_key: idempotencyKey ? `ft-${idempotencyKey}` : null,
     });
 
-    sendInvitationEmail({ firstName: firstName.trim(), lastName: lastName.trim(), email: email.trim(), discipline, date, hour, minute, coach }).catch(err => console.error("Invitation email failed:", err.message));
+    await sendInvitationEmail({ firstName: firstName.trim(), lastName: lastName.trim(), email: email.trim(), discipline, date, hour, minute, coach });
 
     res.json({ success: true, token });
   } catch (err) {
