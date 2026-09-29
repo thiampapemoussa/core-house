@@ -487,13 +487,14 @@ router.get("/test-email", async (req, res) => {
   if (!transporter) return res.json({ success: false, error: "Transporter not configured", EMAIL_USER: !!process.env.EMAIL_USER, EMAIL_PASS: !!process.env.EMAIL_PASS });
   try {
     await transporter.verify();
+    const to = req.query.to || process.env.EMAIL_USER;
     const info = await transporter.sendMail({
       from: process.env.EMAIL_FROM || "Core House Dakar <contact@corehousedakar.com>",
-      to: process.env.EMAIL_USER,
+      to,
       subject: "Test — Core House Dakar",
       text: "Si vous recevez ceci, les emails fonctionnent.",
     });
-    res.json({ success: true, message: "Email sent", messageId: info.messageId, response: info.response });
+    res.json({ success: true, message: "Email sent", to, messageId: info.messageId, response: info.response });
   } catch (err) {
     res.json({ success: false, error: err.message, code: err.code, command: err.command });
   }
