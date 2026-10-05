@@ -350,6 +350,24 @@ button {
   transition: background 0.3s;
 }
 
+.mobile-menu__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--ivory);
+  font-size: 2.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.mobile-menu__close:hover,
+.mobile-menu__close:focus-visible { opacity: 1; }
+
 .mobile-menu__cta:hover {
   background: rgba(248, 244, 237, 0.1);
 }
@@ -2001,6 +2019,7 @@ button {
 
 <!-- ═══ MOBILE MENU ═══ -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navigation">
+  <button class="mobile-menu__close" id="menu-close" aria-label="Fermer le menu">&times;</button>
   <a href="#concept" class="mobile-menu__link">Core House</a>
   <a href="#courses" class="mobile-menu__link">Les cours</a>
   <a href="#planning" class="mobile-menu__link">Planning</a>
@@ -2932,6 +2951,13 @@ burger.addEventListener("click", () => {
   mobileMenu.classList.toggle("is-open", isOpen);
   burger.setAttribute("aria-expanded", isOpen);
   document.body.style.overflow = isOpen ? "hidden" : "";
+});
+
+document.getElementById("menu-close").addEventListener("click", () => {
+  burger.classList.remove("is-open");
+  mobileMenu.classList.remove("is-open");
+  burger.setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
 });
 
 mobileMenu.querySelectorAll("a").forEach(link => {
