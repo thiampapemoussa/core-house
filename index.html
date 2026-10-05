@@ -2060,7 +2060,7 @@ button {
         </div>
         <h3 class="course-card__title">Mat Pilates</h3>
         <p class="course-card__desc">Renforcement profond, posture et contrôle du mouvement sur tapis.</p>
-        <span class="course-card__price">15 000 FCFA / séance</span>
+        <span class="course-card__price">10 000 FCFA / séance</span>
       </a>
       <a href="#yoga" class="course-card reveal" data-reveal-delay="2">
         <div class="course-card__icon">
@@ -2068,7 +2068,7 @@ button {
         </div>
         <h3 class="course-card__title">Yoga</h3>
         <p class="course-card__desc">Respiration, souplesse et équilibre dans une pratique accessible.</p>
-        <span class="course-card__price">12 000 FCFA / séance</span>
+        <span class="course-card__price">8 000 FCFA / séance</span>
       </a>
       <a href="#box" class="course-card reveal" data-reveal-delay="3">
         <div class="course-card__icon">
@@ -2076,7 +2076,7 @@ button {
         </div>
         <h3 class="course-card__title">Box Cardio</h3>
         <p class="course-card__desc">Cardio intense et technique de frappe, max 6 par cours.</p>
-        <span class="course-card__price">15 000 FCFA / séance</span>
+        <span class="course-card__price">8 000 FCFA / séance</span>
       </a>
     </div>
   </div>
@@ -2488,19 +2488,19 @@ const MIN_PARTICIPANTS_PER_CLASS = 2;
 /* ═══ Centralized Disciplines ═══ */
 
 const DISCIPLINES = {
-  pilates: { label: "Mat Pilates", price: 15000, maxParticipants: 12 },
-  yoga: { label: "Yoga", price: 12000, maxParticipants: 12 },
-  box: { label: "Box Cardio", price: 15000, maxParticipants: 6 }
+  pilates: { label: "Mat Pilates", price: 10000, maxParticipants: 12 },
+  yoga: { label: "Yoga", price: 8000, maxParticipants: 12 },
+  box: { label: "Box Cardio", price: 8000, maxParticipants: 6 }
 };
 
 const PRICING = {
   packs: [
-    { id: "pilates-5", discipline: "pilates", name: "Pack 5 séances Pilates", sessions: 5, price: 67500, validityDays: 30 },
-    { id: "pilates-10", discipline: "pilates", name: "Pack 10 séances Pilates", sessions: 10, price: 127500, validityDays: 60 },
-    { id: "yoga-5", discipline: "yoga", name: "Pack 5 séances Yoga", sessions: 5, price: 54000, validityDays: 30 },
-    { id: "yoga-10", discipline: "yoga", name: "Pack 10 séances Yoga", sessions: 10, price: 102000, validityDays: 60 },
-    { id: "box-5", discipline: "box", name: "Pack 5 séances Box Cardio", sessions: 5, price: 67500, validityDays: 30 },
-    { id: "box-10", discipline: "box", name: "Pack 10 séances Box Cardio", sessions: 10, price: 127500, validityDays: 60 }
+    { id: "pilates-5", discipline: "pilates", name: "Pack 5 séances Pilates", sessions: 5, price: 45000, validityDays: 30 },
+    { id: "pilates-10", discipline: "pilates", name: "Pack 10 séances Pilates", sessions: 10, price: 85000, validityDays: 60 },
+    { id: "yoga-5", discipline: "yoga", name: "Pack 5 séances Yoga", sessions: 5, price: 36000, validityDays: 30 },
+    { id: "yoga-10", discipline: "yoga", name: "Pack 10 séances Yoga", sessions: 10, price: 68000, validityDays: 60 },
+    { id: "box-5", discipline: "box", name: "Pack 5 séances Box Cardio", sessions: 5, price: 36000, validityDays: 30 },
+    { id: "box-10", discipline: "box", name: "Pack 10 séances Box Cardio", sessions: 10, price: 68000, validityDays: 60 }
   ]
 };
 
@@ -2511,22 +2511,16 @@ const FUTURE_PACKS = [
 
 const COACHES = [
   {
-    name: "Yassine",
-    disciplines: ["pilates"],
-    photo: "assets/coach-yassine.jpg",
-    bio: "Séances structurées et accessibles, avec une attention portée au contrôle et à la progression."
-  },
-  {
-    name: "Sophie",
-    disciplines: ["pilates", "yoga"],
-    photo: "assets/coach-sophie.jpg",
-    bio: "Approche attentive mêlant mouvement, respiration et qualité d'exécution."
-  },
-  {
     name: "Kezia",
     disciplines: ["yoga"],
     photo: "assets/coach-kezia.jpg",
     bio: "Pratique progressive centrée sur la respiration, la mobilité et l'équilibre."
+  },
+  {
+    name: "Sophie",
+    disciplines: ["yoga"],
+    photo: "assets/coach-sophie.jpg",
+    bio: "Approche attentive mêlant mouvement, respiration et qualité d'exécution."
   },
   {
     name: "Abdou",
@@ -2538,105 +2532,114 @@ const COACHES = [
 
 /* ═══ Editable Class Schedule ═══ */
 
+const KEZIA_START = new Date("2026-10-14");
+
 const CLASS_SCHEDULE = [
-  { day: 1, hour: 8, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 1, hour: 9, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 1, hour: 10, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 1, hour: 11, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 1, hour: 12, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 1, hour: 13, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 1, hour: 14, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 1, hour: 15, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 1, hour: 16, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 1, hour: 17, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 1, hour: 18, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 1, hour: 19, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 1, hour: 20, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 1, hour: 21, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 2, hour: 8, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 2, hour: 9, minute: 0, discipline: "pilates", coach: "Sophie" },
+  // Lundi (day 1)
+  { day: 1, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 1, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 1, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 1, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 1, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 1, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 1, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 1, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 1, hour: 16, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 1, hour: 17, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 1, hour: 18, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 1, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 1, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 1, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
+  // Mardi (day 2)
+  { day: 2, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 2, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 2, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 2, hour: 11, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 2, hour: 12, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 2, hour: 13, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 2, hour: 14, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 2, hour: 15, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 2, hour: 16, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 2, hour: 17, minute: 0, discipline: "pilates", coach: "Yassine" },
+  { day: 2, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 2, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 2, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 2, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 2, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 2, hour: 16, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 2, hour: 17, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 2, hour: 18, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 2, hour: 19, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 2, hour: 20, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 2, hour: 21, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 3, hour: 8, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 3, hour: 9, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 3, hour: 10, minute: 0, discipline: "pilates", coach: "Sophie" },
+  { day: 2, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 2, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 2, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
+  // Mercredi (day 3) — Sophie 16h-19h, Kezia 11h-13h seulement
+  { day: 3, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 3, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 3, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 3, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 3, hour: 12, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 3, hour: 13, minute: 0, discipline: "pilates", coach: "Sophie" },
+  { day: 3, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 3, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 3, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 3, hour: 15, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 3, hour: 16, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 3, hour: 17, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 3, hour: 18, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 3, hour: 19, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 3, hour: 20, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 3, hour: 21, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 4, hour: 8, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 4, hour: 9, minute: 0, discipline: "pilates", coach: "Yassine" },
+  { day: 3, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 3, hour: 16, minute: 0, discipline: "yoga", coach: "Sophie" },
+  { day: 3, hour: 17, minute: 0, discipline: "yoga", coach: "Sophie" },
+  { day: 3, hour: 18, minute: 0, discipline: "yoga", coach: "Sophie" },
+  { day: 3, hour: 19, minute: 0, discipline: "yoga", coach: "Sophie" },
+  { day: 3, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 3, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
+  // Jeudi (day 4)
+  { day: 4, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 4, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 4, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 4, hour: 11, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 4, hour: 12, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 4, hour: 13, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 4, hour: 14, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 4, hour: 15, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 4, hour: 16, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 4, hour: 17, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 4, hour: 18, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 4, hour: 19, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 4, hour: 20, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 4, hour: 21, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 5, hour: 8, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 5, hour: 9, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 5, hour: 10, minute: 0, discipline: "pilates", coach: "Sophie" },
+  { day: 4, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 4, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 4, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 4, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 4, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 4, hour: 16, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 4, hour: 17, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 4, hour: 18, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 4, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 4, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 4, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
+  // Vendredi (day 5)
+  { day: 5, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 5, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 5, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 5, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 5, hour: 12, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 5, hour: 13, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 5, hour: 14, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 5, hour: 15, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 5, hour: 16, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 5, hour: 17, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 5, hour: 18, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 5, hour: 19, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 5, hour: 20, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 5, hour: 21, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 6, hour: 8, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 6, hour: 9, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 6, hour: 10, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 6, hour: 11, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 6, hour: 12, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 6, hour: 13, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 6, hour: 14, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 6, hour: 15, minute: 0, discipline: "pilates", coach: "Yassine" },
+  { day: 5, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 5, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 5, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 5, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 5, hour: 16, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 5, hour: 17, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 5, hour: 18, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 5, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 5, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 5, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
+  // Samedi (day 6)
+  { day: 6, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 6, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 6, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 6, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 6, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 6, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 6, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 6, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 6, hour: 16, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 6, hour: 17, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 6, hour: 18, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 6, hour: 19, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 6, hour: 20, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 6, hour: 21, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 0, hour: 8, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 0, hour: 9, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 0, hour: 10, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 0, hour: 11, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 0, hour: 12, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 0, hour: 13, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 0, hour: 14, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 0, hour: 15, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 0, hour: 16, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 0, hour: 17, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 0, hour: 18, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 0, hour: 19, minute: 0, discipline: "pilates", coach: "Yassine" },
-  { day: 0, hour: 20, minute: 0, discipline: "pilates", coach: "Sophie" },
-  { day: 0, hour: 21, minute: 0, discipline: "pilates", coach: "Yassine" },
+  { day: 6, hour: 17, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 6, hour: 18, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 6, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 6, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 6, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
+  // Dimanche (day 0)
+  { day: 0, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 0, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 0, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 0, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 0, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 0, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 0, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 0, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 0, hour: 16, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 0, hour: 17, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 0, hour: 18, minute: 0, discipline: "yoga", coach: "Kezia" },
+  { day: 0, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 0, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
+  { day: 0, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
 ];
 
 /* Future payment architecture — do not enable
@@ -2719,7 +2722,7 @@ function generateSchedule() {
     const dayOfWeek = date.getDay();
     const dateStr = date.toISOString().split("T")[0];
 
-    CLASS_SCHEDULE.filter(c => c.day === dayOfWeek).forEach(cls => {
+    CLASS_SCHEDULE.filter(c => c.day === dayOfWeek && (c.coach !== "Kezia" || date >= KEZIA_START)).forEach(cls => {
       const classId = getClassId(dateStr, cls.hour, cls.minute, cls.discipline);
       const participants = getParticipantCount(classId);
       const status = getStatusInfo(participants, cls.discipline);
