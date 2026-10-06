@@ -278,6 +278,8 @@ async function sendConfirmationEmail(booking, participantCount) {
 <div style="background:#F8F4ED;border-radius:8px;padding:24px;margin:0 0 24px">
 <h2 style="font-size:20px;font-weight:500;margin:0 0 16px;color:#6F3E14">${disc.label}</h2>
 <table style="width:100%;border-collapse:collapse;font-size:15px;line-height:1.8">
+<tr><td style="color:#7F6F4C;padding:2px 0">Nom</td><td style="text-align:right;font-weight:500">${booking.customer_name}</td></tr>
+<tr><td style="color:#7F6F4C;padding:2px 0">Email</td><td style="text-align:right;font-weight:500"><a href="mailto:${booking.customer_email}" style="color:#6F3E14">${booking.customer_email}</a></td></tr>
 <tr><td style="color:#7F6F4C;padding:2px 0">Date</td><td style="text-align:right;font-weight:500">${formatDateFR(booking.date)}</td></tr>
 <tr><td style="color:#7F6F4C;padding:2px 0">Heure</td><td style="text-align:right;font-weight:500">${timeStr}</td></tr>
 ${coachLine}
