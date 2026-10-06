@@ -1752,7 +1752,7 @@ button {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   scroll-behavior: smooth;
-  padding: 0.5rem 0;
+  padding: 0.5rem 2rem 0.5rem 0;
 }
 
 .session-carousel::-webkit-scrollbar { display: none; }
@@ -1784,10 +1784,21 @@ button {
 
 @media (max-width: 767px) {
   .session-carousel__arrow { display: none; }
+  .session-carousel.swipe-hint,
+  .date-carousel.swipe-hint {
+    animation: swipeHint 1s ease-in-out;
+  }
+}
+
+@keyframes swipeHint {
+  0% { transform: translateX(0); }
+  30% { transform: translateX(-40px); }
+  60% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
 }
 
 .session-card {
-  flex: 0 0 calc(100% - 1rem);
+  flex: 0 0 85%;
   scroll-snap-align: start;
   background: var(--off-white);
   border: 1px solid rgba(127, 111, 76, 0.12);
@@ -2800,6 +2811,13 @@ function renderDateCarousel() {
       <span class="date-chip__month">${monthName}</span>
     </button>`;
   }).join("");
+
+  if (dates.length > 4 && window.innerWidth < 768) {
+    requestAnimationFrame(() => {
+      container.classList.add("swipe-hint");
+      container.addEventListener("animationend", () => container.classList.remove("swipe-hint"), { once: true });
+    });
+  }
 }
 
 /* ═══ Session carousel ═══ */
@@ -2825,6 +2843,8 @@ function renderSessionCards() {
     return;
   }
 
+  container.classList.remove("swipe-hint");
+
   container.innerHTML = filtered.map(s => {
     const timeStr = formatTime(s.hour, s.minute);
     const disc = DISCIPLINES[s.discipline];
@@ -2848,6 +2868,13 @@ function renderSessionCards() {
       </div>
     </div>`;
   }).join("");
+
+  if (filtered.length > 1 && window.innerWidth < 768) {
+    requestAnimationFrame(() => {
+      container.classList.add("swipe-hint");
+      container.addEventListener("animationend", () => container.classList.remove("swipe-hint"), { once: true });
+    });
+  }
 
   updateArrows();
 }
