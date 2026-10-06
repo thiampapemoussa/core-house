@@ -173,7 +173,11 @@ async function getGoogleAccessToken() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`,
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("Google OAuth error:", res.status, errText);
+      return null;
+    }
     const data = await res.json();
     cachedToken = data.access_token;
     tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
@@ -221,12 +225,19 @@ async function upsertCalendarEvent(classData, bookings) {
   try {
     if (classData.google_calendar_event_id) {
       const res = await fetch(`${base}/${classData.google_calendar_event_id}`, { method: "PUT", headers, body: JSON.stringify(eventBody) });
-      return (await res.json()).id || classData.google_calendar_event_id;
+      const data = await res.json();
+      if (!res.ok) console.error("GCal PUT error:", res.status, JSON.stringify(data));
+      return data.id || classData.google_calendar_event_id;
     } else {
       const res = await fetch(base, { method: "POST", headers, body: JSON.stringify(eventBody) });
-      return (await res.json()).id || null;
+      const data = await res.json();
+      if (!res.ok) console.error("GCal POST error:", res.status, JSON.stringify(data));
+      return data.id || null;
     }
-  } catch { return classData.google_calendar_event_id || null; }
+  } catch (err) {
+    console.error("GCal exception:", err.message);
+    return classData.google_calendar_event_id || null;
+  }
 }
 
 /* ═══ Email ═══ */
@@ -278,10 +289,12 @@ ${coachLine}
 <p style="font-size:15px;line-height:1.6;margin:0">À bientôt,<br><strong>Core House Dakar</strong><br><span style="color:#7F6F4C;font-size:13px">Mat Pilates · Yoga · Box Cardio · House Bar</span></p>
 </div></div>`;
 
+  const adminEmail = process.env.ADMIN_EMAIL || "contact@corehousedakar.com";
   try {
     await transporter.sendMail({
       from: process.env.EMAIL_FROM || "Core House Dakar <core21.lab@gmail.com>",
       to: booking.customer_email,
+      bcc: adminEmail,
       subject: "Votre réservation — Core House Dakar",
       html,
     });
