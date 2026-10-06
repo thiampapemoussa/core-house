@@ -87,13 +87,16 @@ html {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-sans);
   color: var(--ink);
   background: var(--off-white);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 img {
@@ -1679,11 +1682,13 @@ button {
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 0.25rem 0;
   margin-bottom: 1.5rem;
+  max-width: 100%;
 }
 
 .date-carousel::-webkit-scrollbar { display: none; }
@@ -1737,7 +1742,7 @@ button {
 
 /* Session carousel */
 
-.session-carousel-wrapper { position: relative; }
+.session-carousel-wrapper { position: relative; overflow: hidden; }
 
 .session-carousel {
   display: flex;
