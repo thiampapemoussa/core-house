@@ -3078,12 +3078,6 @@ function showStep(n) {
   steps.forEach((s, i) => s.classList.toggle("is-active", i === n));
 }
 
-function toggleCoachField(discipline) {
-  const coachGroup = document.getElementById("book-coach").closest(".form-group");
-  const hasCoach = COACHES.some(c => c.disciplines.includes(discipline));
-  coachGroup.style.display = hasCoach ? "" : "none";
-}
-
 function openModal(prefill) {
   bookingState = prefill || {};
   modal.classList.add("is-open");
@@ -3091,25 +3085,19 @@ function openModal(prefill) {
   showStep(0);
   modalTitle.textContent = "Réserver une séance";
 
-  const coachGroup = document.getElementById("book-coach").closest(".form-group");
-  coachGroup.style.display = "";
+  document.getElementById("book-coach").closest(".form-group").style.display = "none";
 
   if (bookingState.discipline) {
     document.getElementById("book-discipline").value = bookingState.discipline;
-    toggleCoachField(bookingState.discipline);
     updateTimeSlots();
   }
   if (bookingState.date) {
     document.getElementById("book-date").value = bookingState.date;
     updateTimeSlots();
   }
-  if (bookingState.hour !== undefined) {
-    const timeVal = bookingState.hour + (bookingState.minute ? ':' + bookingState.minute : '');
+  if (bookingState.hour !== undefined && bookingState.coach) {
+    const timeVal = bookingState.hour + (bookingState.minute ? ':' + bookingState.minute : '') + '|' + bookingState.coach;
     document.getElementById("book-time").value = timeVal;
-    updateCoachOptions();
-  }
-  if (bookingState.coach) {
-    document.getElementById("book-coach").value = bookingState.coach;
   }
 }
 
@@ -3120,8 +3108,6 @@ function closeModal() {
   document.getElementById("book-discipline").value = "";
   document.getElementById("book-date").value = "";
   document.getElementById("book-time").innerHTML = '<option value="">Choisir un créneau</option>';
-  document.getElementById("book-coach").innerHTML = '<option value="">Choisir un coach</option>';
-  document.getElementById("book-coach").closest(".form-group").style.display = "";
   document.getElementById("book-name").value = "";
   document.getElementById("book-name").classList.remove("is-invalid");
   document.getElementById("name-error").classList.remove("is-visible");
@@ -3170,37 +3156,26 @@ function updateTimeSlots() {
   const discipline = document.getElementById("book-discipline").value;
   const dateVal = document.getElementById("book-date").value;
   const timeSelect = document.getElementById("book-time");
+  const coachSelect = document.getElementById("book-coach");
 
   timeSelect.innerHTML = '<option value="">Choisir un créneau</option>';
+  coachSelect.value = "";
   if (!discipline || !dateVal) return;
 
   const date = new Date(dateVal + "T00:00:00");
   const dayOfWeek = date.getDay();
 
   CLASS_SCHEDULE
-    .filter(c => c.day === dayOfWeek && c.discipline === discipline)
+    .filter(c => c.day === dayOfWeek && c.discipline === discipline && (c.coach !== "Kezia" || date >= KEZIA_START))
     .forEach(c => {
-      const timeVal = c.hour + (c.minute ? ':' + c.minute : '');
+      const timeVal = c.hour + (c.minute ? ':' + c.minute : '') + '|' + c.coach;
       const opt = document.createElement("option");
       opt.value = timeVal;
-      opt.textContent = formatTime(c.hour, c.minute);
+      opt.textContent = formatTime(c.hour, c.minute) + " — " + c.coach;
       timeSelect.appendChild(opt);
     });
 }
 
-function updateCoachOptions() {
-  const discipline = document.getElementById("book-discipline").value;
-  const coachSelect = document.getElementById("book-coach");
-  coachSelect.innerHTML = '<option value="">Choisir un coach</option>';
-  if (!discipline) return;
-
-  COACHES.filter(c => c.disciplines.includes(discipline)).forEach(c => {
-    const opt = document.createElement("option");
-    opt.value = c.name;
-    opt.textContent = c.name;
-    coachSelect.appendChild(opt);
-  });
-}
 
 function updatePlacesOptions(discipline, classId) {
   const placesSelect = document.getElementById("book-places");
@@ -3215,22 +3190,16 @@ function updatePlacesOptions(discipline, classId) {
   }
 }
 
-document.getElementById("book-discipline").addEventListener("change", (e) => {
-  toggleCoachField(e.target.value);
+document.getElementById("book-discipline").addEventListener("change", () => {
   updateTimeSlots();
-  updateCoachOptions();
 });
 
-document.getElementById("book-time").addEventListener("change", updateCoachOptions);
 document.getElementById("book-date").addEventListener("change", updateTimeSlots);
 
 document.getElementById("step-1-next").addEventListener("click", () => {
   const discipline = document.getElementById("book-discipline").value;
   const date = document.getElementById("book-date").value;
   const timeVal = document.getElementById("book-time").value;
-  const coachSelect = document.getElementById("book-coach");
-  const needsCoach = coachSelect.closest(".form-group").style.display !== "none";
-  const coach = needsCoach ? coachSelect.value : null;
 
   const step1Err = document.getElementById("step1-error");
   step1Err.textContent = "";
@@ -3238,16 +3207,13 @@ document.getElementById("step-1-next").addEventListener("click", () => {
     step1Err.textContent = "Veuillez remplir tous les champs.";
     return;
   }
-  if (needsCoach && !coach) {
-    step1Err.textContent = "Veuillez choisir un coach.";
-    return;
-  }
 
-  const timeParts = timeVal.split(":");
-  const hour = parseInt(timeParts[0]);
-  const minute = timeParts.length > 1 ? parseInt(timeParts[1]) : 0;
+  const [timePart, coach] = timeVal.split("|");
+  const timeSegments = timePart.split(":");
+  const hour = parseInt(timeSegments[0]);
+  const minute = timeSegments.length > 1 ? parseInt(timeSegments[1]) : 0;
 
-  bookingState = { discipline, date, hour, minute, coach };
+  bookingState = { discipline, date, hour, minute, coach: coach || null };
 
   const classId = getClassId(date, hour, minute, discipline);
   updatePlacesOptions(discipline, classId);
