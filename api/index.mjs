@@ -34,15 +34,11 @@ const MIN_PARTICIPANTS = 2;
 const KEZIA_START = new Date("2026-10-14");
 
 const CLASS_SCHEDULE = [
-  // Lundi — Médoune pilates 9h-13h
+  // Lundi — Médoune pilates 9h-13h (remplace box/yoga sur ces créneaux)
   { day: 1, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 1, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 1, hour: 9, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 1, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 1, hour: 10, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 1, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 1, hour: 11, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 1, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 1, hour: 12, minute: 0, discipline: "pilates", coach: "Médoune" },
   { day: 1, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 1, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
@@ -68,14 +64,10 @@ const CLASS_SCHEDULE = [
   { day: 2, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 2, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 2, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
-  // Mercredi — Sophie yoga 16h-19h, Kezia yoga 11h-13h, Médoune pilates 8h-12h
-  { day: 3, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
+  // Mercredi — Médoune pilates 8h-12h, Sophie yoga 16h-19h
   { day: 3, hour: 8, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 3, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 3, hour: 9, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 3, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 3, hour: 10, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 3, hour: 11, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 3, hour: 11, minute: 0, discipline: "pilates", coach: "Médoune" },
   { day: 3, hour: 12, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 3, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
@@ -87,7 +79,7 @@ const CLASS_SCHEDULE = [
   { day: 3, hour: 19, minute: 0, discipline: "yoga", coach: "Sophie" },
   { day: 3, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 3, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
-  // Jeudi — Médoune pilates 18h-22h
+  // Jeudi — Médoune pilates 18h-22h (remplace yoga/box sur ces créneaux)
   { day: 4, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 4, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 4, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
@@ -98,13 +90,9 @@ const CLASS_SCHEDULE = [
   { day: 4, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 4, hour: 16, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 4, hour: 17, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 4, hour: 18, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 4, hour: 18, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 4, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 4, hour: 19, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 4, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 4, hour: 20, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 4, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 4, hour: 21, minute: 0, discipline: "pilates", coach: "Médoune" },
   // Vendredi
   { day: 5, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
@@ -121,7 +109,7 @@ const CLASS_SCHEDULE = [
   { day: 5, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 5, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 5, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
-  // Samedi — Médoune pilates 18h-20h
+  // Samedi — Médoune pilates 18h-20h (remplace yoga/box sur ces créneaux)
   { day: 6, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 6, hour: 9, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 6, hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
@@ -132,9 +120,7 @@ const CLASS_SCHEDULE = [
   { day: 6, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 6, hour: 16, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 6, hour: 17, minute: 0, discipline: "yoga", coach: "Kezia" },
-  { day: 6, hour: 18, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 6, hour: 18, minute: 0, discipline: "pilates", coach: "Médoune" },
-  { day: 6, hour: 19, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 6, hour: 19, minute: 0, discipline: "pilates", coach: "Médoune" },
   { day: 6, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 6, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
