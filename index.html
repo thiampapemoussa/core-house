@@ -2575,6 +2575,13 @@ const COACHES = [
 
 const KEZIA_START = new Date("2026-10-14");
 
+const DATE_OVERRIDES = {
+  "2026-10-12": [
+    { hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
+    { hour: 11, minute: 0, discipline: "box", coach: "Abdou" },
+  ]
+};
+
 const CLASS_SCHEDULE = [
   // Lundi (day 1) — Médoune pilates 9h-13h (remplace box/yoga sur ces créneaux)
   { day: 1, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
@@ -2763,7 +2770,14 @@ function generateSchedule() {
     const dayOfWeek = date.getDay();
     const dateStr = date.toISOString().split("T")[0];
 
-    CLASS_SCHEDULE.filter(c => c.day === dayOfWeek && (c.coach !== "Kezia" || date >= KEZIA_START)).forEach(cls => {
+    let daySlots = CLASS_SCHEDULE.filter(c => c.day === dayOfWeek && (c.coach !== "Kezia" || date >= KEZIA_START));
+    if (DATE_OVERRIDES[dateStr]) {
+      const overrides = DATE_OVERRIDES[dateStr];
+      const overrideKeys = new Set(overrides.map(o => o.hour + ":" + (o.minute || 0)));
+      daySlots = daySlots.filter(c => !overrideKeys.has(c.hour + ":" + (c.minute || 0))).concat(overrides);
+      daySlots.sort((a, b) => a.hour - b.hour || (a.minute || 0) - (b.minute || 0));
+    }
+    daySlots.forEach(cls => {
       const classId = getClassId(dateStr, cls.hour, cls.minute, cls.discipline);
       const participants = getParticipantCount(classId);
       const status = getStatusInfo(participants, cls.discipline);
@@ -3198,8 +3212,14 @@ function updateTimeSlots() {
   const date = new Date(dateVal + "T00:00:00");
   const dayOfWeek = date.getDay();
 
-  CLASS_SCHEDULE
-    .filter(c => c.day === dayOfWeek && c.discipline === discipline && (c.coach !== "Kezia" || date >= KEZIA_START))
+  let slots = CLASS_SCHEDULE.filter(c => c.day === dayOfWeek && (c.coach !== "Kezia" || date >= KEZIA_START));
+  if (DATE_OVERRIDES[dateVal]) {
+    const overrides = DATE_OVERRIDES[dateVal];
+    const overrideKeys = new Set(overrides.map(o => o.hour + ":" + (o.minute || 0)));
+    slots = slots.filter(c => !overrideKeys.has(c.hour + ":" + (c.minute || 0))).concat(overrides);
+    slots.sort((a, b) => a.hour - b.hour || (a.minute || 0) - (b.minute || 0));
+  }
+  slots.filter(c => c.discipline === discipline)
     .forEach(c => {
       const timeVal = c.hour + (c.minute ? ':' + c.minute : '') + '|' + c.coach;
       const opt = document.createElement("option");

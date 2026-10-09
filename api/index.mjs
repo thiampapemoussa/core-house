@@ -33,6 +33,13 @@ const MIN_PARTICIPANTS = 2;
 
 const KEZIA_START = new Date("2026-10-14");
 
+const DATE_OVERRIDES = {
+  "2026-10-12": [
+    { hour: 10, minute: 0, discipline: "box", coach: "Abdou" },
+    { hour: 11, minute: 0, discipline: "box", coach: "Abdou" },
+  ]
+};
+
 const CLASS_SCHEDULE = [
   // Lundi — Médoune pilates 9h-13h (remplace box/yoga sur ces créneaux)
   { day: 1, hour: 8, minute: 0, discipline: "box", coach: "Abdou" },
@@ -521,7 +528,15 @@ router.get("/schedule", async (req, res) => {
     const dayOfWeek = dt.getDay();
     const dateStr = dt.toISOString().split("T")[0];
 
-    for (const cls of CLASS_SCHEDULE.filter(c => c.day === dayOfWeek && (!validDiscipline || c.discipline === validDiscipline) && (c.coach !== "Kezia" || dt >= KEZIA_START))) {
+    let daySlots = CLASS_SCHEDULE.filter(c => c.day === dayOfWeek && (c.coach !== "Kezia" || dt >= KEZIA_START));
+    if (DATE_OVERRIDES[dateStr]) {
+      const overrides = DATE_OVERRIDES[dateStr];
+      const overrideKeys = new Set(overrides.map(o => o.hour + ":" + (o.minute || 0)));
+      daySlots = daySlots.filter(c => !overrideKeys.has(c.hour + ":" + (c.minute || 0))).concat(overrides);
+      daySlots.sort((a, b) => a.hour - b.hour || (a.minute || 0) - (b.minute || 0));
+    }
+    if (validDiscipline) daySlots = daySlots.filter(c => c.discipline === validDiscipline);
+    for (const cls of daySlots) {
       if (d === 0) {
         const classTime = new Date(dt);
         classTime.setHours(cls.hour, cls.minute || 0);
