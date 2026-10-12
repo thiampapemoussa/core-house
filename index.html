@@ -2442,6 +2442,11 @@ button {
         <p class="form-error" id="email-error">Veuillez entrer une adresse email valide.</p>
       </div>
       <div class="form-group">
+        <label for="book-phone">Numéro WhatsApp</label>
+        <input type="tel" id="book-phone" placeholder="+221 7X XXX XX XX" autocomplete="tel">
+        <p class="form-error" id="phone-error">Veuillez entrer un numéro valide (min. 8 chiffres).</p>
+      </div>
+      <div class="form-group">
         <label for="book-places">Nombre de places</label>
         <select id="book-places">
           <option value="1">1 place</option>
@@ -3161,6 +3166,9 @@ function closeModal() {
   document.getElementById("book-email").value = "";
   document.getElementById("book-email").classList.remove("is-invalid");
   document.getElementById("email-error").classList.remove("is-visible");
+  document.getElementById("book-phone").value = "";
+  document.getElementById("book-phone").classList.remove("is-invalid");
+  document.getElementById("phone-error").classList.remove("is-visible");
   document.getElementById("book-places").value = "1";
   showStep(0);
 }
@@ -3335,6 +3343,20 @@ document.getElementById("step-2-next").addEventListener("click", () => {
     emailError.classList.remove("is-visible");
   }
 
+  const phone = document.getElementById("book-phone").value.trim();
+  const phoneInput = document.getElementById("book-phone");
+  const phoneError = document.getElementById("phone-error");
+  const phoneDigits = phone.replace(/[\s\-.\(\)\+]/g, "");
+  if (!phone || phoneDigits.length < 8) {
+    phoneInput.classList.add("is-invalid");
+    phoneError.classList.add("is-visible");
+    if (valid) phoneInput.focus();
+    valid = false;
+  } else {
+    phoneInput.classList.remove("is-invalid");
+    phoneError.classList.remove("is-visible");
+  }
+
   if (!valid) return;
 
   const purchaseType = document.querySelector('input[name="purchase-type"]:checked').value;
@@ -3342,6 +3364,7 @@ document.getElementById("step-2-next").addEventListener("click", () => {
 
   bookingState.name = name;
   bookingState.email = email;
+  bookingState.phone = phone;
   bookingState.purchaseType = purchaseType;
   bookingState.places = places;
 
@@ -3394,6 +3417,10 @@ document.getElementById("step-2-next").addEventListener("click", () => {
       <span class="summary-row__value">${bookingState.email}</span>
     </div>
     <div class="summary-row">
+      <span class="summary-row__label">WhatsApp</span>
+      <span class="summary-row__value">${bookingState.phone}</span>
+    </div>
+    <div class="summary-row">
       <span class="summary-row__label">Places</span>
       <span class="summary-row__value">${bookingState.places}</span>
     </div>
@@ -3437,6 +3464,7 @@ document.getElementById("step-3-confirm").addEventListener("click", async () => 
     coach: bookingState.coach,
     name: bookingState.name,
     email: bookingState.email,
+    phone: bookingState.phone,
     places: bookingState.places,
     purchaseType: bookingState.purchaseType,
     totalPrice: bookingState.totalPrice,

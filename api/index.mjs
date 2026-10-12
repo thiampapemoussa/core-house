@@ -287,6 +287,7 @@ async function sendConfirmationEmail(booking, participantCount) {
 <table style="width:100%;border-collapse:collapse;font-size:15px;line-height:1.8">
 <tr><td style="color:#7F6F4C;padding:2px 0">Nom</td><td style="text-align:right;font-weight:500">${booking.customer_name}</td></tr>
 <tr><td style="color:#7F6F4C;padding:2px 0">Email</td><td style="text-align:right;font-weight:500"><a href="mailto:${booking.customer_email}" style="color:#6F3E14">${booking.customer_email}</a></td></tr>
+${booking.customer_phone ? `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp</td><td style="text-align:right;font-weight:500"><a href="https://wa.me/${booking.customer_phone.replace(/[\s\-.\(\)]/g,'').replace(/^\+/,'')}" style="color:#6F3E14">${booking.customer_phone}</a></td></tr>` : ''}
 <tr><td style="color:#7F6F4C;padding:2px 0">Date</td><td style="text-align:right;font-weight:500">${formatDateFR(booking.date)}</td></tr>
 <tr><td style="color:#7F6F4C;padding:2px 0">Heure</td><td style="text-align:right;font-weight:500">${timeStr}</td></tr>
 ${coachLine}
@@ -418,7 +419,7 @@ const router = express.Router();
 /* POST /api/bookings */
 router.post("/bookings", async (req, res) => {
   try {
-    const { classId, discipline, date, hour, minute, coach, name, email, places, purchaseType, totalPrice, idempotencyKey } = req.body;
+    const { classId, discipline, date, hour, minute, coach, name, email, phone, places, purchaseType, totalPrice, idempotencyKey } = req.body;
 
     if (!classId || !discipline || !date || hour === undefined || !name || !email || !places)
       return res.status(400).json({ success: false, error: "Données manquantes." });
@@ -426,6 +427,11 @@ router.post("/bookings", async (req, res) => {
       return res.status(400).json({ success: false, error: "Discipline invalide." });
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       return res.status(400).json({ success: false, error: "Adresse email invalide." });
+    if (phone) {
+      const phoneClean = normalizePhone(phone);
+      if (phoneClean.length < 8)
+        return res.status(400).json({ success: false, error: "Numéro WhatsApp invalide." });
+    }
     if (places < 1 || places > 4)
       return res.status(400).json({ success: false, error: "Nombre de places invalide." });
 
@@ -447,6 +453,7 @@ router.post("/bookings", async (req, res) => {
     const booking = {
       class_id: classId, discipline, date, hour, minute: minute || 0,
       coach: coach || null, customer_name: name, customer_email: email,
+      customer_phone: phone || null,
       places, purchase_type: purchaseType || "single",
       total_price: totalPrice || disc.price * places,
       status: "confirmed", idempotency_key: idempotencyKey || null,
