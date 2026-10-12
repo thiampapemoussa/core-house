@@ -24,7 +24,7 @@ function getSupabase() {
 const DISCIPLINES = {
   pilates: { label: "Mat Pilates", price: 10000, maxParticipants: 12 },
   yoga: { label: "Yoga", price: 8000, maxParticipants: 12 },
-  box: { label: "Box Cardio", price: 8000, maxParticipants: 6 },
+  box: { label: "Boxe Cardio", price: 8000, maxParticipants: 6 },
 };
 
 const MIN_PARTICIPANTS = 2;
@@ -295,7 +295,7 @@ ${coachLine}
 <tr><td style="color:#7F6F4C;padding:2px 0;border-top:1px solid #D8AF82;padding-top:8px"><strong>Montant</strong></td><td style="text-align:right;font-weight:600;border-top:1px solid #D8AF82;padding-top:8px;color:#6F3E14">${formatPrice(booking.total_price)}</td></tr>
 </table></div>
 <p style="font-size:15px;line-height:1.6;margin:0 0 32px;padding:16px;background:${statusBg};border-radius:6px">${statusMsg}</p>
-<p style="font-size:15px;line-height:1.6;margin:0">À bientôt,<br><strong>Core House Dakar</strong><br><span style="color:#7F6F4C;font-size:13px">Mat Pilates · Yoga · Box Cardio · House Bar</span></p>
+<p style="font-size:15px;line-height:1.6;margin:0">À bientôt,<br><strong>Core House Dakar</strong><br><span style="color:#7F6F4C;font-size:13px">Mat Pilates · Yoga · Boxe Cardio · House Bar</span></p>
 </div></div>`;
 
   const adminEmail = process.env.ADMIN_EMAIL || "contact@corehousedakar.com";
@@ -345,7 +345,7 @@ ${coachLine}
 </div>
 <div style="padding:24px 32px;border-top:1px solid rgba(127,111,76,0.12);text-align:center">
 <p style="font-size:13px;color:#7F6F4C;margin:0 0 4px">Core House Dakar</p>
-<p style="font-size:12px;color:#7F6F4C;opacity:0.6;margin:0">Bourguiba, Dakar · Mat Pilates · Yoga · Box Cardio</p>
+<p style="font-size:12px;color:#7F6F4C;opacity:0.6;margin:0">Bourguiba, Dakar · Mat Pilates · Yoga · Boxe Cardio</p>
 </div></div>`;
 
   try {
