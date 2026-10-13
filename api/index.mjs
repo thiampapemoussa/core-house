@@ -273,8 +273,7 @@ async function sendConfirmationEmail(booking, participantCount) {
   const disc = DISCIPLINES[booking.discipline];
   const timeStr = `${String(booking.hour).padStart(2, "0")}:${String(booking.minute).padStart(2, "0")}`;
   const coachLine = booking.coach ? `<tr><td style="color:#7F6F4C;padding:2px 0">Coach</td><td style="text-align:right;font-weight:500">${booking.coach}</td></tr>` : "";
-  const phoneVal = booking.customer_phone || booking.phone || null;
-  const phoneLine = phoneVal ? `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp</td><td style="text-align:right;font-weight:500">${phoneVal}</td></tr>` : `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp DEBUG</td><td style="text-align:right;font-weight:500">keys: ${Object.keys(booking).join(", ")}</td></tr>`;
+  const phoneLine = booking.customer_phone ? `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp</td><td style="text-align:right;font-weight:500">${booking.customer_phone}</td></tr>` : "";
   const statusMsg = participantCount >= MIN_PARTICIPANTS
     ? "Votre séance est confirmée."
     : "Votre réservation est enregistrée. La séance sera définitivement confirmée à partir de deux participants.";
@@ -453,10 +452,11 @@ router.post("/bookings", async (req, res) => {
     if (places > maxP - currentCount)
       return res.status(409).json({ success: false, error: `Il ne reste que ${maxP - currentCount} place${maxP - currentCount > 1 ? "s" : ""} disponible${maxP - currentCount > 1 ? "s" : ""}.` });
 
+    const customerPhone = phone || null;
     const booking = {
       class_id: classId, discipline, date, hour, minute: minute || 0,
       coach: coach || null, customer_name: name, customer_email: email,
-      customer_phone: phone || null,
+      customer_phone: customerPhone,
       places, purchase_type: purchaseType || "single",
       total_price: totalPrice || disc.price * places,
       status: "confirmed", idempotency_key: idempotencyKey || null,
@@ -464,8 +464,8 @@ router.post("/bookings", async (req, res) => {
 
     let inserted, insertErr;
     ({ data: inserted, error: insertErr } = await getSupabase().from("bookings").insert(booking).select("id").single());
-    if (insertErr && (insertErr.code === "PGRST204" || insertErr.message?.includes("customer_phone"))) {
-      console.warn("customer_phone column missing, retrying without it");
+    if (insertErr) {
+      console.warn("Insert error (will retry without customer_phone):", insertErr.code, insertErr.message);
       delete booking.customer_phone;
       ({ data: inserted, error: insertErr } = await getSupabase().from("bookings").insert(booking).select("id").single());
     }
@@ -482,7 +482,7 @@ router.post("/bookings", async (req, res) => {
       await getSupabase().from("classes").update({ google_calendar_event_id: eventId }).eq("class_id", classId);
     }
 
-    await sendConfirmationEmail({ ...booking, date }, newTotal);
+    await sendConfirmationEmail({ ...booking, customer_phone: customerPhone, date }, newTotal);
 
     res.json({ success: true, bookingId: inserted.id, status: "confirmed", participants: newTotal, maxParticipants: maxP });
   } catch (err) {
@@ -515,7 +515,7 @@ router.get("/classes", async (req, res) => {
 router.get("/health", (req, res) => {
   res.json({
     status: "ok",
-    version: "v5-debug",
+    version: "v6",
     env: {
       SUPABASE_URL: !!process.env.SUPABASE_URL,
       SUPABASE_SERVICE_KEY: !!process.env.SUPABASE_SERVICE_KEY,
