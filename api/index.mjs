@@ -270,10 +270,10 @@ function formatDateFR(dateStr) {
 
 async function sendConfirmationEmail(booking, participantCount) {
   if (!transporter) return;
-  console.log("EMAIL DEBUG — customer_phone:", booking.customer_phone, "keys:", Object.keys(booking).join(","));
   const disc = DISCIPLINES[booking.discipline];
   const timeStr = `${String(booking.hour).padStart(2, "0")}:${String(booking.minute).padStart(2, "0")}`;
   const coachLine = booking.coach ? `<tr><td style="color:#7F6F4C;padding:2px 0">Coach</td><td style="text-align:right;font-weight:500">${booking.coach}</td></tr>` : "";
+  const phoneLine = booking.customer_phone ? `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp</td><td style="text-align:right;font-weight:500">${booking.customer_phone}</td></tr>` : "";
   const statusMsg = participantCount >= MIN_PARTICIPANTS
     ? "Votre séance est confirmée."
     : "Votre réservation est enregistrée. La séance sera définitivement confirmée à partir de deux participants.";
@@ -289,7 +289,7 @@ async function sendConfirmationEmail(booking, participantCount) {
 <table style="width:100%;border-collapse:collapse;font-size:15px;line-height:1.8">
 <tr><td style="color:#7F6F4C;padding:2px 0">Nom</td><td style="text-align:right;font-weight:500">${booking.customer_name}</td></tr>
 <tr><td style="color:#7F6F4C;padding:2px 0">Email</td><td style="text-align:right;font-weight:500"><a href="mailto:${booking.customer_email}" style="color:#6F3E14">${booking.customer_email}</a></td></tr>
-${booking.customer_phone ? `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp</td><td style="text-align:right;font-weight:500"><a href="https://wa.me/${booking.customer_phone.replace(/[\s\-.\(\)]/g,'').replace(/^\+/,'')}" style="color:#6F3E14">${booking.customer_phone}</a></td></tr>` : ''}
+${phoneLine}
 <tr><td style="color:#7F6F4C;padding:2px 0">Date</td><td style="text-align:right;font-weight:500">${formatDateFR(booking.date)}</td></tr>
 <tr><td style="color:#7F6F4C;padding:2px 0">Heure</td><td style="text-align:right;font-weight:500">${timeStr}</td></tr>
 ${coachLine}
@@ -514,7 +514,7 @@ router.get("/classes", async (req, res) => {
 router.get("/health", (req, res) => {
   res.json({
     status: "ok",
-    version: "v3-whatsapp",
+    version: "v4-phoneline",
     env: {
       SUPABASE_URL: !!process.env.SUPABASE_URL,
       SUPABASE_SERVICE_KEY: !!process.env.SUPABASE_SERVICE_KEY,
