@@ -2,6 +2,7 @@ import express from "express";
 import { createClient } from "@supabase/supabase-js";
 import nodemailer from "nodemailer";
 import crypto from "node:crypto";
+// v2: WhatsApp phone in booking emails
 
 const app = express();
 app.use(express.json());
