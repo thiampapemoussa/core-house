@@ -459,7 +459,13 @@ router.post("/bookings", async (req, res) => {
       status: "confirmed", idempotency_key: idempotencyKey || null,
     };
 
-    const { data: inserted, error: insertErr } = await getSupabase().from("bookings").insert(booking).select("id").single();
+    let inserted, insertErr;
+    ({ data: inserted, error: insertErr } = await getSupabase().from("bookings").insert(booking).select("id").single());
+    if (insertErr && (insertErr.code === "PGRST204" || insertErr.message?.includes("customer_phone"))) {
+      console.warn("customer_phone column missing, retrying without it");
+      delete booking.customer_phone;
+      ({ data: inserted, error: insertErr } = await getSupabase().from("bookings").insert(booking).select("id").single());
+    }
     if (insertErr) {
       if (insertErr.code === "23505") return res.json({ success: true, bookingId: "duplicate", status: "confirmed", duplicate: true });
       throw insertErr;
