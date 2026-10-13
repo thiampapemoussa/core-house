@@ -270,6 +270,7 @@ function formatDateFR(dateStr) {
 
 async function sendConfirmationEmail(booking, participantCount) {
   if (!transporter) return;
+  console.log("EMAIL DEBUG — customer_phone:", booking.customer_phone, "keys:", Object.keys(booking).join(","));
   const disc = DISCIPLINES[booking.discipline];
   const timeStr = `${String(booking.hour).padStart(2, "0")}:${String(booking.minute).padStart(2, "0")}`;
   const coachLine = booking.coach ? `<tr><td style="color:#7F6F4C;padding:2px 0">Coach</td><td style="text-align:right;font-weight:500">${booking.coach}</td></tr>` : "";
@@ -513,6 +514,7 @@ router.get("/classes", async (req, res) => {
 router.get("/health", (req, res) => {
   res.json({
     status: "ok",
+    version: "v3-whatsapp",
     env: {
       SUPABASE_URL: !!process.env.SUPABASE_URL,
       SUPABASE_SERVICE_KEY: !!process.env.SUPABASE_SERVICE_KEY,
