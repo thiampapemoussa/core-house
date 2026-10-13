@@ -273,7 +273,8 @@ async function sendConfirmationEmail(booking, participantCount) {
   const disc = DISCIPLINES[booking.discipline];
   const timeStr = `${String(booking.hour).padStart(2, "0")}:${String(booking.minute).padStart(2, "0")}`;
   const coachLine = booking.coach ? `<tr><td style="color:#7F6F4C;padding:2px 0">Coach</td><td style="text-align:right;font-weight:500">${booking.coach}</td></tr>` : "";
-  const phoneLine = booking.customer_phone ? `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp</td><td style="text-align:right;font-weight:500">${booking.customer_phone}</td></tr>` : "";
+  const phoneVal = booking.customer_phone || booking.phone || null;
+  const phoneLine = phoneVal ? `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp</td><td style="text-align:right;font-weight:500">${phoneVal}</td></tr>` : `<tr><td style="color:#7F6F4C;padding:2px 0">WhatsApp DEBUG</td><td style="text-align:right;font-weight:500">keys: ${Object.keys(booking).join(", ")}</td></tr>`;
   const statusMsg = participantCount >= MIN_PARTICIPANTS
     ? "Votre séance est confirmée."
     : "Votre réservation est enregistrée. La séance sera définitivement confirmée à partir de deux participants.";
@@ -514,7 +515,7 @@ router.get("/classes", async (req, res) => {
 router.get("/health", (req, res) => {
   res.json({
     status: "ok",
-    version: "v4-phoneline",
+    version: "v5-debug",
     env: {
       SUPABASE_URL: !!process.env.SUPABASE_URL,
       SUPABASE_SERVICE_KEY: !!process.env.SUPABASE_SERVICE_KEY,
