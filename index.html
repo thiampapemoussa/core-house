@@ -689,14 +689,33 @@ button {
   pointer-events: none;
 }
 
-.main-event__visual-logo {
-  width: 60px;
-  height: auto;
+.main-event__visual-logos {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
-  opacity: 0.9;
-  filter: brightness(10);
   position: relative;
   z-index: 1;
+}
+
+.main-event__visual-logos img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.main-event__visual-logos img:first-child {
+  filter: brightness(10);
+}
+
+.main-event__visual-logos img:last-child {
+  filter: brightness(0) invert(1);
+}
+
+.main-event__visual-logos span {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
 }
 
 .main-event__visual-collab {
@@ -787,17 +806,20 @@ button {
   font-size: 1.5rem;
   line-height: 1.15;
   margin: 0;
+  color: var(--ivory);
 }
 
 .main-event__subtitle {
   font-size: 0.8rem;
   opacity: 0.8;
   margin: 0;
+  color: var(--ivory);
 }
 
 .main-event__meta {
   font-size: 0.85rem;
   margin: 0;
+  color: rgba(255,255,255,0.9);
 }
 
 .main-event__meta strong {
@@ -814,21 +836,23 @@ button {
 .main-event__detail-tag {
   font-size: 0.7rem;
   padding: 0.25rem 0.6rem;
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.35);
   border-radius: 20px;
+  color: rgba(255,255,255,0.9);
 }
 
 .main-event__desc {
   font-size: 0.8rem;
-  opacity: 0.85;
   line-height: 1.45;
   margin: 0;
+  color: rgba(255,255,255,0.85);
 }
 
 .main-event__price {
   font-family: var(--font-display);
   font-size: 1.15rem;
   margin: 0;
+  color: var(--ivory);
 }
 
 .main-event .btn {
@@ -3295,8 +3319,11 @@ function renderThisWeek() {
     html += `
     <div class="main-event reveal" style="grid-column:1/-1">
       <div class="main-event__visual">
-        <img class="main-event__visual-logo" src="assets/images/logo-core-house.png" alt="Core House">
-        <span class="main-event__visual-collab">${ev.subtitle || ""}</span>
+        <div class="main-event__visual-logos">
+          <img src="assets/images/logo-core-house.png" alt="Core House">
+          <span>×</span>
+          <img src="assets/images/logo-cami.jpg" alt="CAMI">
+        </div>
         <h3 class="main-event__visual-name">${ev.title}</h3>
         <span class="main-event__visual-date">${ev.day} · ${ev.time}</span>
         <span class="main-event__visual-price">Participation : ${ev.price}</span>
