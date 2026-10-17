@@ -651,6 +651,107 @@ button {
   margin-top: 0.5rem;
 }
 
+.main-event {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--espresso);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .main-event { grid-template-columns: 1fr 1fr; min-height: 400px; }
+}
+
+.main-event__image {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.main-event__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.main-event__content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--white);
+}
+
+.main-event__badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  background: var(--olive);
+  color: var(--white);
+  align-self: flex-start;
+}
+
+.main-event__title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.main-event__subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.main-event__meta {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.main-event__meta strong {
+  color: var(--olive);
+}
+
+.main-event__details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.25rem 0;
+}
+
+.main-event__detail-tag {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+}
+
+.main-event__desc {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.main-event__price {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.main-event .btn {
+  align-self: flex-start;
+}
+
 /* ── Planning ── */
 
 .planning {
@@ -2713,6 +2814,17 @@ const COACHES = [
 
 /* ═══ Weekly Events (modifier chaque semaine) ═══ */
 
+const WEEKLY_MAIN_EVENT = {
+  title: "Atelier Crochets",
+  subtitle: "Core House x CAMI",
+  day: "Vendredi 23 Octobre",
+  time: "19h00 – 21h00",
+  price: "15 000 FCFA",
+  image: "assets/images/atelier-crochet.webp",
+  details: ["Pas d'expérience requise", "Matériel fourni", "Séance de Yoga offerte"],
+  description: "Un moment de créativité, de partage et de douceur. Viens découvrir l'art du crochet et créer ta propre pièce dans une ambiance chaleureuse et conviviale."
+};
+
 const WEEKLY_EVENTS = [
   {
     title: "Yin Yoga avec Sophie",
@@ -3083,7 +3195,7 @@ function updateArrows() {
 function renderThisWeek() {
   const grid = document.getElementById("this-week-grid");
   const titleEl = document.getElementById("this-week-title");
-  if (!grid || !WEEKLY_EVENTS.length) return;
+  if (!grid) return;
 
   const now = new Date();
   const monday = new Date(now);
@@ -3093,7 +3205,29 @@ function renderThisWeek() {
   const fmt = d => d.toLocaleDateString("fr-FR", { day: "numeric", month: "long" });
   titleEl.textContent = `Semaine du ${fmt(monday)} au ${fmt(sunday)}`;
 
-  grid.innerHTML = WEEKLY_EVENTS.map(ev => `
+  let html = "";
+
+  if (typeof WEEKLY_MAIN_EVENT !== "undefined" && WEEKLY_MAIN_EVENT) {
+    const ev = WEEKLY_MAIN_EVENT;
+    html += `
+    <div class="main-event reveal" style="grid-column:1/-1">
+      <div class="main-event__image">
+        <img src="${ev.image}" alt="${ev.title}" loading="eager">
+      </div>
+      <div class="main-event__content">
+        <span class="main-event__badge">Événement</span>
+        ${ev.subtitle ? `<p class="main-event__subtitle">${ev.subtitle}</p>` : ""}
+        <h3 class="main-event__title">${ev.title}</h3>
+        <p class="main-event__meta"><strong>${ev.day}</strong> · ${ev.time}</p>
+        ${ev.details ? `<div class="main-event__details">${ev.details.map(d => `<span class="main-event__detail-tag">${d}</span>`).join("")}</div>` : ""}
+        <p class="main-event__desc">${ev.description}</p>
+        <p class="main-event__price">${ev.price}</p>
+        <a href="https://wa.me/221768811846?text=${encodeURIComponent("Bonjour, je souhaite réserver pour l'Atelier Crochets du vendredi 23 octobre.")}" class="btn btn--primary" style="font-size:0.85rem" target="_blank" rel="noopener">Réserver via WhatsApp</a>
+      </div>
+    </div>`;
+  }
+
+  html += WEEKLY_EVENTS.map(ev => `
     <div class="event-card reveal">
       <span class="event-card__badge${ev.highlight ? " event-card__badge--highlight" : ""}">${ev.badge}</span>
       <h3 class="event-card__title">${ev.title}</h3>
@@ -3101,6 +3235,8 @@ function renderThisWeek() {
       <p class="event-card__detail">${ev.description}</p>
       ${ev.link ? `<a href="#${ev.link}" class="btn btn--dark-outline" style="font-size:0.8rem;padding:0.5rem 1rem">Voir →</a>` : ""}
     </div>`).join("");
+
+  grid.innerHTML = html;
 }
 
 function renderPacks() {
