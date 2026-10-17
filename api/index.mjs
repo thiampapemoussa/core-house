@@ -24,8 +24,9 @@ function getSupabase() {
 
 const DISCIPLINES = {
   pilates: { label: "Mat Pilates", price: 10000, maxParticipants: 12 },
-  yoga: { label: "Yoga", price: 8000, maxParticipants: 12 },
-  box: { label: "Boxe Cardio", price: 8000, maxParticipants: 6 },
+  yoga: { label: "Yoga", price: 10000, maxParticipants: 12 },
+  yin: { label: "Yin Yoga", price: 12000, maxParticipants: 12 },
+  box: { label: "Boxe Cardio", price: 10000, maxParticipants: 6 },
 };
 
 const MIN_PARTICIPANTS = 2;
@@ -81,10 +82,10 @@ const CLASS_SCHEDULE = [
   { day: 3, hour: 13, minute: 0, discipline: "yoga", coach: "Kezia" },
   { day: 3, hour: 14, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 3, hour: 15, minute: 0, discipline: "box", coach: "Abdou" },
-  { day: 3, hour: 16, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 3, hour: 17, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 3, hour: 18, minute: 0, discipline: "yoga", coach: "Sophie" },
-  { day: 3, hour: 19, minute: 0, discipline: "yoga", coach: "Sophie" },
+  { day: 3, hour: 16, minute: 0, discipline: "yin", coach: "Sophie" },
+  { day: 3, hour: 17, minute: 0, discipline: "yin", coach: "Sophie" },
+  { day: 3, hour: 18, minute: 0, discipline: "yin", coach: "Sophie" },
+  { day: 3, hour: 19, minute: 0, discipline: "yin", coach: "Sophie" },
   { day: 3, hour: 20, minute: 0, discipline: "box", coach: "Abdou" },
   { day: 3, hour: 21, minute: 0, discipline: "box", coach: "Abdou" },
   // Jeudi — Médoune pilates 18h-22h (remplace yoga/box sur ces créneaux)
@@ -515,7 +516,7 @@ router.get("/classes", async (req, res) => {
 router.get("/health", (req, res) => {
   res.json({
     status: "ok",
-    version: "v6",
+    version: "v7",
     env: {
       SUPABASE_URL: !!process.env.SUPABASE_URL,
       SUPABASE_SERVICE_KEY: !!process.env.SUPABASE_SERVICE_KEY,
