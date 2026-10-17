@@ -3381,13 +3381,11 @@ function renderPacks() {
       <p class="packs__category-title">Abonnements</p>
       <div class="packs__grid">`;
     PRICING.subscriptions.forEach(sub => {
-      const perSession = Math.round(sub.price / sub.sessions);
       const allLabels = sub.disciplines.map(d => DISCIPLINES[d].label).join(", ");
       html += `
         <div class="pack-card pack-card--featured reveal">
           <h3 class="pack-card__name">${sub.name}</h3>
           <p class="pack-card__price">${formatPrice(sub.price)}<span style="font-size:0.6em;font-weight:400"> / mois</span></p>
-          <p class="pack-card__per-session">${formatPrice(perSession)} par séance</p>
           <p class="pack-card__details">${sub.description}</p>
           <p class="pack-card__saving" style="font-size:0.8rem">${allLabels}</p>
           <button class="btn btn--dark" data-pack-id="${sub.id}">S'abonner →</button>
@@ -3767,12 +3765,11 @@ document.getElementById("step-1-next").addEventListener("click", () => {
 
   if (PRICING.subscriptions) {
     PRICING.subscriptions.filter(s => s.disciplines.includes(discipline)).forEach(sub => {
-      const perSession = Math.round(sub.price / sub.sessions);
       const sel = preselected === sub.id;
       html += `
         <label class="radio-option${sel ? " is-selected" : ""}">
           <input type="radio" name="purchase-type" value="${sub.id}"${sel ? " checked" : ""}>
-          <span class="radio-option__label">${sub.name}<br><small style="color:var(--olive);font-size:0.75rem">${sub.description} · ${formatPrice(perSession)}/séance</small></span>
+          <span class="radio-option__label">${sub.name}<br><small style="color:var(--olive);font-size:0.75rem">${sub.description}</small></span>
           <span class="radio-option__price">${formatPrice(sub.price)}/mois</span>
         </label>`;
     });
