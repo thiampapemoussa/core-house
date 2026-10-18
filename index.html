@@ -1906,12 +1906,12 @@ button {
 
 .courses-overview__grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
-@media (min-width: 640px) {
-  .courses-overview__grid { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 768px) {
+  .courses-overview__grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 .course-card {
@@ -1919,7 +1919,7 @@ button {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2rem);
+  padding: 1.25rem 1rem;
   border: 1px solid rgba(127, 111, 76, 0.12);
   border-radius: 2px;
   background: var(--off-white);
@@ -1932,9 +1932,9 @@ button {
 }
 
 .course-card__icon {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 1.25rem;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0.75rem;
   color: var(--earth);
 }
 
@@ -1942,22 +1942,22 @@ button {
 
 .course-card__title {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 400;
   color: var(--espresso);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .course-card__desc {
-  font-size: 0.85rem;
-  line-height: 1.6;
+  font-size: 0.78rem;
+  line-height: 1.5;
   color: var(--olive);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   flex: 1;
 }
 
 .course-card__price {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.05em;
   color: var(--earth);
