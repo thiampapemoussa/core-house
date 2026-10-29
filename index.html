@@ -669,7 +669,7 @@ button {
 .main-event__visual {
   position: relative;
   min-height: 240px;
-  background: linear-gradient(135deg, #4a3228 0%, var(--espresso) 40%, #2a1a0e 100%);
+  background: linear-gradient(135deg, #2d3a2a 0%, #1e2b1a 40%, #16200f 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -684,8 +684,8 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(212,175,130,0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(127,111,76,0.12) 0%, transparent 50%);
+    radial-gradient(circle at 20% 30%, rgba(130,170,100,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(180,200,140,0.08) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -723,7 +723,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--sand);
+  color: #b8d4a0;
   margin-bottom: 0.5rem;
   position: relative;
   z-index: 1;
@@ -743,9 +743,9 @@ button {
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--sand);
+  color: #b8d4a0;
   padding: 0.35rem 1rem;
-  border: 1px solid var(--sand);
+  border: 1px solid #b8d4a0;
   border-radius: 20px;
   position: relative;
   z-index: 1;
@@ -760,24 +760,6 @@ button {
   z-index: 1;
 }
 
-.main-event__visual-yarn {
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 3px solid rgba(212,175,130,0.2);
-  z-index: 0;
-}
-.main-event__visual-yarn::before {
-  content: "";
-  position: absolute;
-  top: 15px; left: 15px;
-  width: 70px; height: 70px;
-  border-radius: 50%;
-  border: 2px solid rgba(212,175,130,0.12);
-}
 
 .main-event__content {
   padding: 1.5rem;
@@ -823,7 +805,7 @@ button {
 }
 
 .main-event__meta strong {
-  color: var(--sand);
+  color: #b8d4a0;
 }
 
 .main-event__details {
@@ -2923,13 +2905,13 @@ const COACHES = [
 /* ═══ Weekly Events (modifier chaque semaine) ═══ */
 
 const WEEKLY_MAIN_EVENT = {
-  title: "Atelier Crochets",
-  subtitle: "Core House x CAMI",
-  day: "Vendredi 23 Octobre",
+  title: "Matcha & Talk",
+  subtitle: "Women Empowerment",
+  day: "Vendredi 6 Novembre",
   time: "19h00 – 21h00",
-  price: "15 000 FCFA",
-  details: ["Pas d'expérience requise", "Matériel fourni", "Séance de Yoga offerte"],
-  description: "Un moment de créativité, de partage et de douceur. Viens découvrir l'art du crochet et créer ta propre pièce dans une ambiance chaleureuse et conviviale."
+  price: "5 000 FCFA",
+  details: ["Entrepreneuriat", "Networking", "Matcha offert"],
+  description: "On choisit un sujet, on choisit un matcha, on connect et on talk. Un moment d'échange entre femmes autour de l'entrepreneuriat dans une ambiance inspirante et bienveillante."
 };
 
 const WEEKLY_EVENTS = [
@@ -3321,13 +3303,11 @@ function renderThisWeek() {
       <div class="main-event__visual">
         <div class="main-event__visual-logos">
           <img src="assets/images/logo-core-house.png" alt="Core House">
-          <span>×</span>
-          <img src="assets/images/logo-cami.png" alt="CAMI">
         </div>
+        ${ev.subtitle ? `<span class="main-event__visual-collab">${ev.subtitle}</span>` : ""}
         <h3 class="main-event__visual-name">${ev.title}</h3>
         <span class="main-event__visual-date">${ev.day} · ${ev.time}</span>
         <span class="main-event__visual-price">Participation : ${ev.price}</span>
-        <div class="main-event__visual-yarn"></div>
       </div>
       <div class="main-event__content">
         <span class="main-event__badge">Événement</span>
